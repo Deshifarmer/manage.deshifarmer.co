@@ -13,6 +13,7 @@ import {
 import GlobalFilter from "./GlobalFilter";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useGetAllFarmersQuery } from "../../../store/features/farmers/api";
 
 const COLUMNS = [
   {
@@ -190,35 +191,10 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllFarmers = ({ title = "All Farmers" }) => {
+  const { data: farmers, isLoading } = useGetAllFarmersQuery();
   const defaultPageSize = 100;
-  const [farmers, setFarmers] = useState([]);
-  const [loading, setLoading] = useState(false);
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => farmers, [farmers]);
-  const token = localStorage.getItem("hq-token");
-
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/all_farmer`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setFarmers(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const data = useMemo(() => (farmers ? farmers : []), [farmers]);
 
   const tableInstance = useTable(
     {
@@ -273,7 +249,7 @@ const AllFarmers = ({ title = "All Farmers" }) => {
   const { globalFilter, pageIndex, pageSize } = state;
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         "loading..."
       ) : (
         <Card>
