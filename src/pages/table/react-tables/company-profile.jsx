@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/Icon";
 import Card from "@/components/ui/Card";
 import BasicArea from "../../chart/appex-chart/BasicArea";
-
-// import images
-import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
-import CompanyProducts from "./company-products";
 
 const CompanyProfile = ({ company_details }) => {
   console.log(company_details);
@@ -20,7 +16,7 @@ const CompanyProfile = ({ company_details }) => {
             <div className="md:flex items-end md:space-x-6 rtl:space-x-reverse">
               <div className="flex-none">
                 <div className="md:h-[186px] md:w-[186px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded-full ring-4 ring-slate-100 relative">
-                  {company_details.photo && (
+                  {company_details?.photo && (
                     <img
                       src={`${import.meta.env.VITE_IMG_URL}/${
                         company_details?.photo
@@ -73,7 +69,6 @@ const CompanyProfile = ({ company_details }) => {
                 Sales this month
               </div>
             </div>
-
             <div className="flex-1">
               <div className="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
                 {company_details?.commission ? company_details?.commission : 0}{" "}
@@ -134,10 +129,7 @@ const CompanyProfile = ({ company_details }) => {
                       LOCATION
                     </div>
                     <div className="text-base text-slate-600 dark:text-slate-50">
-                      {/* Home# 320/N, Road# 71/B, Baridhara, Dhaka-1207, Bangladesh */}
-                      {company_details?.home_district}
                       {company_details?.permanent_address}
-                      {/* {`Home# ${farmer_details?.address} Address# District# Division# Village#`} */}
                     </div>
                   </div>
                 </li>
@@ -155,21 +147,6 @@ const CompanyProfile = ({ company_details }) => {
             </Card>
           </div>
         </div>
-      </div>
-      <div>
-        {/* {distributor_details?.me_list?.length > 0 ? (
-              <div>
-                {distributor_details?.me_list?.map((me) => (
-                  <div className="flex items-center space-x-2" key={me.df_id}>
-                      <div className="">
-                        <p>Name : {me?.full_name}</p>
-                      </div>
-                    </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center">No Micro Entrepreneurs</div>
-            )} */}
       </div>
     </div>
   );

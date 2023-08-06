@@ -15,15 +15,9 @@ import {
 import GlobalFilter from "./GlobalFilter";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useGetCompaniesQuery } from "../../../store/features/dashboard/api";
 
 const COLUMNS = [
-  // {
-  //   Header: "Company Name",
-  //   accessor: "full_name",
-  //   Cell: (row) => {
-  //     return <span>{row?.cell?.value}</span>;
-  //   },
-  // },
   {
     Header: "Product",
     accessor: "product_image",
@@ -79,7 +73,7 @@ const COLUMNS = [
     Header: "Total Products",
     accessor: "total_product",
     Cell: (row) => {
-      return <span>{(row?.cell?.value)}</span>;
+      return <span>{row?.cell?.value}</span>;
     },
   },
   // {
@@ -205,33 +199,11 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const Companies = ({ title = "Companies" }) => {
-  const [companies, setCompanies] = useState([]);
+  const { data: companies, isLoading, isError, error } = useGetCompaniesQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => companies, [companies]);
-  const token = localStorage.getItem("hq-token");
-  const [loading, setLoading] = useState(false);
+  const data = useMemo(() => (companies ? companies : []), [companies]);
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(`${import.meta.env.VITE_BASE}/all_company`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setCompanies(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(companies);
+  isError && console.log("Error in Company Table");
 
   const tableInstance = useTable(
     {
@@ -285,7 +257,7 @@ const Companies = ({ title = "Companies" }) => {
   const { globalFilter, pageIndex, pageSize } = state;
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <div>
           <div className="w-5 h-5  border-2 border-dashed rounded-full border-black-500 animate-spin"></div>
         </div>
