@@ -204,7 +204,7 @@ const ChannelList = ({ title = "Channel Lists", params }) => {
     fetchData();
   }, []);
 
-  console.log(distrubutors_lists);
+
 
   const tableInstance = useTable(
     {

@@ -14,6 +14,7 @@ import {
 import GlobalFilter from "./GlobalFilter";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useGetAllChannelsQuery } from "../../../store/features/channels/api";
 
 const handleRowClick = (row) => {
   console.log(row.row.original);
@@ -243,36 +244,10 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const Channels = () => {
-  const [channelPartners, setChannelPartners] = useState([]);
+  const { data: channels, isLoading, isError } = useGetAllChannelsQuery();
+  isError && console.log("Error in channels");
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => channelPartners, [channelPartners]);
-  const token = localStorage.getItem("hq-token");
-  const [loading, setLoading] = useState(false);
-
-  // note => all channel data
-  const fetchDat = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/all_channel`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setChannelPartners(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchDat();
-  }, []);
+  const data = useMemo(() => (channels ? channels : []), [channels]);
 
   const tableInstance = useTable(
     {
@@ -326,7 +301,7 @@ const Channels = () => {
   const { globalFilter, pageIndex, pageSize } = state;
   return (
     <div>
-      {loading ? (
+      {isLoading ? (
         "Loading..."
       ) : (
         <Card noborder>
