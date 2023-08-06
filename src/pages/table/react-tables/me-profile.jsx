@@ -59,7 +59,7 @@ const MeDetails = ({ me_details }) => {
           <div className="profile-info-500 md:flex md:text-start text-center flex-1 max-w-[516px] md:space-y-0 space-y-4">
             <div className="flex-1">
               <div className="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
-                {me_details.yearly_income ? me_details.yearly_income : 0} TK
+                {me_details?.yearly_income ? me_details?.yearly_income : 0} TK
               </div>
               <div className="text-sm text-slate-600 font-light dark:text-slate-300">
                 Total Balance
@@ -137,7 +137,6 @@ const MeDetails = ({ me_details }) => {
                     <div className="text-base text-slate-600 dark:text-slate-50">
                       {/* Home# 320/N, Road# 71/B, Mohakhali, Dhaka-1207, Bangladesh */}
                       {me_details?.permanent_address}, {""}
-
                       {me_details?.home_district}
                       {/* {`Home# ${farmer_details?.address} Address# District# Division# Village#`} */}
                     </div>

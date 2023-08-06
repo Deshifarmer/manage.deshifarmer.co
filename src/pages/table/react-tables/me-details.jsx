@@ -1,47 +1,24 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MeProfile from "./me-profile";
 import MeOrders from "./me-orders";
 import MeFarmerLists from "./me-farmer-lists";
+import { useGetSingleMicroEntrepreneurQuery } from "../../../store/features/micro-entrepreneurs/api";
 
 const MeDetails = () => {
   const params = useParams();
-  const [me_details, set_me_details] = useState([]);
-  const token = localStorage.getItem("hq-token");
-  const [farmer_lists, set_farmer_lists] = useState([]);
-
-  const fetchMeDetails = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/profile/${params.id}`,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = await response.data;
-      set_me_details(data);
-      set_farmer_lists(data.farmer_list);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchMeDetails();
-  }, []);
-
-  console.log(me_details);
-
+  const { data, isError, isLoading } = useGetSingleMicroEntrepreneurQuery(
+    params?.id
+  );
+  isError && console.log("Error fetching data from server for me details");
   return (
     <div>
-      <MeProfile me_details={me_details} />
+      <MeProfile me_details={data} />
       <div className="mt-5">
         <div className="mb-10">
-          <MeFarmerLists farmer_lists={farmer_lists} />
+          <MeFarmerLists
+            farmer_lists={data?.farmer_list}
+            isLoading={isLoading}
+          />
         </div>
         <div>
           <MeOrders params={params} />
