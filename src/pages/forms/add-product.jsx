@@ -91,7 +91,7 @@ const AddProduct = () => {
       });
       setCategory(res.data);
     } catch (error) {
-      console.log(error);
+     
     }
   };
 
@@ -104,7 +104,7 @@ const AddProduct = () => {
       });
       setUnits(res.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -113,7 +113,7 @@ const AddProduct = () => {
     fetch_unit();
   }, []);
 
-  console.log(unit_id);
+
 
   const onSubmit = async (data) => {
     // only accet jpg, png, jpeg
@@ -126,7 +126,7 @@ const AddProduct = () => {
       return;
     }
 
-    console.log(data);
+  
     const formData = new FormData();
     formData.append("image", files);
     formData.append("name", data.name);
@@ -169,7 +169,7 @@ const AddProduct = () => {
       setLoading(false);
       Swal.fire("Success", "Product Added Successfully", "success");
     } catch (error) {
-      console.log(error);
+      
       setLoading(false);
       Swal.fire("Ops!", "Something went wrong", "error");
       // error.response.data.errors.map((err) => toast.error(err));
@@ -183,10 +183,10 @@ const AddProduct = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(res);
+      
       setCompanies(res.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

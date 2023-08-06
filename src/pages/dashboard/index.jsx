@@ -28,7 +28,6 @@ const Dashboard = () => {
   //       },
   //     }
   //   );
-  //   console.log(response.data);
   // };
 
   // useEffect(() => {

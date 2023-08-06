@@ -107,11 +107,11 @@ const CreateChannel = () => {
           },
         }
       );
-      console.log(response);
+     
       Swal.fire("Grat Job!", "Channel Created Successfully", "success");
       setLoading(false);
     } catch (error) {
-      console.log(error);
+    
       Swal.fire("Ops!", "Error Creating Channel", "error");
       setLoading(false);
     }

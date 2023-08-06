@@ -1,9 +1,7 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { advancedTable } from "../../../constant/table-data";
+import React, { useMemo } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import Dropdown from "@/components/ui/Dropdown";
-import { Menu } from "@headlessui/react";
+
 import {
   useTable,
   useRowSelect,
@@ -12,13 +10,9 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "./GlobalFilter";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import { useGetAllChannelsQuery } from "../../../store/features/channels/api";
-
-const handleRowClick = (row) => {
-  console.log(row.row.original);
-};
 
 const COLUMNS = [
   {

@@ -95,7 +95,7 @@ const ChannelList = ({ title = "Channel Lists", params }) => {
     //   Header: "Assign Micro Entrepreneurs",
     //   accessor: "",
     //   Cell: (row) => {
-    //     console.log(row);
+    //   
     //     return (
     //       <Link
     //         to={`/assign-micro-entreprenures/${row?.cell?.row?.original?.df_id}`}
@@ -111,7 +111,7 @@ const ChannelList = ({ title = "Channel Lists", params }) => {
       Header: "action",
       accessor: "action",
       Cell: (row) => {
-        console.log(row);
+      
         return (
           <div className="flex space-x-3 rtl:space-x-reverse">
             <Tooltip
@@ -196,7 +196,7 @@ const ChannelList = ({ title = "Channel Lists", params }) => {
 
       set_distributors_lists(response?.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

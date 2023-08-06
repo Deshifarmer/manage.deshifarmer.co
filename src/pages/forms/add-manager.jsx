@@ -115,12 +115,12 @@ const AddManager = () => {
           },
         }
       );
-      console.log(response);
+     
       Swal.fire("Success", "Manager Added Successfully", "success");
       setLoading(false);
       reset();
     } catch (error) {
-      console.log(error);
+      
       setLoading(false); // note => for debugging
       Swal.fire("Ops!", "Something went wrong", "error");
       if (error.response.data.error.email) {
@@ -134,7 +134,7 @@ const AddManager = () => {
       }
     }
 
-    console.log(data);
+   
   };
 
   const handel_distributor_image = (e) => {
@@ -150,7 +150,7 @@ const AddManager = () => {
       });
       setDistricts(res.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

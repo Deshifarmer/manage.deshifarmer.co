@@ -83,10 +83,7 @@ const UpdateMicroEntrepreneurInfo = () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BASE}/district`);
       setDistricts(res.data);
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -126,14 +123,14 @@ const UpdateMicroEntrepreneurInfo = () => {
           },
         }
       );
-      console.log(res);
+   
       if (res.status === 201) {
         toast.success("Micro Entrepreneur Added Successfully");
       } else {
         toast.error("Error Validation");
       }
     } catch (error) {
-      console.log(error);
+      
       toast.error("Error Validation");
     }
   };

@@ -81,7 +81,7 @@ const LoginForm = () => {
         theme: "light",
       });
       setUserInfo(response.data);
-      console.log(response.data);
+  
       setLoading(false);
       localStorage.setItem("hq-token", response.data.token);
       dispatch(handleLogin(true));
@@ -89,7 +89,7 @@ const LoginForm = () => {
     } catch (error) {
       setLoading(false);
       toast.error("Invalid credentials");
-      console.log(error);
+    
     }
   };
 

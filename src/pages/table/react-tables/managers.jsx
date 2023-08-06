@@ -321,11 +321,11 @@ const Managers = ({ title = "Managers" }) => {
       });
       setManagers(res.data);
     } catch (error) {
-      console.log(error);
+   
     }
   };
 
-  console.log(data);
+
 
   useEffect(() => {
     fetchData();

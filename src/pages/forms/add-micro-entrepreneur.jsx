@@ -132,7 +132,7 @@ const AddMicroEntrepreneur = () => {
       }
     }
 
-    console.log(data);
+    
   };
 
   const handel_distributor_image = (e) => {
@@ -148,7 +148,7 @@ const AddMicroEntrepreneur = () => {
       });
       setDistricts(res.data);
     } catch (error) {
-      console.log(error);
+     
     }
   };
 
@@ -178,7 +178,7 @@ const AddMicroEntrepreneur = () => {
     return [year, month, day].join("-");
   }
 
-  console.log(files[0]);
+
 
   return (
     <div>

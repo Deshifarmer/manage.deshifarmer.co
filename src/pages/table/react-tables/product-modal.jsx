@@ -5,7 +5,7 @@ import Modal from "@/components/ui/Modal";
 import Textinput from "@/components/ui/Textinput";
 
 const ProductModal = ({ product_details }) => {
-  console.log(product_details);
+  
   return (
     <div>
       <Modal

@@ -122,7 +122,7 @@ const AddFarmer = () => {
       });
       setDivisions(res.data);
     } catch (error) {
-      console.log(error);
+
     }
   };
 
@@ -179,18 +179,18 @@ const AddFarmer = () => {
           },
         }
       );
-      console.log(res);
+      
       if (res.status === 201) {
         toast.success("Farmer Added Successfully");
       } else {
         toast.error("Something went wrong");
       }
     } catch (error) {
-      console.log(error);
+    
     }
   };
 
-  console.log(files[0]);
+
 
   return (
     <div>

@@ -150,7 +150,7 @@ const UpdateDistributorInfo = () => {
   };
 
   const onSubmit = async (data) => {
-    // console.log(data, knowDeshifarmer);
+    
     // const refference = [
     //   {
     //     refference_address_1: data.refference_address_1,
@@ -252,7 +252,7 @@ const UpdateDistributorInfo = () => {
           },
         }
       );
-      console.log(response);
+    
 
       Swal.fire({
         icon: "success",
@@ -261,7 +261,7 @@ const UpdateDistributorInfo = () => {
         timer: 1500,
       });
     } catch (error) {
-      console.log(error);
+      
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -270,7 +270,7 @@ const UpdateDistributorInfo = () => {
     }
   };
 
-  console.log();
+
 
   return (
     <div>

@@ -189,7 +189,7 @@ const AllTransactions = ({ title = "All Transactions" }) => {
       );
       setTransactions(response.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -197,7 +197,7 @@ const AllTransactions = ({ title = "All Transactions" }) => {
     fetchData();
   }, []);
 
-  console.log(transactions);
+
 
   const tableInstance = useTable(
     {

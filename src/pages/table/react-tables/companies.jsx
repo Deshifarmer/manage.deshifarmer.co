@@ -22,7 +22,7 @@ const COLUMNS = [
     Header: "Product",
     accessor: "product_image",
     Cell: (row) => {
-      console.log(row);
+   
       return (
         <div>
           <span className="inline-flex items-center">

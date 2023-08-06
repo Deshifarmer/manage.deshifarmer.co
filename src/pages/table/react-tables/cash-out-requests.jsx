@@ -190,17 +190,12 @@ const CashOutRequests = ({ title = "All Transactions" }) => {
         }
       );
       set_cash_out_data(response.data);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(cash_out_data);
 
   const tableInstance = useTable(
     {

@@ -2,8 +2,6 @@ import React from "react";
 import Card from "../ui/Card";
 
 const SingleOrderTable = ({ data, details }) => {
-  console.log(details);
-
   const subtotal = details?.total_price;
 
   return (

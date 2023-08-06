@@ -165,10 +165,10 @@ const DistributorsLists = ({ title = "Distributors Lists" }) => {
   const fetchData = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BASE}/distributor`);
-      console.log(res);
+    
       setDistributors(res.data);
     } catch (error) {
-      console.log(error);
+     
     }
   };
 

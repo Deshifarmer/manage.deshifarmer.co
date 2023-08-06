@@ -80,7 +80,7 @@ const AddCategory = () => {
           },
         }
       );
-      console.log(res);
+    
       Swal.fire("Success", "Category Added Successfully", "success");
       setLoading(false);
       reset();

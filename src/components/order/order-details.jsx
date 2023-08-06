@@ -37,9 +37,7 @@ const SingleOrder = () => {
       );
       set_details(response.data);
       set_order_details(response.data.order_details);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -47,8 +45,6 @@ const SingleOrder = () => {
   }, []);
 
   const componentRef = useRef();
-
-  console.log(order_details, details);
 
   return (
     <>

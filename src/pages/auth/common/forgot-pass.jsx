@@ -19,9 +19,7 @@ const ForgotPass = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = (data) => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">

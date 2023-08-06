@@ -66,11 +66,11 @@ const AssignMicroEntrepreneurs = () => {
           },
         }
       );
-      console.log(response);
+     
 
       Swal.fire("Success", "Me Assigned Successfully", "success");
     } catch (error) {
-      console.log(error);
+      
       Swal.fire("Ops!", "Something Went", "error");
     }
   };

@@ -36,7 +36,7 @@ import { Dialog } from "@headlessui/react";
 //     saveAs(url, `${row?.cell?.row?.original?.distributor?.full_name}`);
 //   };
 
-//   console.log(amount);
+//   
 
 //   const handle_accept = async () => {
 //     try {
@@ -55,7 +55,7 @@ import { Dialog } from "@headlessui/react";
 //           },
 //         }
 //       );
-//       console.log(rersponse);
+//      
 //       Swal.fire("Success", "Request Accepted", "success");
 //     } catch (error) {
 //       Swal.fire("Ops!", "Something went wrong", "error");
@@ -148,8 +148,6 @@ const CashOutDetails = ({ row }) => {
   const token = localStorage.getItem("hq-token");
   const [showModal, setShowModal] = useState(false);
 
-  console.log(row);
-
   const closeModal = () => {
     setShowModal(false);
   };
@@ -194,7 +192,7 @@ const CashOutDetails = ({ row }) => {
           },
         }
       );
-      console.log(response);
+
       if (response.statusText === "OK") {
         Swal.fire("Great!", "Request Accepted", "success");
         closeModal();
@@ -204,7 +202,7 @@ const CashOutDetails = ({ row }) => {
       closeModal();
     } catch (error) {
       Swal.fire("Ops!", "Something went wrong", "error");
-      console.log(error);
+
       closeModal();
     }
   };
@@ -233,7 +231,7 @@ const CashOutDetails = ({ row }) => {
           },
         }
       );
-      console.log(response);
+
       if (response.statusText === "OK") {
         Swal.fire("Great", "Request Rejected", "success");
         closeModal();

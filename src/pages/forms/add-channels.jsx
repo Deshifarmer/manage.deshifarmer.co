@@ -72,7 +72,7 @@ const AddChannels = () => {
       Swal.fire("Good job!", "Channel Creation Failed", "error");
     }
 
-    console.log(data);
+
   };
 
   return (

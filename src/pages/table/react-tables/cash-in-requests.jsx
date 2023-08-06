@@ -182,8 +182,6 @@ const CashInRequests = ({ title = "Cash In Requests" }) => {
   const data = useMemo(() => cash_in_requests, [cash_in_requests]);
   const token = localStorage.getItem("hq-token");
 
-  console.log(cash_in_requests);
-
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -196,7 +194,7 @@ const CashInRequests = ({ title = "Cash In Requests" }) => {
       );
       setCashInRequests(response.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

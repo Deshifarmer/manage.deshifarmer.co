@@ -176,7 +176,7 @@ const AllOrders = ({ title = "All Orders" }) => {
       );
       setOrders(res.data);
     } catch (error) {
-      console.log(error);
+  
     }
   };
 
@@ -184,7 +184,7 @@ const AllOrders = ({ title = "All Orders" }) => {
     fetchData();
   }, []);
 
-  console.log(orders);
+
 
   const tableInstance = useTable(
     {

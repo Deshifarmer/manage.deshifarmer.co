@@ -38,7 +38,6 @@ const ProductDetailsPage = () => {
   const [edited_buy_price_company, set_edited_buy_price_company] = useState("");
   const [updatedProductImage, setUpdatedProductImage] = useState(null);
 
-  console.log(product_details);
 
   const hanleUpdatedProductImage = (e) => {
     setUpdatedProductImage(e.target.files[0]);
@@ -80,7 +79,7 @@ const ProductDetailsPage = () => {
           response.data?.hq_secret?.sell_price_from_company,
       });
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -88,7 +87,7 @@ const ProductDetailsPage = () => {
     fetchProductData();
   }, []);
 
-  console.log(edited_product_details);
+
 
   const statistics = [
     {
@@ -232,7 +231,7 @@ const ProductDetailsPage = () => {
           Swal.fire("Ops!", "Error Updating Product", "error");
         }
       } catch (error) {
-        console.log(error);
+     
         setShow(false);
         Swal.fire("Ops!", "Error Updating Product", "error");
       }
@@ -243,7 +242,7 @@ const ProductDetailsPage = () => {
     }
   };
 
-  console.log(product_details);
+
 
   return (
     <div className=" space-y-5">

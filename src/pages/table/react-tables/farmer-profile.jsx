@@ -15,7 +15,7 @@ const FarmerProfile = ({
   farmer_details,
 
 }) => {
-  console.log(farmer_details);
+
   const birthDate = new Date(farmer_details?.date_of_birth);
   const todayDate = new Date();
   const age = todayDate.getFullYear() - birthDate.getFullYear();

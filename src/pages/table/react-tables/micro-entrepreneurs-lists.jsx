@@ -149,7 +149,6 @@ const IndeterminateCheckbox = React.forwardRef(
 
 const MicroEntrepreneursLists = ({
   title = "Micro Entrepreneurs Lists",
-
   me_list,
   isLoading,
 }) => {

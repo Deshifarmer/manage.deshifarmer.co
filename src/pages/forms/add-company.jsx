@@ -126,7 +126,7 @@ const AddCompany = () => {
         Swal.fire("Ops!", "Something went wrong", "error");
       }
     }
-    console.log(data);
+    
   };
 
   const handel_distributor_image = (e) => {
@@ -142,7 +142,7 @@ const AddCompany = () => {
       });
       setDistricts(res.data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -172,7 +172,7 @@ const AddCompany = () => {
     return [year, month, day].join("-");
   }
 
-  console.log(files[0]);
+
 
   return (
     <div>

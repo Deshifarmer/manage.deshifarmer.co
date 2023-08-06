@@ -107,7 +107,7 @@ const COLUMNS = [
   //     Header: "action",
   //     accessor: "action",
   //     Cell: (row) => {
-  //       console.log(row);
+  //       
   //       return (
   //         <div className="flex space-x-3 rtl:space-x-reverse">
   //           <Tooltip content="View" placement="top" arrow animation="shift-away">
@@ -180,10 +180,10 @@ const AllCategories = ({ title = "All Category" }) => {
           },
         }
       );
-      // console.log(response)
+      
       setDistributor(response.data);
     } catch (error) {
-      console.log(error);
+    
     }
   };
 
@@ -191,7 +191,7 @@ const AllCategories = ({ title = "All Category" }) => {
     fetchDat();
   }, []);
 
-  console.log(data);
+
 
   const tableInstance = useTable(
     {

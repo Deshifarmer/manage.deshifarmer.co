@@ -26,7 +26,7 @@ const MultiValidation = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    
   };
 
   return (

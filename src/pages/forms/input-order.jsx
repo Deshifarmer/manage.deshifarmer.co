@@ -47,7 +47,7 @@ const InputOrder = () => {
       const { data } = response;
       setProducts(data.data);
     } catch (error) {
-      console.log(error);
+    
     }
   };
 
@@ -57,7 +57,7 @@ const InputOrder = () => {
       const { data } = response;
       setUnits(data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -67,7 +67,7 @@ const InputOrder = () => {
       const { data } = response;
       setFarmers(data);
     } catch (error) {
-      console.log(error);
+      
     }
   };
 
@@ -92,7 +92,7 @@ const InputOrder = () => {
     //   setUnits(response.data);
     //   toast.success("Input Order Created Successfully");
     // } catch (error) {
-    //   console.log(error);
+    //   
     // }
   };
 

@@ -37,9 +37,7 @@ const ValidationTypes = () => {
     resolver: yupResolver(FormValidationSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = (data) => {};
 
   return (
     <div>

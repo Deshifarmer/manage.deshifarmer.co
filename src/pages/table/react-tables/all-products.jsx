@@ -11,7 +11,7 @@
 //     Header: "Product",
 //     accessor: "product_image",
 //     Cell: (row) => {
-//       console.log(row);
+//       
 //       return (
 //         <div>
 //           <span className="inline-flex items-center">
@@ -204,7 +204,7 @@ const COLUMNS = [
     Header: "Product",
     accessor: "name",
     Cell: (row) => {
-      console.log(row);
+
       return (
         <div>
           <span className="inline-flex items-center">
@@ -386,7 +386,7 @@ const AllProducts = ({ title = `All Products` }) => {
       setProducts(response.data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+    
       setIsLoading(false);
     }
   };
@@ -395,7 +395,6 @@ const AllProducts = ({ title = `All Products` }) => {
     fetchData();
   }, []);
 
-  console.log(products);
 
   const tableInstance = useTable(
     {

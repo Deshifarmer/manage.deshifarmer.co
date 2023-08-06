@@ -27,8 +27,6 @@ const AddCompanyPartner = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("address", data.address);
@@ -47,14 +45,14 @@ const AddCompanyPartner = () => {
         }
       );
 
-      console.log(res);
+    
       if (res.status === 201) {
         toast.success("Company Added Successfully");
       } else {
         toast.error("Add Company Failed");
       }
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

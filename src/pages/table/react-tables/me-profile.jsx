@@ -9,7 +9,7 @@ import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
 
 const MeDetails = ({ me_details }) => {
-  console.log(me_details);
+
 
   return (
     <div>

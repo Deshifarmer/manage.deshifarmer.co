@@ -167,7 +167,6 @@ const MicroEntrepreneurs = ({ title = "All Micro Entrepreneurs" }) => {
   isError && console.log("Error in fetching micro entrepreneurs");
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (me ? me : []), [me]);
-  console.log("me", me);
 
   const tableInstance = useTable(
     {

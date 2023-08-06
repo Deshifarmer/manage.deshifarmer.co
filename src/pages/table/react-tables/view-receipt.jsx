@@ -36,8 +36,6 @@ import { Dialog } from "@headlessui/react";
 //     saveAs(url, `${row?.cell?.row?.original?.distributor?.full_name}`);
 //   };
 
-//   console.log(amount);
-
 //   const handle_accept = async () => {
 //     try {
 //       const rersponse = await axios.put(
@@ -55,7 +53,7 @@ import { Dialog } from "@headlessui/react";
 //           },
 //         }
 //       );
-//       console.log(rersponse);
+
 //       Swal.fire("Success", "Request Accepted", "success");
 //     } catch (error) {
 //       Swal.fire("Ops!", "Something went wrong", "error");
@@ -166,8 +164,6 @@ const ViewReceipt = ({ row }) => {
     }`;
     saveAs(url, `${row?.cell?.row?.original?.distributor?.full_name}`);
   };
-
-  console.log(amount);
 
   const handle_accept = async () => {
     if (row?.cell?.row?.original?.status === "approved") {

@@ -84,7 +84,7 @@ const FormWizard = () => {
       currentStepSchema = stepSchema;
   }
   useEffect(() => {
-    // console.log("step number changed");
+
   }, [stepNumber]);
 
   const {
@@ -103,7 +103,7 @@ const FormWizard = () => {
     let totalSteps = steps.length;
     const isLastStep = stepNumber === totalSteps - 1;
     if (isLastStep) {
-      console.log(data);
+      
     } else {
       setStepNumber(stepNumber + 1);
     }

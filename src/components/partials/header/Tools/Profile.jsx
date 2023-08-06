@@ -67,9 +67,7 @@ const Profile = () => {
         progress: undefined,
         theme: "light",
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const ProfileMenu = [

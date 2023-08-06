@@ -124,7 +124,7 @@ const AddDistributor = () => {
       Swal.fire("Success", "Distributor Added Successfully", "success");
       // reset();
       setLoading(false);
-      console.log(response);
+  
     } catch (error) {
       setLoading(false); // note => for debugging
       Swal.fire("Ops!", "Something went wrong", "error");
@@ -153,7 +153,7 @@ const AddDistributor = () => {
       });
       setDistricts(res.data);
     } catch (error) {
-      console.log(error);
+     
     }
   };
 

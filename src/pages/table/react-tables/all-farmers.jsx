@@ -22,10 +22,25 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <div className="flex flex-col">
-          <span className="text-[10px] text-success-500 font-bold">
-            {row?.cell?.value}
+          <span className="inline-flex items-center">
+            <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
+              <img
+                src={`${import.meta.env.VITE_IMG_URL}${
+                  row.cell.row?.original?.image
+                }`}
+                alt=""
+                className="object-cover w-10 h-10 rounded-full"
+              />
+            </span>
+            <div>
+              <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+                {row.cell.row?.original?.full_name}
+              </p>
+              <span className="text-[10px] text-green-600 font-bold">
+                {row?.cell?.row?.original?.farmer_id}
+              </span>
+            </div>
           </span>
-          <span>{row?.cell?.row?.original?.full_name}</span>
         </div>
       );
     },

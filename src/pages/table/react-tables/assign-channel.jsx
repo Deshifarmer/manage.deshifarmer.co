@@ -35,7 +35,7 @@ const AssignChannel = () => {
       }
     );
     const data = await res.data;
-    console.log(data);
+
     setChannel(data);
   };
   // note => fetch locations data
@@ -61,10 +61,9 @@ const AssignChannel = () => {
           },
         }
       );
-      console.log(response);
+
       Swal.fire("Success", "Channel Assigned Successfully", "success");
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.channel_name);
     }
   };

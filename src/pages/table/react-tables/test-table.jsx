@@ -13,9 +13,9 @@ const TestTable = () => {
       );
       const data = await response.data;
       setMicroEntrepreneurs(data.me);
-      console.log(data);
+      
     } catch (error) {
-      console.log(error);
+    
     }
   };
 
