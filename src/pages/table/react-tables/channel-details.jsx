@@ -34,7 +34,7 @@ const ChannelDetails = () => {
       }
     );
     const data = await res.data;
-    console.log(data);
+
     setDistributors(data);
   };
   // note => fetch locations data
@@ -46,7 +46,6 @@ const ChannelDetails = () => {
 
   // note => form submit handler
   const onSubmit = async (e) => {
-    console.log([...selectedDistributorId]);
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -61,10 +60,9 @@ const ChannelDetails = () => {
           },
         }
       );
-      console.log(response);
+
       Swal.fire("Success", "Distibutor Assigned Successfully", "success");
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.channel_name);
     }
   };

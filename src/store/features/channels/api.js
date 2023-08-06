@@ -11,9 +11,9 @@ export const channelsApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
-    getSingleDistributorDetails: builder.query({
+    getSingleChannelDetails: builder.query({
       query: (id) => ({
-        url: `/hq/profile/${id}`,
+        url: `/hq/channel/${id}`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
@@ -32,4 +32,5 @@ export const channelsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetAllChannelsQuery } = channelsApiSlice;
+export const { useGetAllChannelsQuery, useGetSingleChannelDetailsQuery } =
+  channelsApiSlice;
