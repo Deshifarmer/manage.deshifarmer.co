@@ -6,7 +6,6 @@ import BasicArea from "../../chart/appex-chart/BasicArea";
 import MarkerMap from "../../map/marker-map";
 
 const CompanyProfile = ({ company_details }) => {
-  console.log(company_details);
   return (
     <div>
       <div className="space-y-5">

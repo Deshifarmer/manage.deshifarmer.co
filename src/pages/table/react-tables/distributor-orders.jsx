@@ -1,5 +1,4 @@
-import React, { useState, useMemo } from "react";
-import { advancedTable } from "../../../constant/table-data";
+import React, { useMemo } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
@@ -11,8 +10,8 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "./GlobalFilter";
-import { useEffect } from "react";
-import axios from "axios";
+
+import { useGetSingleDistributorOrdersQuery } from "../../../store/features/distributor/api";
 
 const COLUMNS = [
   {
@@ -138,39 +137,15 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const DistributorOrders = ({ title = "Distributor Orders", params }) => {
+  const { data: orders } = useGetSingleDistributorOrdersQuery(params?.id);
   const columns = useMemo(() => COLUMNS, []);
-  const [orders, set_orders] = useState([]);
-  const data = useMemo(() => orders, [orders]);
-  const token = localStorage.getItem("hq-token");
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/distributor/${params.id}/order`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      set_orders(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  console.log(orders);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const data = useMemo(() => (orders ? orders : []), [orders]);
 
   const tableInstance = useTable(
     {
       columns,
       data,
     },
-
     useGlobalFilter,
     useSortBy,
     usePagination,

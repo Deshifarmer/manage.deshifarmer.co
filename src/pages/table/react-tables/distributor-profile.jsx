@@ -5,7 +5,6 @@ import Card from "@/components/ui/Card";
 import BasicArea from "../../chart/appex-chart/BasicArea";
 
 // import images
-import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
 
 const DistributorProfile = ({ distributor_details }) => {
@@ -18,7 +17,7 @@ const DistributorProfile = ({ distributor_details }) => {
             <div className="md:flex items-end md:space-x-6 rtl:space-x-reverse">
               <div className="flex-none">
                 <div className="md:h-[186px] md:w-[186px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded-full ring-4 ring-slate-100 relative">
-                  {distributor_details.photo && (
+                  {distributor_details?.photo && (
                     <img
                       src={`${import.meta.env.VITE_IMG_URL}/${
                         distributor_details?.photo

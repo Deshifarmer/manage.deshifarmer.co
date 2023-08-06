@@ -162,7 +162,7 @@ const IndeterminateCheckbox = React.forwardRef(
 
 const DistributorMeLists = ({ title = "Distributor Me Lists", me_lists }) => {
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => me_lists, [me_lists]);
+  const data = useMemo(() => (me_lists ? me_lists : []), [me_lists]);
 
   const tableInstance = useTable(
     {
