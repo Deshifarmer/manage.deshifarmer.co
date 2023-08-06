@@ -14,7 +14,7 @@ const axiosBaseQuery =
           ...headers,
         },
       });
-      return { data: result.data };
+      return { data: result?.data };
     } catch (axiosError) {
       let err = axiosError;
       return {

@@ -1,9 +1,7 @@
-import React, { useState, useMemo, useEffect } from "react";
+import { useGetCompaniesQuery } from "../../../store/features/dashboard/api";
+import React, { useMemo } from "react";
 import moment from "moment";
-import { homeTable } from "../../../constant/table-data";
-
 import Icon from "@/components/ui/Icon";
-
 import {
   useTable,
   useRowSelect,
@@ -11,7 +9,6 @@ import {
   useGlobalFilter,
   usePagination,
 } from "react-table";
-import axios from "axios";
 
 const COLUMNS = [
   {
@@ -48,28 +45,7 @@ const COLUMNS = [
       return <span>{moment(row?.cell?.value).format("llll")}</span>;
     },
   },
-  // {
-  //   Header: "sales",
-  //   accessor: "sales",
-  //   Cell: (row) => {
-  //     return (
-  //       <div className="flex space-x-6 items-center rtl:space-x-reverse">
-  //         <span> {row?.cell?.value + "%"}</span>
-  //         <span
-  //           className={` text-xl
-  //            ${row?.cell?.value > 100 ? "text-success-500" : "text-danger-500"}
-  //             `}
-  //         >
-  //           {row?.cell?.value > 100 ? (
-  //             <Icon icon="heroicons:arrow-trending-up" />
-  //           ) : (
-  //             <Icon icon="heroicons:arrow-trending-down" />
-  //           )}
-  //         </span>
-  //       </div>
-  //     );
-  //   },
-  // },
+
   {
     Header: "Total Products",
     accessor: "total_product",
@@ -77,43 +53,13 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
-  // {
-  //   Header: "revenue",
-  //   accessor: "revenue",
-  //   Cell: (row) => {
-  //     return <span>{row?.cell?.value}</span>;
-  //   },
-  // },
 ];
 
 const CompanyTable = () => {
-  const token = localStorage.getItem("hq-token");
-  const [companies, setCompanies] = useState([]);
+  const { data: companies, isLoading, isError, error } = useGetCompaniesQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => companies, [companies]);
-  const [loading, setLoading] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(`${import.meta.env.VITE_BASE}/all_company`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setCompanies(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(companies);
+  const data = useMemo(() => (companies ? companies : []), [companies]);
+  isError && console.log("Error in Company Table");
 
   const tableInstance = useTable(
     {
@@ -129,6 +75,7 @@ const CompanyTable = () => {
     usePagination,
     useRowSelect
   );
+  
   const {
     getTableProps,
     getTableBodyProps,
@@ -152,104 +99,108 @@ const CompanyTable = () => {
 
   return (
     <>
-      <div>
-        <div className="overflow-x-auto -mx-6">
-          <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden ">
-              <table
-                className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
-                {...getTableProps}
-              >
-                <thead className=" bg-slate-200 dark:bg-slate-700">
-                  {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                      {headerGroup.headers.map((column) => (
-                        <th
-                          {...column.getHeaderProps(
-                            column.getSortByToggleProps()
-                          )}
-                          scope="col"
-                          className=" table-th "
-                        >
-                          {column.render("Header")}
-                          <span>
-                            {column.isSorted
-                              ? column.isSortedDesc
-                                ? " 🔽"
-                                : " 🔼"
-                              : ""}
-                          </span>
-                        </th>
-                      ))}
-                    </tr>
-                  ))}
-                </thead>
-                <tbody
-                  className="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700"
-                  {...getTableBodyProps}
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <div>
+          <div className="overflow-x-auto -mx-6">
+            <div className="inline-block min-w-full align-middle">
+              <div className="overflow-hidden ">
+                <table
+                  className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
+                  {...getTableProps}
                 >
-                  {page.map((row) => {
-                    prepareRow(row);
-                    return (
-                      <tr {...row.getRowProps()}>
-                        {row.cells.map((cell) => {
-                          return (
-                            <td {...cell.getCellProps()} className="table-td">
-                              {cell.render("Cell")}
-                            </td>
-                          );
-                        })}
+                  <thead className=" bg-slate-200 dark:bg-slate-700">
+                    {headerGroups.map((headerGroup) => (
+                      <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map((column) => (
+                          <th
+                            {...column.getHeaderProps(
+                              column.getSortByToggleProps()
+                            )}
+                            scope="col"
+                            className=" table-th "
+                          >
+                            {column.render("Header")}
+                            <span>
+                              {column.isSorted
+                                ? column.isSortedDesc
+                                  ? " 🔽"
+                                  : " 🔼"
+                                : ""}
+                            </span>
+                          </th>
+                        ))}
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                    ))}
+                  </thead>
+                  <tbody
+                    className="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700"
+                    {...getTableBodyProps}
+                  >
+                    {page.map((row) => {
+                      prepareRow(row);
+                      return (
+                        <tr {...row.getRowProps()}>
+                          {row.cells.map((cell) => {
+                            return (
+                              <td {...cell.getCellProps()} className="table-td">
+                                {cell.render("Cell")}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="md:flex md:space-y-0 space-y-5 justify-center mt-6 items-center">
-          <ul className="flex items-center  space-x-3  rtl:space-x-reverse">
-            <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
-              <button
-                className={` ${
-                  !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-              >
-                <Icon icon="heroicons-outline:chevron-left" />
-              </button>
-            </li>
-            {pageOptions.map((page, pageIdx) => (
-              <li key={pageIdx}>
+          <div className="md:flex md:space-y-0 space-y-5 justify-center mt-6 items-center">
+            <ul className="flex items-center  space-x-3  rtl:space-x-reverse">
+              <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
                 <button
-                  href="#"
-                  aria-current="page"
                   className={` ${
-                    pageIdx === pageIndex
-                      ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
-                      : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
-                  }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
-                  onClick={() => gotoPage(pageIdx)}
+                    !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => previousPage()}
+                  disabled={!canPreviousPage}
                 >
-                  {page + 1}
+                  <Icon icon="heroicons-outline:chevron-left" />
                 </button>
               </li>
-            ))}
-            <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
-              <button
-                className={` ${
-                  !canNextPage ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-              >
-                <Icon icon="heroicons-outline:chevron-right" />
-              </button>
-            </li>
-          </ul>
+              {pageOptions.map((page, pageIdx) => (
+                <li key={pageIdx}>
+                  <button
+                    href="#"
+                    aria-current="page"
+                    className={` ${
+                      pageIdx === pageIndex
+                        ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
+                        : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
+                    }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
+                    onClick={() => gotoPage(pageIdx)}
+                  >
+                    {page + 1}
+                  </button>
+                </li>
+              ))}
+              <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
+                <button
+                  className={` ${
+                    !canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => nextPage()}
+                  disabled={!canNextPage}
+                >
+                  <Icon icon="heroicons-outline:chevron-right" />
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

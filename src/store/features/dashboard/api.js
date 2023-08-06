@@ -12,11 +12,16 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getCompanies: builder.query({
-        query: () => {
-            url
-        }
-    })
+      query: () => ({
+        url: `/all_company`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetDashboardRadialChartQuery } = dashboardApiSlice;
+export const { useGetDashboardRadialChartQuery, useGetCompaniesQuery } =
+  dashboardApiSlice;
