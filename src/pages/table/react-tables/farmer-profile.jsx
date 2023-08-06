@@ -13,8 +13,7 @@ import moment from "moment";
 
 const FarmerProfile = ({
   farmer_details,
-  focused_crops,
-  current_producing_coprs,
+
 }) => {
   console.log(farmer_details);
   const birthDate = new Date(farmer_details?.date_of_birth);
@@ -30,7 +29,7 @@ const FarmerProfile = ({
             <div className="md:flex items-end md:space-x-6 rtl:space-x-reverse">
               <div className="flex-none">
                 <div className="md:h-[186px] md:w-[186px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded-full ring-4 ring-slate-100 relative">
-                  {farmer_details.image && (
+                  {farmer_details?.image && (
                     <img
                       src={`${import.meta.env.VITE_IMG_URL}${
                         farmer_details?.image
@@ -76,7 +75,7 @@ const FarmerProfile = ({
           <div className="profile-info-500 md:flex md:text-start text-center flex-1 max-w-[516px] md:space-y-0 space-y-4">
             <div className="flex-1">
               <div className="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
-                {farmer_details.yearly_income} TK
+                {farmer_details?.yearly_income} TK
               </div>
               <div className="text-sm text-slate-600 font-light dark:text-slate-300">
                 {/* Total Balance */}

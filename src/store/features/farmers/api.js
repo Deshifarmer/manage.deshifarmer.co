@@ -11,7 +11,17 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getSingleFarmer: builder.query({
+      query: (id) => ({
+        url: `/hq/farmer/profile/${id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetAllFarmersQuery } = farmersApiSlice;
+export const { useGetAllFarmersQuery, useGetSingleFarmerQuery } =
+  farmersApiSlice;

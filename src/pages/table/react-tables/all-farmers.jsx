@@ -191,7 +191,8 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllFarmers = ({ title = "All Farmers" }) => {
-  const { data: farmers, isLoading } = useGetAllFarmersQuery();
+  const { data: farmers, isLoading, isError } = useGetAllFarmersQuery();
+  isError && console.log("Error in fetching all farmers");
   const defaultPageSize = 100;
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (farmers ? farmers : []), [farmers]);
