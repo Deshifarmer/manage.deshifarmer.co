@@ -2,7 +2,7 @@ import { apiSlice } from "../../api/api-slice";
 
 export const dashboardApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getDashboard: builder.query({
+    getDashboardRadialChart: builder.query({
       query: () => ({
         url: `/hq/dashboard/all_member`,
         method: "GET",
@@ -11,7 +11,12 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getCompanies: builder.query({
+        query: () => {
+            url
+        }
+    })
   }),
 });
 
-export const { useGetDashboardQuery } = dashboardApiSlice;
+export const { useGetDashboardRadialChartQuery } = dashboardApiSlice;
