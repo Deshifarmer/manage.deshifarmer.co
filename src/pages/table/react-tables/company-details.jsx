@@ -9,7 +9,8 @@ const CompanyDetails = () => {
     params.id
   );
 
-  console.log();
+  isError && console.log("Error is company details page");
+
   return (
     <div>
       <div>
