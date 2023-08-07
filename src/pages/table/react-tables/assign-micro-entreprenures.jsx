@@ -6,7 +6,10 @@ import Card from "../../../components/ui/Card";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import { useGetSingleDistributorDetailsQuery } from "../../../store/features/distributor/api";
-import { useGetAllUnassignedMicroEntrepreneursQuery } from "../../../store/features/micro-entrepreneurs/api";
+import {
+  useAssignMicroEntrepreneurMutation,
+  useGetAllUnassignedMicroEntrepreneursQuery,
+} from "../../../store/features/micro-entrepreneurs/api";
 
 const AssignMicroEntrepreneurs = () => {
   const params = useParams();
@@ -22,6 +25,9 @@ const AssignMicroEntrepreneurs = () => {
   } = useGetAllUnassignedMicroEntrepreneursQuery();
   me_error && console.log("Error getting unassigned me");
 
+  const [assignMicroEntrepreneur, { error, isSuccess }] =
+    useAssignMicroEntrepreneurMutation();
+
   const [selectedMicroEntrepreneursId, setSelectedMicroEntrepreneursId] =
     useState([]);
 
@@ -36,25 +42,25 @@ const AssignMicroEntrepreneurs = () => {
   // note => form submit handler
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!selectedMicroEntrepreneursId?.length)
+      return Swal.fire("Error", "Please Select a MicroEntrepreneur", "error");
+
+    const option = {
+      under: params.id,
+      list: [...selectedMicroEntrepreneursId],
+    };
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BASE}/hq/assign_me`,
-        {
-          under: params.id,
-          list: [...selectedMicroEntrepreneursId],
-        },
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      assignMicroEntrepreneur(option);
+      Swal.fire(
+        "Success",
+        "MicroEntrepreneur Assigned Successfully",
+        "success"
       );
-
-      Swal.fire("Success", "Me Assigned Successfully", "success");
+      console.log(isSuccess, error);
     } catch (error) {
-      Swal.fire("Ops!", "Something Went", "error");
+      Swal.fire("Error", "MicroEntrepreneur Assign Failed", "error");
+      console.log(error);
     }
   };
 

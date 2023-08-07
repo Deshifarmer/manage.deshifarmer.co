@@ -17,10 +17,7 @@ const ChannelDetails = () => {
     isError,
   } = useGetAllUnassignedDistributorQuery();
   isError && console.log("Error getting unassigned farmers");
-
   const [selectedDistributorId, setSelectedDistributorId] = useState([]);
-  const token = localStorage.getItem("hq-token");
-
   // note => react-select styles
   const styles = {
     option: (provided, state) => ({
@@ -28,7 +25,6 @@ const ChannelDetails = () => {
       fontSize: "14px",
     }),
   };
-
   const [
     assignDistributor,
     { data, error, isSuccess, isError: dbAssignError },
@@ -36,29 +32,18 @@ const ChannelDetails = () => {
   // note => form submit handler
   const onSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post(
-    //     `${import.meta.env.VITE_BASE}/hq/channel/${params.id}/assign_dis`,
-    //     {
-    //       list: [...selectedDistributorId],
-    //     },
-    //     {
-    //       headers: {
-    //         Accept: "application/json",
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
-    //   Swal.fire("Success", "Distibutor Assigned Successfully", "success");
-    // } catch (error) {
-    //   toast.error(error.response.data.channel_name);
-    // }
+    if (!selectedDistributorId?.length)
+      return Swal.fire("Error", "Please Select a Distributor", "error");
     const option = {
       id: params?.id,
       list: [...selectedDistributorId],
     };
-
-    assignDistributor(option);
+    try {
+      assignDistributor(option);
+      Swal.fire("Success", "Distributor Added Successfully", "success");
+    } catch (error) {
+      Swal.fire("Error", "Distributor Add Failed", "error");
+    }
   };
 
   return (
@@ -99,7 +84,7 @@ const ChannelDetails = () => {
             />
           </div>
           <button className="btn btn-dark  text-center">
-            Assign Distributor
+            {isLoading ? "Assigning.." : "Assign Distributor"}
           </button>
         </form>
       </Card>

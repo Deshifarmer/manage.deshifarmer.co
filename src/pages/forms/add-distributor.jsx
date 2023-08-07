@@ -354,6 +354,7 @@ const AddDistributor = () => {
             register={register}
             error={errors.password}
             msgTooltip
+            hasicon
           />
           <Textinput
             name="c_password"
@@ -363,6 +364,7 @@ const AddDistributor = () => {
             register={register}
             error={errors.c_password}
             msgTooltip
+            hasicon
           />
 
           <button

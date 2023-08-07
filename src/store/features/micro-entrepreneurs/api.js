@@ -38,6 +38,16 @@ export const microEntrepreneursApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    assignMicroEntrepreneur: builder.mutation({
+      query: (data) => ({
+        url: `/hq/assign_me`,
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        },
+        data,
+      }),
+    }),
   }),
 });
 
@@ -46,4 +56,5 @@ export const {
   useGetSingleMicroEntrepreneurQuery,
   useGetSingleMicroEntrepreneurOrdersQuery,
   useGetAllUnassignedMicroEntrepreneursQuery,
+  useAssignMicroEntrepreneurMutation,
 } = microEntrepreneursApiSlice;

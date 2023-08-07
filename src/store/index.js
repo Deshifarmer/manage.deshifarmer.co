@@ -13,6 +13,7 @@ const store = configureStore({
       serializableCheck: false,
     }).concat(apiSlice.middleware);
   },
+  devTools: true,
 });
 
 export default store;
