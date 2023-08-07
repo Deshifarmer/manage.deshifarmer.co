@@ -1,16 +1,23 @@
 import { useState } from "react";
 import DistributorsList from "./distributor-lists";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Card from "../../../components/ui/Card";
 import Select from "react-select";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useGetAllUnassignedDistributorQuery } from "../../../store/features/distributor/api";
+import { useAssignDistributorMutation } from "../../../store/features/channels/api";
 
 const ChannelDetails = () => {
   const params = useParams();
-  const [distributors, setDistributors] = useState([]); // [{value:1,label:"fahim"}
+  const {
+    data: distributors,
+    isLoading,
+    isError,
+  } = useGetAllUnassignedDistributorQuery();
+  isError && console.log("Error getting unassigned farmers");
+
   const [selectedDistributorId, setSelectedDistributorId] = useState([]);
   const token = localStorage.getItem("hq-token");
 
@@ -22,49 +29,36 @@ const ChannelDetails = () => {
     }),
   };
 
-  // note => fetch locations data
-  const fetchDistributor = async () => {
-    const res = await axios.get(
-      `${import.meta.env.VITE_BASE}/hq/unassigned_distributor`,
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const data = await res.data;
-
-    setDistributors(data);
-  };
-  // note => fetch locations data
-
-  // note => Api calls
-  useEffect(() => {
-    fetchDistributor();
-  }, []);
-
+  const [
+    assignDistributor,
+    { data, error, isSuccess, isError: dbAssignError },
+  ] = useAssignDistributorMutation();
   // note => form submit handler
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BASE}/hq/channel/${params.id}/assign_dis`,
-        {
-          list: [...selectedDistributorId],
-        },
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    // try {
+    //   const response = await axios.post(
+    //     `${import.meta.env.VITE_BASE}/hq/channel/${params.id}/assign_dis`,
+    //     {
+    //       list: [...selectedDistributorId],
+    //     },
+    //     {
+    //       headers: {
+    //         Accept: "application/json",
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     }
+    //   );
+    //   Swal.fire("Success", "Distibutor Assigned Successfully", "success");
+    // } catch (error) {
+    //   toast.error(error.response.data.channel_name);
+    // }
+    const option = {
+      id: params?.id,
+      list: [...selectedDistributorId],
+    };
 
-      Swal.fire("Success", "Distibutor Assigned Successfully", "success");
-    } catch (error) {
-      toast.error(error.response.data.channel_name);
-    }
+    assignDistributor(option);
   };
 
   return (

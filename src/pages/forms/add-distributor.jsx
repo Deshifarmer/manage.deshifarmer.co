@@ -6,16 +6,12 @@ import * as yup from "yup";
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
 import uploadSvgImage from "@/assets/images/svg/upload.svg";
-
 // note => image import
 import axios from "axios";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import Fileinput from "../../components/ui/Fileinput";
 import { useEffect } from "react";
-import { parse } from "postcss";
 import { useDropzone } from "react-dropzone";
-import { toast } from "react-hot-toast";
 
 // note => form validation schema
 const FormValadtionSchema = yup
@@ -124,8 +120,8 @@ const AddDistributor = () => {
       Swal.fire("Success", "Distributor Added Successfully", "success");
       // reset();
       setLoading(false);
-  
     } catch (error) {
+      console.log(error);
       setLoading(false); // note => for debugging
       Swal.fire("Ops!", "Something went wrong", "error");
       if (error.response.data.error.email) {
@@ -152,9 +148,7 @@ const AddDistributor = () => {
         },
       });
       setDistricts(res.data);
-    } catch (error) {
-     
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -302,6 +296,7 @@ const AddDistributor = () => {
               }))}
               onChange={(e) => setDistrictId(e.value)}
               styles={styles}
+              required
               id="hh"
             />
           </div>

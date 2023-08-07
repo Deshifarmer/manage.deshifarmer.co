@@ -29,6 +29,15 @@ export const distributorApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getAllUnassignedDistributor: builder.query({
+      query: () => ({
+        url: `/hq/unassigned_distributor`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -36,4 +45,5 @@ export const {
   useGetAllDistributorsQuery,
   useGetSingleDistributorDetailsQuery,
   useGetSingleDistributorOrdersQuery,
+  useGetAllUnassignedDistributorQuery,
 } = distributorApiSlice;

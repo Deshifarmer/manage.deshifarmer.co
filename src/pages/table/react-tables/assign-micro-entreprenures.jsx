@@ -1,22 +1,29 @@
 import { useState } from "react";
-import DistributorsList from "./distributor-lists";
 import MicroEntrepreneursLists from "./micro-entrepreneurs-lists";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Card from "../../../components/ui/Card";
 import Select from "react-select";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { useGetSingleDistributorDetailsQuery } from "../../../store/features/distributor/api";
+import { useGetAllUnassignedMicroEntrepreneursQuery } from "../../../store/features/micro-entrepreneurs/api";
 
 const AssignMicroEntrepreneurs = () => {
   const params = useParams();
-  const { data, isLoading } = useGetSingleDistributorDetailsQuery(params.id);
-  const [microEntrepreneurs, setMicroEntrepreneurs] = useState([]); // [{value:1,label:"fahim"}
+  const token = localStorage.getItem("hq-token");
+  const { data, isLoading, isError } = useGetSingleDistributorDetailsQuery(
+    params.id
+  );
+  isError && console.log("Error getting DB Details");
+  const {
+    data: microEntrepreneurs,
+    isLoading: me_loading,
+    isError: me_error,
+  } = useGetAllUnassignedMicroEntrepreneursQuery();
+  me_error && console.log("Error getting unassigned me");
+
   const [selectedMicroEntrepreneursId, setSelectedMicroEntrepreneursId] =
     useState([]);
-  const token = localStorage.getItem("hq-token");
 
   // note => react-select styles
   const styles = {
@@ -26,29 +33,7 @@ const AssignMicroEntrepreneurs = () => {
     }),
   };
 
-  // note => fetch locations data
-
-  const fetchMe = async () => {
-    const res = await axios.get(
-      `${import.meta.env.VITE_BASE}/hq/unassigned_me`,
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const data = await res.data;
-    setMicroEntrepreneurs(data);
-  };
-
-  // note => Api calls
-  useEffect(() => {
-    fetchMe();
-  }, []);
-
   // note => form submit handler
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -66,11 +51,9 @@ const AssignMicroEntrepreneurs = () => {
           },
         }
       );
-     
 
       Swal.fire("Success", "Me Assigned Successfully", "success");
     } catch (error) {
-      
       Swal.fire("Ops!", "Something Went", "error");
     }
   };

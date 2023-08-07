@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { apiSlice } from "../../api/api-slice";
 
 export const channelsApiSlice = apiSlice.injectEndpoints({
@@ -29,8 +30,21 @@ export const channelsApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    assignDistributor: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/hq/channel/${id}/assign_dis`,
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        },
+        data,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllChannelsQuery, useGetSingleChannelDetailsQuery } =
-  channelsApiSlice;
+export const {
+  useGetAllChannelsQuery,
+  useGetSingleChannelDetailsQuery,
+  useAssignDistributorMutation,
+} = channelsApiSlice;

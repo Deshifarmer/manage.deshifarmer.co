@@ -29,6 +29,15 @@ export const microEntrepreneursApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getAllUnassignedMicroEntrepreneurs: builder.query({
+      query: () => ({
+        url: "/hq/unassigned_me",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -36,4 +45,5 @@ export const {
   useGetAllMicroEntrepreneursQuery,
   useGetSingleMicroEntrepreneurQuery,
   useGetSingleMicroEntrepreneurOrdersQuery,
+  useGetAllUnassignedMicroEntrepreneursQuery,
 } = microEntrepreneursApiSlice;

@@ -42,5 +42,6 @@ export const apiSlice = createApi({
       Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
     },
   }),
+
   endpoints: () => ({}),
 });
