@@ -1,7 +1,6 @@
 import { useState } from "react";
 import MicroEntrepreneursLists from "./micro-entrepreneurs-lists";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Card from "../../../components/ui/Card";
 import Select from "react-select";
 import Swal from "sweetalert2";
@@ -13,7 +12,6 @@ import {
 
 const AssignMicroEntrepreneurs = () => {
   const params = useParams();
-  const token = localStorage.getItem("hq-token");
   const { data, isLoading, isError } = useGetSingleDistributorDetailsQuery(
     params.id
   );
@@ -25,8 +23,10 @@ const AssignMicroEntrepreneurs = () => {
   } = useGetAllUnassignedMicroEntrepreneursQuery();
   me_error && console.log("Error getting unassigned me");
 
-  const [assignMicroEntrepreneur, { error, isSuccess }] =
-    useAssignMicroEntrepreneurMutation();
+  const [
+    assignMicroEntrepreneur,
+    { error, isSuccess, isLoading: meAssignLoading },
+  ] = useAssignMicroEntrepreneurMutation();
 
   const [selectedMicroEntrepreneursId, setSelectedMicroEntrepreneursId] =
     useState([]);
@@ -49,7 +49,6 @@ const AssignMicroEntrepreneurs = () => {
       under: params.id,
       list: [...selectedMicroEntrepreneursId],
     };
-
     try {
       assignMicroEntrepreneur(option);
       Swal.fire(
@@ -57,7 +56,6 @@ const AssignMicroEntrepreneurs = () => {
         "MicroEntrepreneur Assigned Successfully",
         "success"
       );
-      console.log(isSuccess, error);
     } catch (error) {
       Swal.fire("Error", "MicroEntrepreneur Assign Failed", "error");
       console.log(error);
@@ -102,7 +100,7 @@ const AssignMicroEntrepreneurs = () => {
             />
           </div>
           <button className="btn btn-dark  text-center">
-            Assign Micro Entrepreneurs
+            {meAssignLoading ? "assigning.." : "Assign Micro Entrepreneurs"}
           </button>
         </form>
       </Card>

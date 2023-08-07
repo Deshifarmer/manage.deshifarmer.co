@@ -3,7 +3,12 @@ import React from "react";
 import { useGetDashboardRadialChartQuery } from "../../../../store/features/dashboard/api";
 
 const RadialsChart = () => {
-  const { data, isLoading, isError, error } = useGetDashboardRadialChartQuery();
+  const { data, isLoading, isError, error } = useGetDashboardRadialChartQuery(
+    {},
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   const series = [
     data?.total_member,
@@ -41,19 +46,13 @@ const RadialsChart = () => {
       },
     },
     colors: ["#6528F7", "#EF6262", "#F86F03", "#22A699", "#DD58D6", "#F11A7B"],
-    labels: [
-      "Total Member",
-      "Total Farmer",
-      "Total ME",
-      "Total CP",
-      "Total CO",
-      "Total TE",
-    ],
+    labels: ["Members", "Farmers", "ME's", "CP's", "CO's", "TE's"],
     legend: {
       show: true,
       floating: true,
       fontSize: "12px",
       position: "left",
+
       offsetX: 60,
       offsetY: 1,
       labels: {

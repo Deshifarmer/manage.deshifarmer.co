@@ -53,6 +53,13 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
+  {
+    Header: "Phone No",
+    accessor: "phone",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
   // {
   //   Header: "Total Transaction",
   //   accessor: "total_transaction",

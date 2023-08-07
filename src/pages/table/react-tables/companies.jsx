@@ -22,7 +22,6 @@ const COLUMNS = [
     Header: "Product",
     accessor: "product_image",
     Cell: (row) => {
-   
       return (
         <div>
           <span className="inline-flex items-center">
@@ -202,6 +201,8 @@ const Companies = ({ title = "Companies" }) => {
   const { data: companies, isLoading, isError, error } = useGetCompaniesQuery();
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (companies ? companies : []), [companies]);
+
+  console.log(companies);
 
   isError && console.log("Error in Company Table");
 

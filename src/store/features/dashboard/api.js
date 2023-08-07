@@ -10,6 +10,7 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
           Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
         },
       }),
+      providesTags: ["radialChart"],
     }),
     getCompanies: builder.query({
       query: () => ({
