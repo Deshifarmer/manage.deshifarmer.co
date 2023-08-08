@@ -11,11 +11,7 @@ import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
 import moment from "moment";
 
-const FarmerProfile = ({
-  farmer_details,
-
-}) => {
-
+const FarmerProfile = ({ farmer_details }) => {
   const birthDate = new Date(farmer_details?.date_of_birth);
   const todayDate = new Date();
   const age = todayDate.getFullYear() - birthDate.getFullYear();

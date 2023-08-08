@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/Icon";
 import Card from "@/components/ui/Card";
 import BasicArea from "../../chart/appex-chart/BasicArea";
+import Tooltip from "@/components/ui/Tooltip";
 
 // import images
 import MarkerMap from "../../map/marker-map";
@@ -40,8 +41,24 @@ const DistributorProfile = ({ distributor_details }) => {
                     match.toUpperCase()
                   )}
                 </div>
-                <div className="text-sm font-light text-slate-600 dark:text-slate-400">
-                  Distributor
+
+                <div className="text-sm flex gap-2 font-light text-slate-600 dark:text-slate-400">
+                  Distributor, Assigned By{" "}
+                  <Tooltip
+                    content="Click For Details"
+                    placement="top"
+                    arrow
+                    animation="shift-away"
+                    theme="info"
+                  >
+                    <Link
+                      to={`/channel-details/${distributor_details?.channel}`}
+                    >
+                      <span className="text-slate-900 dark:text-slate-200">
+                        {distributor_details?.channel}
+                      </span>
+                    </Link>
+                  </Tooltip>
                 </div>
               </div>
               <Link

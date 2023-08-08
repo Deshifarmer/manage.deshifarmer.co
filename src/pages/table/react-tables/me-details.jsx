@@ -10,6 +10,7 @@ const MeDetails = () => {
     params?.id
   );
   isError && console.log("Error fetching data from server for me details");
+
   return (
     <div>
       <MeProfile me_details={data} />

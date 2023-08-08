@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import Icon from "@/components/ui/Icon";
 import Card from "@/components/ui/Card";
 import BasicArea from "../../chart/appex-chart/BasicArea";
+import Tooltip from "@/components/ui/Tooltip";
 
 // import images
 import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
 
 const MeDetails = ({ me_details }) => {
-
-
   return (
     <div>
       <div className="space-y-5 profile-page">
@@ -43,8 +42,24 @@ const MeDetails = ({ me_details }) => {
                     match.toUpperCase()
                   )}
                 </div>
-                <div className="text-sm font-light text-slate-600 dark:text-slate-400">
+                {/* <div className="text-sm font-light text-slate-600 dark:text-slate-400">
                   Micro Entrepreneur
+                </div> */}
+                <div className="text-sm flex gap-2 font-light text-slate-600 dark:text-slate-400">
+                  Micro Entrepreneur , Assigned By{" "}
+                  <Tooltip
+                    content="Click For Details"
+                    placement="top"
+                    arrow
+                    animation="shift-away"
+                    theme="info"
+                  >
+                    <Link to={`/distributor/${me_details?.under}`}>
+                      <span className="text-slate-900 dark:text-slate-200">
+                        {me_details?.under}
+                      </span>
+                    </Link>
+                  </Tooltip>
                 </div>
               </div>
               <Link

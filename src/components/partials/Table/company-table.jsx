@@ -30,7 +30,7 @@ const COLUMNS = [
             <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
               {row?.cell.row.original.full_name}
             </p>
-            <p className="text-[10px] font-semi-bold text-green-600">
+            <p className="text-[8px] font-bold text-green-600 ">
               {row?.cell?.row?.original?.df_id}
             </p>
           </div>
@@ -75,7 +75,7 @@ const CompanyTable = () => {
     usePagination,
     useRowSelect
   );
-  
+
   const {
     getTableProps,
     getTableBodyProps,
