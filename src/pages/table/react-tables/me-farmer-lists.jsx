@@ -3,6 +3,8 @@ import { advancedTable } from "../../../constant/table-data";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
+import moment from "moment";
+
 import {
   useTable,
   useRowSelect,
@@ -15,119 +17,158 @@ import { Link } from "react-router-dom";
 
 const COLUMNS = [
   {
-    Header: "Farmer Name",
-    accessor: "full_name",
+    Header: "Farmer Id",
+    accessor: "farmer_id",
+    Cell: (row) => {
+      return (
+        <div className="flex flex-col">
+          <span className="inline-flex items-center">
+            <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
+              <img
+                src={`${import.meta.env.VITE_IMG_URL}${
+                  row.cell.row?.original?.image
+                }`}
+                alt=""
+                className="object-cover w-10 h-10 rounded-full"
+              />
+            </span>
+            <div>
+              <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+                {row.cell.row?.original?.full_name}
+              </p>
+              <span className="text-[10px] text-green-600 font-bold">
+                {row?.cell?.row?.original?.farmer_id}
+              </span>
+            </div>
+          </span>
+        </div>
+      );
+    },
+  },
+
+  // {
+  //   Header: "Location",
+  //   accessor: "address",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  {
+    Header: "Phone No",
+    accessor: "phone",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "Farmer ID",
-    accessor: "farmer_id",
-    Cell: (row) => {
-      return <span>#{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "Farmer Phone",
-    accessor: "phone",
-    Cell: (row) => {
-      return <span>#{row?.cell?.value}</span>;
-    },
-  },
-  //   {
-  //     Header: "customer",
-  //     accessor: "customer",
-  //     Cell: (row) => {
-  //       return (
-  //         <div>
-  //           <span className="inline-flex items-center">
-  //             <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-  //               <img
-  //                 src={row?.cell?.value.image}
-  //                 alt=""
-  //                 className="object-cover w-full h-full rounded-full"
-  //               />
-  //             </span>
-  //             <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-  //               {row?.cell?.value.name}
-  //             </span>
+  // {
+  //   Header: "Total Transaction",
+  //   accessor: "total_transaction",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  // {
+  //   Header: "Ent Name",
+  //   accessor: "ent_name",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  // {
+  //   Header: "customer",
+  //   accessor: "customer",
+  //   Cell: (row) => {
+  //     return (
+  //       <div>
+  //         <span className="inline-flex items-center">
+  //           <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
+  //             <img
+  //               // src={row?.cell?.value.image}
+  //               alt=""
+  //               className="object-cover w-full h-full rounded-full"
+  //             />
   //           </span>
-  //         </div>
-  //       );
-  //     },
-  //   },
-  //   {
-  //     Header: "date",
-  //     accessor: "date",
-  //     Cell: (row) => {
-  //       return <span>{row?.cell?.value}</span>;
-  //     },
-  //   },
-  //   {
-  //     Header: "quantity",
-  //     accessor: "quantity",
-  //     Cell: (row) => {
-  //       return <span>{row?.cell?.value}</span>;
-  //     },
-  //   },
-  //   {
-  //     Header: "amount",
-  //     accessor: "amount",
-  //     Cell: (row) => {
-  //       return <span>{row?.cell?.value}</span>;
-  //     },
-  //   },
-  //   {
-  //     Header: "status",
-  //     accessor: "status",
-  //     Cell: (row) => {
-  //       return (
-  //         <span className="block w-full">
-  //           <span
-  //             className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
-  //               row?.cell?.value === "paid"
-  //                 ? "text-success-500 bg-success-500"
-  //                 : ""
-  //             }
-  //             ${
-  //               row?.cell?.value === "due"
-  //                 ? "text-warning-500 bg-warning-500"
-  //                 : ""
-  //             }
-  //             ${
-  //               row?.cell?.value === "cancled"
-  //                 ? "text-danger-500 bg-danger-500"
-  //                 : ""
-  //             }
-
-  //              `}
-  //           >
-  //             {row?.cell?.value}
+  //           <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+  //             {row?.cell?.value.name}
   //           </span>
   //         </span>
-  //       );
-  //     },
+  //       </div>
+  //     );
   //   },
+  // },
+  // {
+  //   Header: "date",
+  //   accessor: "date",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  // {
+  //   Header: "quantity",
+  //   accessor: "quantity",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  // {
+  //   Header: "amount",
+  //   accessor: "amount",
+  //   Cell: (row) => {
+  //     return <span>{row?.cell?.value}</span>;
+  //   },
+  // },
+  // {
+  //   Header: "status",
+  //   accessor: "status",
+  //   Cell: (row) => {
+  //     return (
+  //       <span className="block w-full">
+  //         <span
+  //           className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
+  //             row?.cell?.value === "paid"
+  //               ? "text-success-500 bg-success-500"
+  //               : ""
+  //           }
+  //           ${
+  //             row?.cell?.value === "due"
+  //               ? "text-warning-500 bg-warning-500"
+  //               : ""
+  //           }
+  //           ${
+  //             row?.cell?.value === "cancled"
+  //               ? "text-danger-500 bg-danger-500"
+  //               : ""
+  //           }
+
+  //            `}
+  //         >
+  //           {row?.cell?.value}
+  //         </span>
+  //       </span>
+  //     );
+  //   },
+  // },
+  {
+    Header: "Joining Date",
+    accessor: "onboard_date",
+    Cell: (row) => {
+      return <span>{moment(row?.cell?.value).format("llll")}</span>;
+    },
+  },
   {
     Header: "action",
     accessor: "action",
     Cell: (row) => {
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
-          <Tooltip
-            content="View Farmer Profile"
-            placement="top"
-            arrow
-            animation="shift-away"
-          >
-            <Link to={`/farmer-details/${row?.cell?.row?.original?.farmer_id}`}>
+          <Tooltip content="View" placement="top" arrow animation="shift-away">
+            <Link to={`/farmer-details/${row.cell.row.original.farmer_id}`}>
               <button className="action-btn" type="button">
                 <Icon icon="heroicons:eye" />
               </button>
             </Link>
           </Tooltip>
-          <Tooltip content="Edit" placement="top" arrow animation="shift-away">
+          {/* <Tooltip content="Edit" placement="top" arrow animation="shift-away">
             <button className="action-btn" type="button">
               <Icon icon="heroicons:pencil-square" />
             </button>
@@ -142,7 +183,7 @@ const COLUMNS = [
             <button className="action-btn" type="button">
               <Icon icon="heroicons:trash" />
             </button>
-          </Tooltip>
+          </Tooltip> */}
         </div>
       );
     },
@@ -181,6 +222,8 @@ const MeFarmerLists = ({
     () => (farmer_lists ? farmer_lists : []),
     [farmer_lists]
   );
+
+  console.log(farmer_lists);
 
   const tableInstance = useTable(
     {

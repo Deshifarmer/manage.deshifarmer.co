@@ -151,8 +151,7 @@ const MeDetails = ({ me_details }) => {
                     </div>
                     <div className="text-base text-slate-600 dark:text-slate-50">
                       {/* Home# 320/N, Road# 71/B, Mohakhali, Dhaka-1207, Bangladesh */}
-                      {me_details?.permanent_address}, {""}
-                      {me_details?.home_district}
+                      {me_details?.permanent_address} {""}
                       {/* {`Home# ${farmer_details?.address} Address# District# Division# Village#`} */}
                     </div>
                   </div>

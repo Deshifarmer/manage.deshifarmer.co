@@ -309,7 +309,7 @@ const COLUMNS = [
         <div className="flex space-x-3 rtl:space-x-reverse">
           <Tooltip
             content="View Product Details"
-            placement="top"
+            placement="right"
             arrow
             animation="shift-away"
           >
@@ -320,12 +320,12 @@ const COLUMNS = [
               </button>
             </Link>
           </Tooltip>
-          <Tooltip content="Edit" placement="top" arrow animation="shift-away">
+          {/* <Tooltip content="Edit" placement="top" arrow animation="shift-away">
             <button className="action-btn" type="button">
               <Icon icon="heroicons:pencil-square" />
             </button>
-          </Tooltip>
-          <Tooltip
+          </Tooltip> */}
+          {/* <Tooltip
             content="Delete"
             placement="top"
             arrow
@@ -335,7 +335,7 @@ const COLUMNS = [
             <button className="action-btn" type="button">
               <Icon icon="heroicons:trash" />
             </button>
-          </Tooltip>
+          </Tooltip> */}
         </div>
       );
     },
