@@ -11,7 +11,7 @@
 //     Header: "Product",
 //     accessor: "product_image",
 //     Cell: (row) => {
-//       
+//
 //       return (
 //         <div>
 //           <span className="inline-flex items-center">
@@ -190,6 +190,7 @@ import {
 import GlobalFilter from "./GlobalFilter";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useGetAllProductsQuery } from "../../../store/features/agri-input/api";
 
 const COLUMNS = [
   {
@@ -204,7 +205,6 @@ const COLUMNS = [
     Header: "Product",
     accessor: "name",
     Cell: (row) => {
-
       return (
         <div>
           <span className="inline-flex items-center">
@@ -365,36 +365,11 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllProducts = ({ title = `All Products` }) => {
+  const { data: products, isLoading, isError } = useGetAllProductsQuery();
+  isError && console.log("Error from product table page");
   const defaultPageSize = 100;
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const token = localStorage.getItem("hq-token");
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => products, [products]);
-
-  const fetchData = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/all_product`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setProducts(response.data);
-      setIsLoading(false);
-    } catch (error) {
-    
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  const data = useMemo(() => (products ? products : []), [products]);
 
   const tableInstance = useTable(
     {

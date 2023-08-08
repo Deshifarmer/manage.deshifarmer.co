@@ -1,9 +1,7 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { advancedTable } from "../../../constant/table-data";
+import React, { useMemo } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import Tooltip from "@/components/ui/Tooltip";
-import { Link } from "react-router-dom";
+
 import {
   useTable,
   useRowSelect,
@@ -12,7 +10,7 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "./GlobalFilter";
-import axios from "axios";
+import { useGetAllCategoryQuery } from "../../../store/features/agri-input/api";
 
 const COLUMNS = [
   {
@@ -107,7 +105,7 @@ const COLUMNS = [
   //     Header: "action",
   //     accessor: "action",
   //     Cell: (row) => {
-  //       
+  //
   //       return (
   //         <div className="flex space-x-3 rtl:space-x-reverse">
   //           <Tooltip content="View" placement="top" arrow animation="shift-away">
@@ -164,34 +162,9 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllCategories = ({ title = "All Category" }) => {
-  const [distributor, setDistributor] = useState([]);
+  const { data: categories } = useGetAllCategoryQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => distributor, [distributor]);
-  const token = localStorage.getItem("hq-token");
-
-  // note => all channel data
-  const fetchDat = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE}/all_category`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      
-      setDistributor(response.data);
-    } catch (error) {
-    
-    }
-  };
-
-  useEffect(() => {
-    fetchDat();
-  }, []);
-
-
+  const data = useMemo(() => (categories ? categories : []), [categories]);
 
   const tableInstance = useTable(
     {
