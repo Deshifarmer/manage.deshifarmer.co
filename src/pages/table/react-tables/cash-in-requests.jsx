@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import ViewReceipt from "./view-receipt";
 import { useForm } from "react-hook-form";
+import { useGetAllCashInRequestQuery } from "../../../store/features/payments/api";
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -177,30 +178,12 @@ const CashInRequests = ({ title = "Cash In Requests" }) => {
       },
     },
   ];
-  const [cash_in_requests, setCashInRequests] = useState([]);
+  const { data: cash_in_requests } = useGetAllCashInRequestQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => cash_in_requests, [cash_in_requests]);
-  const token = localStorage.getItem("hq-token");
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/distributor/all_cash_in_request`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setCashInRequests(response.data);
-    } catch (error) {
-      
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const data = useMemo(
+    () => (cash_in_requests ? cash_in_requests : []),
+    [cash_in_requests]
+  );
 
   const tableInstance = useTable(
     {
