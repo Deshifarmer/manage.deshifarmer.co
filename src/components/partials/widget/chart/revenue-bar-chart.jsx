@@ -122,8 +122,8 @@ const RevenueBarChart = ({ height = 400 }) => {
         },
       },
     },
-    // colors: ["#4669FA", "#0CE7FA", "#FA916B"],
-    colors: ["#1C6DD0", "#36AE7C", "#E8AA42"],
+    colors: ["#4669FA", "#0CE7FA", "#FA916B"],
+    // colors: ["#1C6DD0", "#36AE7C", "#E8AA42"],
     grid: {
       show: true,
       borderColor: isDark ? "#334155" : "#E2E8F0",

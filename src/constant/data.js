@@ -510,245 +510,245 @@ export const menuItems = [
   //   ],
   // },
   // note -> components
-  // {
-  //   title: "Components",
-  //   icon: "heroicons-outline:collection",
-  //   link: "#",
-  //   child: [
-  //     {
-  //       childtitle: "Typography",
-  //       childlink: "typography",
-  //     },
-  //     {
-  //       childtitle: "Colors",
-  //       childlink: "colors",
-  //     },
-  //     {
-  //       childtitle: "Alert",
-  //       childlink: "alert",
-  //     },
-  //     {
-  //       childtitle: "Button",
-  //       childlink: "button",
-  //     },
-  //     {
-  //       childtitle: "Card",
-  //       childlink: "card",
-  //     },
-  //     {
-  //       childtitle: "Carousel",
-  //       childlink: "carousel",
-  //     },
-  //     {
-  //       childtitle: "Dropdown",
-  //       childlink: "dropdown",
-  //     },
-  //     {
-  //       childtitle: "Image",
-  //       childlink: "image",
-  //     },
-  //     {
-  //       childtitle: "Modal",
-  //       childlink: "modal",
-  //     },
-  //     {
-  //       childtitle: "Progress bar",
-  //       childlink: "progress-bar",
-  //     },
-  //     {
-  //       childtitle: "Placeholder",
-  //       childlink: "placeholder",
-  //     },
-  //     {
-  //       childtitle: "Tab & Accordion",
-  //       childlink: "tab-accordion",
-  //     },
-  //     {
-  //       childtitle: "Badges",
-  //       childlink: "badges",
-  //     },
-  //     {
-  //       childtitle: "Paginatins",
-  //       childlink: "paginations",
-  //     },
-  //     {
-  //       childtitle: "Video",
-  //       childlink: "video",
-  //     },
-  //     {
-  //       childtitle: "Tooltip & Popover",
-  //       childlink: "tooltip-popover",
-  //     },
-  //   ],
-  // },
-  // // note => forms
-  // {
-  //   title: "Forms",
-  //   icon: "heroicons-outline:clipboard-list",
-  //   link: "#",
-  //   child: [
-  //     {
-  //       childtitle: "Add agri input - (product)",
-  //       childlink: "add-agri-input",
-  //     },
-  //     {
-  //       childtitle: "Add Company / Partner",
-  //       childlink: "add-company-partner",
-  //     },
-  //     {
-  //       childtitle: "Create Channel ",
-  //       childlink: "create-channel",
-  //     },
-  //     {
-  //       childtitle: "Add Farmer ",
-  //       childlink: "add-farmer",
-  //     },
-  //     {
-  //       childtitle: "Add Micro-Entrepreneur",
-  //       childlink: "add-micro-entrepreneur",
-  //     },
-  //     {
-  //       childtitle: "Set Kpi",
-  //       childlink: "set-kpi",
-  //     },
-  //     {
-  //       childtitle: "Input Order",
-  //       childlink: "input-order",
-  //     },
-  //     {
-  //       childtitle: "Input Category",
-  //       childlink: "input-category",
-  //     },
-  //     {
-  //       childtitle: "Input",
-  //       childlink: "input",
-  //     },
-  //     {
-  //       childtitle: "Input group",
-  //       childlink: "input-group",
-  //     },
-  //     {
-  //       childtitle: "Input layout",
-  //       childlink: "input-layout",
-  //     },
-  //     {
-  //       childtitle: "Form validation",
-  //       childlink: "form-validation",
-  //     },
-  //     {
-  //       childtitle: "Wizard",
-  //       childlink: "form-wizard",
-  //     },
-  //     {
-  //       childtitle: "Input mask",
-  //       childlink: "input-mask",
-  //     },
-  //     {
-  //       childtitle: "File input",
-  //       childlink: "file-input",
-  //     },
-  //     {
-  //       childtitle: "Form repeater",
-  //       childlink: "form-repeater",
-  //     },
-  //     {
-  //       childtitle: "Textarea",
-  //       childlink: "textarea",
-  //     },
-  //     {
-  //       childtitle: "Checkbox",
-  //       childlink: "checkbox",
-  //     },
-  //     {
-  //       childtitle: "Radio button",
-  //       childlink: "radio-button",
-  //     },
-  //     {
-  //       childtitle: "Switch",
-  //       childlink: "switch",
-  //     },
-  //     {
-  //       childtitle: "Select & Vue select",
-  //       childlink: "select",
-  //     },
-  //     {
-  //       childtitle: "Date time picker",
-  //       childlink: "date-time-picker",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Table",
-  //   icon: "heroicons-outline:table",
-  //   link: "#",
-  //   child: [
-  //     {
-  //       childtitle: "Channels",
-  //       childlink: "channels",
-  //     },
-  //     {
-  //       childtitle: "All Products",
-  //       childlink: "all-products",
-  //     },
-  //     {
-  //       childtitle: "Partner Details",
-  //       childlink: "partner-details",
-  //     },
-  //     {
-  //       childtitle: "KPI's",
-  //       childlink: "kpi",
-  //     },
-  //     {
-  //       childtitle: "Chart Table",
-  //       childlink: "table-basic",
-  //     },
-  //     {
-  //       childtitle: "Distributors Lists",
-  //       childlink: "distributors-lists",
-  //     },
-  //     {
-  //       childtitle: "All Transactions",
-  //       childlink: "all-transactions",
-  //     },
-  //     {
-  //       childtitle: "Cash in Request",
-  //       childlink: "cash-in-requests",
-  //     },
-  //     {
-  //       childtitle: "React Table",
-  //       childlink: "react-table",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Chart",
-  //   icon: "heroicons-outline:chart-bar",
-  //   link: "#",
-  //   child: [
-  //     {
-  //       childtitle: "Apex chart",
-  //       childlink: "appex-chart",
-  //     },
-  //     {
-  //       childtitle: "Chart js",
-  //       childlink: "chartjs",
-  //     },
-  //     {
-  //       childtitle: "Recharts",
-  //       childlink: "recharts",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Map",
-  //   icon: "heroicons-outline:map",
-  //   link: "map",
-  // },
-  // {
-  //   title: "Icons",
-  //   icon: "heroicons-outline:emoji-happy",
-  //   link: "icons",
-  // },
+  {
+    title: "Components",
+    icon: "heroicons-outline:collection",
+    link: "#",
+    child: [
+      {
+        childtitle: "Typography",
+        childlink: "typography",
+      },
+      {
+        childtitle: "Colors",
+        childlink: "colors",
+      },
+      {
+        childtitle: "Alert",
+        childlink: "alert",
+      },
+      {
+        childtitle: "Button",
+        childlink: "button",
+      },
+      {
+        childtitle: "Card",
+        childlink: "card",
+      },
+      {
+        childtitle: "Carousel",
+        childlink: "carousel",
+      },
+      {
+        childtitle: "Dropdown",
+        childlink: "dropdown",
+      },
+      {
+        childtitle: "Image",
+        childlink: "image",
+      },
+      {
+        childtitle: "Modal",
+        childlink: "modal",
+      },
+      {
+        childtitle: "Progress bar",
+        childlink: "progress-bar",
+      },
+      {
+        childtitle: "Placeholder",
+        childlink: "placeholder",
+      },
+      {
+        childtitle: "Tab & Accordion",
+        childlink: "tab-accordion",
+      },
+      {
+        childtitle: "Badges",
+        childlink: "badges",
+      },
+      {
+        childtitle: "Paginatins",
+        childlink: "paginations",
+      },
+      {
+        childtitle: "Video",
+        childlink: "video",
+      },
+      {
+        childtitle: "Tooltip & Popover",
+        childlink: "tooltip-popover",
+      },
+    ],
+  },
+  // note => forms
+  {
+    title: "Forms",
+    icon: "heroicons-outline:clipboard-list",
+    link: "#",
+    child: [
+      {
+        childtitle: "Add agri input - (product)",
+        childlink: "add-agri-input",
+      },
+      {
+        childtitle: "Add Company / Partner",
+        childlink: "add-company-partner",
+      },
+      {
+        childtitle: "Create Channel ",
+        childlink: "create-channel",
+      },
+      {
+        childtitle: "Add Farmer ",
+        childlink: "add-farmer",
+      },
+      {
+        childtitle: "Add Micro-Entrepreneur",
+        childlink: "add-micro-entrepreneur",
+      },
+      {
+        childtitle: "Set Kpi",
+        childlink: "set-kpi",
+      },
+      {
+        childtitle: "Input Order",
+        childlink: "input-order",
+      },
+      {
+        childtitle: "Input Category",
+        childlink: "input-category",
+      },
+      {
+        childtitle: "Input",
+        childlink: "input",
+      },
+      {
+        childtitle: "Input group",
+        childlink: "input-group",
+      },
+      {
+        childtitle: "Input layout",
+        childlink: "input-layout",
+      },
+      {
+        childtitle: "Form validation",
+        childlink: "form-validation",
+      },
+      {
+        childtitle: "Wizard",
+        childlink: "form-wizard",
+      },
+      {
+        childtitle: "Input mask",
+        childlink: "input-mask",
+      },
+      {
+        childtitle: "File input",
+        childlink: "file-input",
+      },
+      {
+        childtitle: "Form repeater",
+        childlink: "form-repeater",
+      },
+      {
+        childtitle: "Textarea",
+        childlink: "textarea",
+      },
+      {
+        childtitle: "Checkbox",
+        childlink: "checkbox",
+      },
+      {
+        childtitle: "Radio button",
+        childlink: "radio-button",
+      },
+      {
+        childtitle: "Switch",
+        childlink: "switch",
+      },
+      {
+        childtitle: "Select & Vue select",
+        childlink: "select",
+      },
+      {
+        childtitle: "Date time picker",
+        childlink: "date-time-picker",
+      },
+    ],
+  },
+  {
+    title: "Table",
+    icon: "heroicons-outline:table",
+    link: "#",
+    child: [
+      {
+        childtitle: "Channels",
+        childlink: "channels",
+      },
+      {
+        childtitle: "All Products",
+        childlink: "all-products",
+      },
+      {
+        childtitle: "Partner Details",
+        childlink: "partner-details",
+      },
+      {
+        childtitle: "KPI's",
+        childlink: "kpi",
+      },
+      {
+        childtitle: "Chart Table",
+        childlink: "table-basic",
+      },
+      {
+        childtitle: "Distributors Lists",
+        childlink: "distributors-lists",
+      },
+      {
+        childtitle: "All Transactions",
+        childlink: "all-transactions",
+      },
+      {
+        childtitle: "Cash in Request",
+        childlink: "cash-in-requests",
+      },
+      {
+        childtitle: "React Table",
+        childlink: "react-table",
+      },
+    ],
+  },
+  {
+    title: "Chart",
+    icon: "heroicons-outline:chart-bar",
+    link: "#",
+    child: [
+      {
+        childtitle: "Apex chart",
+        childlink: "appex-chart",
+      },
+      {
+        childtitle: "Chart js",
+        childlink: "chartjs",
+      },
+      {
+        childtitle: "Recharts",
+        childlink: "recharts",
+      },
+    ],
+  },
+  {
+    title: "Map",
+    icon: "heroicons-outline:map",
+    link: "map",
+  },
+  {
+    title: "Icons",
+    icon: "heroicons-outline:emoji-happy",
+    link: "icons",
+  },
 ];
 
 export const topMenu = [

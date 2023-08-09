@@ -81,15 +81,16 @@ const LoginForm = () => {
         theme: "light",
       });
       setUserInfo(response.data);
-  
+
       setLoading(false);
       localStorage.setItem("hq-token", response.data.token);
       dispatch(handleLogin(true));
-      navigate("/dashboard");
+      if (localStorage?.getItem("hq-token")) {
+        navigate("/dashboard");
+      }
     } catch (error) {
       setLoading(false);
       toast.error("Invalid credentials");
-    
     }
   };
 

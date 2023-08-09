@@ -15,6 +15,7 @@ import GroupChart3 from "../../components/partials/widget/chart/group-chart-3";
 import GroupChart4 from "../../components/partials/widget/chart/group-chart-4";
 import GroupChart5 from "../../components/partials/widget/chart/group-chart5";
 import axios from "axios";
+import TestGeoJSONMap from "../map/test-map";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
@@ -140,6 +141,11 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+          </Card>
+        </div>
+        <div className="col-span-12">
+          <Card title="Overview" headerslot={<SelectMonth />}>
+            <TestGeoJSONMap />
           </Card>
         </div>
       </div>
