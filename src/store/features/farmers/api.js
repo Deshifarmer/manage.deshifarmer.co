@@ -6,18 +6,18 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `/hq/all_farmer`,
         method: "GET",
-        headers: {
-          Authoziration: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authoziration: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
     getSingleFarmer: builder.query({
       query: (id) => ({
         url: `/hq/farmer/profile/${id}`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
   }),

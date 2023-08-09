@@ -6,36 +6,36 @@ export const distributorApiSlice = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/hq/all_distributor`,
         method: "GET",
-        headers: {
-          Authirization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authirization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
     getSingleDistributorDetails: builder.query({
       query: (id) => ({
         url: `/hq/profile/${id}`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
     getSingleDistributorOrders: builder.query({
       query: (id) => ({
         url: `/hq/distributor/${id}/order`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
     getAllUnassignedDistributor: builder.query({
       query: () => ({
         url: `/hq/unassigned_distributor`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
   }),

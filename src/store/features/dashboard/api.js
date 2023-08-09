@@ -6,9 +6,9 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `/hq/dashboard/all_member`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
       providesTags: ["radialChart"],
     }),
@@ -16,9 +16,9 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `/all_company`,
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
       }),
     }),
   }),

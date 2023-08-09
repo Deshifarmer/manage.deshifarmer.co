@@ -15,7 +15,7 @@ import { useSetRecoilState } from "recoil";
 const schema = yup
   .object({
     // email: yup.string().email("Invalid email").required("Email is Required"),
-    password: yup.string().required("Password is Required"),
+    // password: yup.string().required("Password is Required"),
   })
   .required();
 
@@ -114,7 +114,8 @@ const LoginForm = () => {
         // defaultValue={users[0].password}
         placeholder="Enter your password"
         register={register}
-        error={errors.password}
+
+        // error={errors.password}
       />
       <div className="flex justify-between">
         <Checkbox

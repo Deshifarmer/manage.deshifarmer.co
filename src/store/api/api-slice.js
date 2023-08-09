@@ -12,6 +12,7 @@ const axiosBaseQuery =
         params,
         headers: {
           ...headers,
+          Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
         },
       });
       return { data: result?.data };
