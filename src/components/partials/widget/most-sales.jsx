@@ -3,6 +3,7 @@ import world from "@svg-maps/world";
 
 import { CheckboxSVGMap } from "react-svg-map";
 import TestGeoJSONMap from "../../../pages/map/test-map";
+import { useGetLocationWiseFarmerQuery } from "../../../store/features/dashboard/api";
 
 const slaes = [
   // {
@@ -67,7 +68,29 @@ const slaes = [
   },
 ];
 
+const getRandomClass = () => {
+  const classes = [
+    "bg-primary-500 ring-primary-500",
+    "bg-success-500 ring-success-500",
+    "bg-info-500 ring-info-500",
+    "bg-warning-500 ring-warning-500",
+    "bg-secondary-500 ring-secondary-500",
+  ];
+  const randomIndex = Math.floor(Math.random() * classes.length);
+  return classes[randomIndex];
+};
+
 const MostSales = ({ filterMap }) => {
+  const { data } = useGetLocationWiseFarmerQuery();
+
+  const division_data = data?.map((division) => {
+    return {
+      title: division?.division_name,
+      amount: division?.total,
+      cls: getRandomClass(),
+    };
+  });
+
   return (
     <div className="md:flex items-center gap-20">
       <div className="flex-none">
@@ -86,11 +109,11 @@ const MostSales = ({ filterMap }) => {
             $12,65.00
           </div>
         )}
-        <div className="text-xs font-light dark:text-slate-200">
+        {/* <div className="text-xs font-light dark:text-slate-200">
           <span className="text-primary-500">+08%</span> From last month
-        </div>
+        </div> */}
         <ul className="bg-slate-50 dark:bg-slate-900 rounded p-4 min-w-[184px] space-y-5 mt-4">
-          {slaes.map((item, i) => (
+          {division_data?.map((item, i) => (
             <li
               key={i}
               className="flex justify-between text-xs text-slate-600 dark:text-slate-300"

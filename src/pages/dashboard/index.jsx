@@ -10,30 +10,11 @@ import RecentActivity from "@/components/partials/widget/recent-activity";
 import MostSales from "../../components/partials/widget/most-sales";
 import RadarChart from "../../components/partials/widget/chart/radar-chart";
 import HomeBredCurbs from "./HomeBredCurbs";
-import GroupChart2 from "../../components/partials/widget/chart/group-chart-2";
-import GroupChart3 from "../../components/partials/widget/chart/group-chart-3";
-import GroupChart4 from "../../components/partials/widget/chart/group-chart-4";
 import GroupChart5 from "../../components/partials/widget/chart/group-chart5";
-import axios from "axios";
-import TestGeoJSONMap from "../map/test-map";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
-  // const token = localStorage.getItem("hq-token");
-  // const get_profile = async () => {
-  //   const response = await axios.get(
-  //     `${import.meta.env.VITE_BASE}/hq/my_profile`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   );
-  // };
 
-  // useEffect(() => {
-  //   get_profile();
-  // }, []);
   return (
     <div>
       <HomeBredCurbs title="Dashboard" />

@@ -21,7 +21,7 @@ const MeDetails = ({ me_details }) => {
                 <div className="md:h-[186px] md:w-[186px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded-full ring-4 ring-slate-100 relative">
                   {me_details?.photo && (
                     <img
-                      src={`${import.meta.env.VITE_IMG_URL}/${
+                      src={`${import.meta.env.VITE_IMG_URL}${
                         me_details?.photo
                       }`}
                       alt=""

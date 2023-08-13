@@ -25,13 +25,13 @@ const COLUMNS = [
         <div className="flex flex-col">
           <span className="inline-flex items-center">
             <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-              {/* <img
+              <img
                 src={`${import.meta.env.VITE_IMG_URL}${
                   row.cell.row?.original?.image
                 }`}
                 alt=""
                 className="object-cover w-10 h-10 rounded-full"
-              /> */}
+              />
             </span>
             <div>
               <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
@@ -214,18 +214,18 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllFarmers = ({ title = "All Farmers" }) => {
-  const itemsPerPage = 50;
+  const itemsPerPage = 600;
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
   const {
     data: farmers,
     isLoading,
     isError,
-  } = useGetAllFarmersQuery({ itemsPerPage, currentPage });
+  } = useGetAllFarmersQuery({ itemsPerPage, currentPage, searchValue });
   isError && console.log("Error in fetching all farmers");
-
   const total_data = farmers?.meta?.total;
 
-  // const defaultPageSize = 200;
+  const defaultPageSize = 200;
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(
     () => (farmers?.data ? farmers?.data : []),
@@ -252,7 +252,6 @@ const AllFarmers = ({ title = "All Farmers" }) => {
 
   const handleExport = async () => {
     const XLSX = await import("xlsx"); // Use dynamic import for XLSX
-
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
@@ -270,7 +269,7 @@ const AllFarmers = ({ title = "All Farmers" }) => {
     {
       columns,
       data,
-      // initialState: { pageIndex: 0, pageSize: defaultPageSize },
+      initialState: { pageIndex: 0, pageSize: defaultPageSize },
     },
 
     useGlobalFilter,
@@ -319,7 +318,6 @@ const AllFarmers = ({ title = "All Farmers" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  console.log(pageSize);
   return (
     <>
       {isLoading ? (
@@ -329,7 +327,13 @@ const AllFarmers = ({ title = "All Farmers" }) => {
           <div className="md:flex justify-between items-center mb-6">
             <h4 className="card-title">{title}</h4>
             <div className="flex gap-4">
-              <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+              {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} /> */}
+              <input
+                className="border border-slate-600  rounded px-4 py-1 bg-gray-700"
+                placeholder="Search..."
+                type="text"
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
               <button
                 className="text-xs border px-4 border-slate-600 rounded bg-green-800"
                 onClick={handleExport}

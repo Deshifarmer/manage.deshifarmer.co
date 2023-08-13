@@ -12,6 +12,16 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["radialChart"],
     }),
+    getLocationWiseFarmer: builder.query({
+      query: () => ({
+        url: `/hq/dashboard/location_wise_farmer?location=division`,
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
+      }),
+      providesTags: ["radialChart"],
+    }),
     getCompanies: builder.query({
       query: () => ({
         url: `/all_company`,
@@ -24,5 +34,8 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetDashboardRadialChartQuery, useGetCompaniesQuery } =
-  dashboardApiSlice;
+export const {
+  useGetDashboardRadialChartQuery,
+  useGetCompaniesQuery,
+  useGetLocationWiseFarmerQuery,
+} = dashboardApiSlice;

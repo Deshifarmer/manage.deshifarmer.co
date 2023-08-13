@@ -5,7 +5,9 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
     getAllFarmers: builder.query({
       query: (params) => ({
         // url: `/hq/all_farmer`,
-        url: `/hq/farmer_search?per_page=${params?.itemsPerPage}&page=${params?.currentPage}`,
+        url: `/hq/farmer_search?per_page=${params?.itemsPerPage}&page=${
+          !params?.searchValue ? params?.currentPage : ""
+        }&search=${params?.searchValue}`,
         method: "GET",
         // headers: {
         //   Authoziration: `Bearer ${localStorage.getItem("hq-token")}`,

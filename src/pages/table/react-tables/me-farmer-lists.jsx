@@ -4,6 +4,8 @@ import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
 import moment from "moment";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 import {
   useTable,
@@ -223,7 +225,41 @@ const MeFarmerLists = ({
     [farmer_lists]
   );
 
-  console.log(farmer_lists);
+  // console.log(data);
+
+  // const pappu = data.map((farmer) => {
+  //   return {
+  //     farmer_id: farmer?.farmer_id,
+  //     date_of_birth: farmer?.date_of_birth,
+  //     farm_area: farmer?.farm_area,
+  //     father_name: farmer?.father_name,
+  //     first_name: farmer?.first_name,
+  //     full_name: farmer?.full_name,
+  //     last_name: farmer?.last_name,
+  //     sex: farmer?.gender,
+  //     phone: farmer?.phone,
+  //     district: farmer?.district,
+  //     division: farmer?.division,
+  //     union: farmer?.union,
+  //     upazila: farmer?.upazila,
+  //     village: farmer?.village,
+  //   };
+  // });
+
+  // const handleExport = async () => {
+  //   const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+  //   const worksheet = XLSX.utils.json_to_sheet(pappu);
+  //   const workbook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  //   const excelBuffer = XLSX.write(workbook, {
+  //     bookType: "xlsx",
+  //     type: "array",
+  //   });
+  //   const fileData = new Blob([excelBuffer], {
+  //     type: "application/octet-stream",
+  //   });
+  //   saveAs(fileData, "md.sumon_ali.xlsx");
+  // };
 
   const tableInstance = useTable(
     {
@@ -283,8 +319,14 @@ const MeFarmerLists = ({
         <Card>
           <div className="md:flex justify-between items-center mb-6">
             <h4 className="card-title">{title}</h4>
-            <div>
+            <div className="flex gap-4">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+              {/* <button
+                className="text-xs border px-4 border-slate-600 rounded bg-green-800"
+                onClick={handleExport}
+              >
+                Export to Excel
+              </button> */}
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">
