@@ -11,9 +11,10 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "./GlobalFilter";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { useGetAllFarmersQuery } from "../../../store/features/farmers/api";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const COLUMNS = [
   {
@@ -24,13 +25,13 @@ const COLUMNS = [
         <div className="flex flex-col">
           <span className="inline-flex items-center">
             <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-              <img
+              {/* <img
                 src={`${import.meta.env.VITE_IMG_URL}${
                   row.cell.row?.original?.image
                 }`}
                 alt=""
                 className="object-cover w-10 h-10 rounded-full"
-              />
+              /> */}
             </span>
             <div>
               <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
@@ -213,17 +214,63 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllFarmers = ({ title = "All Farmers" }) => {
-  const { data: farmers, isLoading, isError } = useGetAllFarmersQuery();
+  const itemsPerPage = 50;
+  const [currentPage, setCurrentPage] = useState(1);
+  const {
+    data: farmers,
+    isLoading,
+    isError,
+  } = useGetAllFarmersQuery({ itemsPerPage, currentPage });
   isError && console.log("Error in fetching all farmers");
-  const defaultPageSize = 100;
+
+  const total_data = farmers?.meta?.total;
+
+  // const defaultPageSize = 200;
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => (farmers ? farmers : []), [farmers]);
+  const data = useMemo(
+    () => (farmers?.data ? farmers?.data : []),
+    [farmers?.data]
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // when ever the current page value change i wnna scroll to top
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [currentPage]);
+
+  const totalPages = Math.ceil(total_data / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  // const currentData = data?.slice(startIndex, endIndex);
+
+  const handleExport = async () => {
+    const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+    saveAs(fileData, "exported_data.xlsx");
+  };
 
   const tableInstance = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: defaultPageSize },
+      // initialState: { pageIndex: 0, pageSize: defaultPageSize },
     },
 
     useGlobalFilter,
@@ -250,6 +297,7 @@ const AllFarmers = ({ title = "All Farmers" }) => {
       ]);
     }
   );
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -270,6 +318,8 @@ const AllFarmers = ({ title = "All Farmers" }) => {
   } = tableInstance;
 
   const { globalFilter, pageIndex, pageSize } = state;
+
+  console.log(pageSize);
   return (
     <>
       {isLoading ? (
@@ -278,8 +328,14 @@ const AllFarmers = ({ title = "All Farmers" }) => {
         <Card>
           <div className="md:flex justify-between items-center mb-6">
             <h4 className="card-title">{title}</h4>
-            <div>
+            <div className="flex gap-4">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+              <button
+                className="text-xs border px-4 border-slate-600 rounded bg-green-800"
+                onClick={handleExport}
+              >
+                Export to Excel
+              </button>
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">
@@ -336,14 +392,14 @@ const AllFarmers = ({ title = "All Farmers" }) => {
               </div>
             </div>
           </div>
-          <div className="md:flex md:space-y-0 space-y-5 justify-between mt-6 items-center">
+          {/* <div className="md:flex md:space-y-0 space-y-5 justify-between mt-6 items-center">
             <div className=" flex items-center space-x-3 rtl:space-x-reverse">
               <select
                 className="form-control py-2 w-max"
                 value={pageSize}
                 onChange={(e) => setPageSize(Number(e.target.value))}
               >
-                {[100, 250, 350].map((pageSize) => (
+                {[300, 550, 850].map((pageSize) => (
                   <option key={pageSize} value={pageSize}>
                     Show {pageSize}
                   </option>
@@ -418,7 +474,131 @@ const AllFarmers = ({ title = "All Farmers" }) => {
                 </button>
               </li>
             </ul>
+          </div> */}
+          <div className="md:flex md:space-y-0 space-y-5 justify-between mt-6 items-center">
+            <div className=" flex items-center space-x-3 rtl:space-x-reverse">
+              {/* <select
+                className="form-control py-2 w-max"
+                value={pageSize}
+                onChange={(e) => setPageSize(Number(e.target.value))}
+              >
+                {[150, 250, 550].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                ))}
+              </select>
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                Page{" "}
+                <span>
+                  {pageIndex + 1} of {pageOptions.length}
+                </span>
+              </span> */}
+            </div>
+            <ul className="flex items-center  space-x-3  rtl:space-x-reverse">
+              {/* <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
+                <button
+                  className={` ${
+                    !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => gotoPage(0)}
+                  disabled={!canPreviousPage}
+                >
+                  <Icon icon="heroicons:chevron-double-left-solid" />
+                </button>
+              </li>
+              <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
+                <button
+                  className={` ${
+                    !canPreviousPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => previousPage()}
+                  disabled={!canPreviousPage}
+                >
+                  Prev
+                </button>
+              </li>
+              {pageOptions.map((page, pageIdx) => (
+                <li key={pageIdx}>
+                  <button
+                    href="#"
+                    aria-current="page"
+                    className={` ${
+                      pageIdx === pageIndex
+                        ? "bg-slate-900 dark:bg-slate-600  dark:text-slate-200 text-white font-medium "
+                        : "bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900  font-normal  "
+                    }    text-sm rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150`}
+                    onClick={() => gotoPage(pageIdx)}
+                  >
+                    {page + 1}
+                  </button>
+                </li>
+              ))}
+              <li className="text-sm leading-4 text-slate-900 dark:text-white rtl:rotate-180">
+                <button
+                  className={` ${
+                    !canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => nextPage()}
+                  disabled={!canNextPage}
+                >
+                  Next
+                </button>
+              </li>
+              <li className="text-xl leading-4 text-slate-900 dark:text-white rtl:rotate-180">
+                <button
+                  onClick={() => gotoPage(pageCount - 1)}
+                  disabled={!canNextPage}
+                  className={` ${
+                    !canNextPage ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                >
+                  <Icon icon="heroicons:chevron-double-right-solid" />
+                </button>
+              </li> */}
+              <div>
+                {/* Render your data items */}
+                {/* {currentData.map((item, index) => (
+                  <div key={index}>{item}</div>
+                ))} */}
+
+                {/* Pagination controls */}
+                <div className="flex justify-center flex-wrap gap-6 mt-4">
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handlePageChange(index + 1)}
+                      className={`mx-1 px-3 py-1 rounded ${
+                        currentPage === index + 1
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-300 text-black-500"
+                      }`}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </ul>
           </div>
+          {/* <div className="flex justify-center space-x-4 mt-10 text-white">
+            <div className="space-x-6 flex justify-center">
+              {[...Array(pages).keys()].map((number) => (
+                <button
+                  onClick={() => setPage(number)}
+                  className={
+                    number === page
+                      ? "px-4 py-2 mx-1 text-white transition-colors duration-300 transform bg-red-500 rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-red-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200"
+                      : "px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-red-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200 border-2"
+                  }
+                  key={number}
+                >
+                  {number + 1}
+                </button>
+              ))}
+            </div>
+          </div> */}
+
           {/*end*/}
         </Card>
       )}
