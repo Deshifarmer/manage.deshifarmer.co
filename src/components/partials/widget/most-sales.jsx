@@ -2,50 +2,83 @@ import React from "react";
 import world from "@svg-maps/world";
 
 import { CheckboxSVGMap } from "react-svg-map";
+import TestGeoJSONMap from "../../../pages/map/test-map";
 
 const slaes = [
+  // {
+  //   title: "Nevada",
+  //   amount: "$125k",
+  //   cls: "bg-primary-500 ring-primary-500",
+  // },
+  // {
+  //   title: "Colorado",
+  //   amount: "$$325k",
+  //   cls: "bg-success-500 ring-success-500",
+  // },
+  // {
+  //   title: "Iowa",
+  //   amount: "$67",
+  //   cls: "bg-info-500 ring-info-500",
+  // },
+  // {
+  //   title: "Arkansas",
+  //   amount: "$354k",
+  //   cls: "bg-warning-500 ring-warning-500",
+  // },
+  // {
+  //   title: "Wyoming",
+  //   amount: "$195k",
+  //   cls: "bg-success-500 ring-success-500",
+  // },
+  // {
+  //   title: "Other countries",
+  //   amount: "$295k",
+  //   cls: "bg-secondary-500 ring-secondary-500",
+  // },
   {
-    title: "Nevada",
-    amount: "$125k",
+    title: "Dhaka",
+    amount: "125",
     cls: "bg-primary-500 ring-primary-500",
   },
   {
-    title: "Colorado",
-    amount: "$$325k",
+    title: "Rajshahi",
+    amount: "325",
     cls: "bg-success-500 ring-success-500",
   },
   {
-    title: "Iowa",
-    amount: "$67",
+    title: "Khulna",
+    amount: "67",
     cls: "bg-info-500 ring-info-500",
   },
   {
-    title: "Arkansas",
-    amount: "$354k",
+    title: "Barishal",
+    amount: "354",
     cls: "bg-warning-500 ring-warning-500",
   },
   {
-    title: "Wyoming",
-    amount: "$195k",
+    title: "Chitagong",
+    amount: "195",
     cls: "bg-success-500 ring-success-500",
   },
   {
-    title: "Other countries",
-    amount: "$295k",
+    title: "Jesoore",
+    amount: "295",
     cls: "bg-secondary-500 ring-secondary-500",
   },
 ];
 
 const MostSales = ({ filterMap }) => {
   return (
-    <div className="md:flex items-center">
+    <div className="md:flex items-center gap-20">
       <div className="flex-none">
         <h4 className="text-slate-600 dark:text-slate-200 text-sm font-normal mb-[6px]">
-          Total earnings
+          {/* Total earnings */}
+          Total Farmers
         </h4>
         {filterMap === "usa" && (
           <div className="text-lg font-medium mb-[6px] dark:text-white text-slate-900">
-            $12,65,64787.00
+            {/* $12,65,64787.00 */}
+            4210
           </div>
         )}
         {filterMap === "global" && (
@@ -76,10 +109,11 @@ const MostSales = ({ filterMap }) => {
         </ul>
       </div>
       <div className="flex-1">
-        <CheckboxSVGMap
+        {/* <CheckboxSVGMap
           map={world}
           className="h-[350px] w-full dash-codevmap"
-        />
+        /> */}
+        <TestGeoJSONMap />
       </div>
     </div>
   );

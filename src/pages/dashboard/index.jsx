@@ -74,35 +74,36 @@ const Dashboard = () => {
         </div>
         <div className="lg:col-span-8 col-span-12">
           <Card
-            title="Most Sales"
-            headerslot={
-              <div className="border border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded p-1 flex items-center">
-                <span
-                  className={` flex-1 text-sm font-normal px-3 py-1 transition-all duration-150 rounded cursor-pointer
-                ${
-                  filterMap === "global"
-                    ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
-                    : "dark:text-slate-300"
-                }  
-                `}
-                  onClick={() => setFilterMap("global")}
-                >
-                  Global
-                </span>
-                <span
-                  className={` flex-1 text-sm font-normal px-3 py-1 rounded transition-all duration-150 cursor-pointer
-                  ${
-                    filterMap === "usa"
-                      ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
-                      : "dark:text-slate-300"
-                  }
-              `}
-                  onClick={() => setFilterMap("usa")}
-                >
-                  USA
-                </span>
-              </div>
-            }
+            // title="Most Sales"
+            title="Map Overview"
+            // headerslot={
+            //   <div className="border border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded p-1 flex items-center">
+            //     <span
+            //       className={` flex-1 text-sm font-normal px-3 py-1 transition-all duration-150 rounded cursor-pointer
+            //     ${
+            //       filterMap === "global"
+            //         ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
+            //         : "dark:text-slate-300"
+            //     }
+            //     `}
+            //       onClick={() => setFilterMap("global")}
+            //     >
+            //       Global
+            //     </span>
+            //     <span
+            //       className={` flex-1 text-sm font-normal px-3 py-1 rounded transition-all duration-150 cursor-pointer
+            //       ${
+            //         filterMap === "usa"
+            //           ? "bg-slate-900 text-white dark:bg-slate-700 dark:text-slate-300"
+            //           : "dark:text-slate-300"
+            //       }
+            //   `}
+            //       onClick={() => setFilterMap("usa")}
+            //     >
+            //       USA
+            //     </span>
+            //   </div>
+            // }
           >
             <MostSales filterMap={filterMap} />
           </Card>
@@ -143,11 +144,12 @@ const Dashboard = () => {
             </div>
           </Card>
         </div>
-        <div className="col-span-12">
+        {/* <div className="col-span-12">
+
           <Card title="Overview" headerslot={<SelectMonth />}>
             <TestGeoJSONMap />
           </Card>
-        </div>
+        </div> */}
       </div>
     </div>
   );
