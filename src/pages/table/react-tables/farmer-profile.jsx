@@ -11,10 +11,16 @@ import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
 import moment from "moment";
 
-const FarmerProfile = ({ farmer_details }) => {
+const FarmerProfile = ({
+  farmer_details,
+  current_producing_crop,
+  focused_crop,
+}) => {
   const birthDate = new Date(farmer_details?.date_of_birth);
   const todayDate = new Date();
   const age = todayDate.getFullYear() - birthDate.getFullYear();
+  const cpc = current_producing_crop && JSON.parse(current_producing_crop);
+  const fc = focused_crop && JSON.parse(focused_crop);
 
   return (
     <div>
@@ -103,9 +109,9 @@ const FarmerProfile = ({ farmer_details }) => {
         </div>
 
         <div className="grid grid-cols-12 gap-6">
-          <div className="lg:col-span-4 col-span-12">
+          <div className="lg:col-span-12 col-span-12">
             <Card title="Info">
-              <ul className="list space-y-8 ">
+              <ul className="list grid grid-cols-4 gap-10">
                 <li className="flex space-x-3 rtl:space-x-reverse">
                   <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
                     <Icon icon="heroicons:envelope" />
@@ -149,21 +155,152 @@ const FarmerProfile = ({ farmer_details }) => {
                       LOCATION
                     </div>
                     <div className="text-base text-slate-600 dark:text-slate-50">
-                      {/* Home# 320/N, Road# 71/B, Mohakhali, Dhaka-1207, Bangladesh */}
-                      {farmer_details?.address}
-                      {/* {`Home# ${farmer_details?.address} Address# District# Division# Village#`} */}
+                      {farmer_details?.division}, {farmer_details?.district},{" "}
+                      {farmer_details?.upazila}, {farmer_details?.union},{" "}
+                      {farmer_details?.village}, {farmer_details?.address}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:home" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Resident Type
+                    </div>
+                    <div className="text-base text-slate-600 dark:text-slate-50">
+                      {farmer_details?.resident_type}
+                    </div>
+                  </div>
+                </li>
+
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:finger-print" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Nid
+                    </div>
+                    <div className="text-base text-slate-600 dark:text-slate-50">
+                      {farmer_details?.nid}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:user" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Gender
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.gender}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:user-plus" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Father's Name
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.fathers_name}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:calendar-days" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Onboard Date
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {moment(farmer_details?.onboard_date).format("LLLL")}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:calendar" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Year's of Stay in
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {parseInt(farmer_details?.year_of_stay_in)}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:arrow-path" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Cultivation Practice
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.cultivation_practice}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:arrow-trending-up" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Croping Intensity
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.cropping_intensity}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:shopping-bag" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Current Producing Crop
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {cpc?.cropname}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:cursor-arrow-ripple" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Focused Crop
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {fc?.cropname}
                     </div>
                   </div>
                 </li>
               </ul>
             </Card>
           </div>
-          <div className="lg:col-span-4 col-span-12">
+          <div className="lg:col-span-6 col-span-12">
             <Card title="User Overview">
               <BasicArea height={170} />
             </Card>
           </div>
-          <div className="lg:col-span-4 col-span-12">
+          <div className="lg:col-span-6 col-span-12">
             <Card title="User Location">
               <MarkerMap />
             </Card>
