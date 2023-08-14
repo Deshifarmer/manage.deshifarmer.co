@@ -5,7 +5,7 @@ import Card from "@/components/ui/Card";
 import BasicArea from "../chart/appex-chart/BasicArea";
 
 // import images
-import ProfileImage from "@/assets/images/users/user-1.jpg";
+import ProfileImage from "@/assets/images/users/user-7.jpg";
 
 const profile = () => {
   return (
@@ -32,10 +32,11 @@ const profile = () => {
               </div>
               <div className="flex-1">
                 <div className="text-2xl font-medium text-slate-900 dark:text-slate-200 mb-[3px]">
-                  Albert Flores
+                  {/* Albert Flores */}
+                  Deshi Farmer
                 </div>
                 <div className="text-sm font-light text-slate-600 dark:text-slate-400">
-                  Front End Developer
+                  Admin
                 </div>
               </div>
             </div>

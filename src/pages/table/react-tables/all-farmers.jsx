@@ -329,17 +329,17 @@ const AllFarmers = ({ title = "All Farmers" }) => {
             <div className="flex gap-4">
               {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} /> */}
               <input
-                className="border border-slate-600  rounded px-4 py-1 bg-gray-700"
+                className="border border-slate-600 text-white  rounded px-4 py-1 bg-gray-700"
                 placeholder="Search..."
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
               />
-              <button
-                className="text-xs border px-4 border-slate-600 rounded bg-green-800"
+              {/* <button
+                className="text-xs border px-4 border-slate-600 rounded bg-green-800 text-white"
                 onClick={handleExport}
               >
                 Export to Excel
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">
