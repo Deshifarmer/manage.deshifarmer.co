@@ -27,7 +27,6 @@ const ProductDetailsPage = () => {
   const { id } = useParams();
   const token = localStorage.getItem("hq-token");
   const [product_details, setProductDetails] = useState([]);
-  console.log(product_details);
   const [show, setShow] = useState(false);
   const [edited_sell_price, set_edited_sell_price] = useState("");
   const [edited_commission, set_edited_commission] = useState({});
@@ -73,7 +72,8 @@ const ProductDetailsPage = () => {
         name: response.data?.name,
         description: response.data?.description,
         sell_price: response.data?.sell_price,
-        buy_price_from_company: response.data?.hq_secret?.buy_price_from_company,
+        buy_price_from_company:
+          response.data?.hq_secret?.buy_price_from_company,
         sell_price_from_company: response.data?.sell_price_from_company,
       });
     } catch (error) {}
@@ -480,7 +480,7 @@ const ProductDetailsPage = () => {
                 </div>
               )}
             </div>
-            <div className="text-base font-medium text-slate-800 dark:text-slate-100 mb-3">
+            <div className="text-base font-medium text-slate-800 dark:text-slate-900 mb-3">
               {show ? (
                 <div className="">
                   <div className="pb-2">Description</div>
@@ -499,13 +499,13 @@ const ProductDetailsPage = () => {
                   </div>
                 </div>
               ) : (
-                <div className="text-base font-medium text-slate-800 dark:text-slate-100 ">
+                <div className="text-base font-medium text-slate-800 dark:text-slate-900 ">
                   <div>Description</div>
                   <p
                     dangerouslySetInnerHTML={{
                       __html: product_details?.description,
                     }}
-                    className="text-sm text-slate-600 dark:text-slate-300 my-3"
+                    className="text-sm text-slate-600 dark:text-slate-900 my-3"
                   >
                     {/* {product_details?.description} */}
                   </p>
