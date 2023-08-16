@@ -217,10 +217,25 @@ const IndeterminateCheckbox = React.forwardRef(
 const AllFarmers2 = ({ title = "All Farmers" }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(5);
+  const [itemsPerPage, setitemsPerPage] = useState(150);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+  const handleExport = async () => {
+    const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+    saveAs(fileData, "exported_data.xlsx");
+  };
 
   const {
     data: farmers,
@@ -239,8 +254,9 @@ const AllFarmers2 = ({ title = "All Farmers" }) => {
     pages.push(i);
   }
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  //   const indexOfLastItem = currentPage * itemsPerPage;
+  //   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  //   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -251,7 +267,7 @@ const AllFarmers2 = ({ title = "All Farmers" }) => {
           onClick={handleClick}
           className={
             currentPage == number
-              ? "active bg-white px-4 py-2 text-black-500 rounded-full cursor-pointer"
+              ? "active bg-white px-5 py-2 text-black-500 rounded-full cursor-pointer"
               : "cursor-pointer"
           }
         >
@@ -297,6 +313,7 @@ const AllFarmers2 = ({ title = "All Farmers" }) => {
 
   const defaultPageSize = 200;
   const columns = useMemo(() => COLUMNS, []);
+
   const data = useMemo(
     () => (farmers?.data ? farmers?.data : []),
     [farmers?.data]
@@ -370,6 +387,12 @@ const AllFarmers2 = ({ title = "All Farmers" }) => {
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
               />
+              <button
+                className="text-xs border px-4 border-slate-600 rounded bg-green-800 text-white"
+                onClick={handleExport}
+              >
+                Export to Excel
+              </button>
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">
