@@ -157,6 +157,7 @@ import Demo from "./pages/table/react-tables/_demo_";
 import CashOutRequests from "./pages/table/react-tables/cash-out-requests";
 import AddManager from "./pages/forms/add-manager";
 import AssignChannel from "./pages/table/react-tables/assign-channel";
+import AllFarmers2 from "./pages/table/react-tables/all-farmers-2";
 
 function App() {
   return (
@@ -335,7 +336,7 @@ function App() {
           <Route path="recharts" element={<Recharts />} />
           <Route path="map" element={<MapPage />} />
           <Route path="channels" element={<Channels />} />
-          <Route path="all-farmers" element={<AllFarmers />} />
+          <Route path="all-farmers" element={<AllFarmers2 />} />
           <Route path="distributors-lists" element={<DistributorsLists />} />
           <Route path="micro-entrepreneurs" element={<MicroEntrepreneurs />} />
           <Route path="managers" element={<Managers />} />
