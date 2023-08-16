@@ -217,7 +217,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const AllFarmers2 = ({ title = "All Farmers" }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(50);
+  const [itemsPerPage, setitemsPerPage] = useState(150);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
