@@ -224,6 +224,7 @@ const MeFarmerLists = ({
     () => (farmer_lists ? farmer_lists : []),
     [farmer_lists]
   );
+  const defaultPageSize = 200;
 
   // console.log(data);
 
@@ -265,6 +266,7 @@ const MeFarmerLists = ({
     {
       columns,
       data,
+      initialState: { pageIndex: 0, pageSize: defaultPageSize },
     },
 
     useGlobalFilter,

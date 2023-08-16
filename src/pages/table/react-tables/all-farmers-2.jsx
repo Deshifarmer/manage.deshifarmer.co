@@ -217,7 +217,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const AllFarmers2 = ({ title = "All Farmers" }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(150);
+  const [itemsPerPage, setitemsPerPage] = useState(50);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
@@ -258,7 +258,7 @@ const AllFarmers2 = ({ title = "All Farmers" }) => {
   //   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   //   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
-  const renderPageNumbers = pages.map((number) => {
+  const renderPageNumbers = pages?.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
         <li
@@ -387,12 +387,12 @@ const AllFarmers2 = ({ title = "All Farmers" }) => {
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
               />
-              <button
+              {/* <button
                 className="text-xs border px-4 border-slate-600 rounded bg-green-800 text-white"
                 onClick={handleExport}
               >
                 Export to Excel
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">

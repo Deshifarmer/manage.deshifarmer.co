@@ -27,6 +27,7 @@ const ProductDetailsPage = () => {
   const { id } = useParams();
   const token = localStorage.getItem("hq-token");
   const [product_details, setProductDetails] = useState([]);
+  console.log(product_details);
   const [show, setShow] = useState(false);
   const [edited_sell_price, set_edited_sell_price] = useState("");
   const [edited_commission, set_edited_commission] = useState({});
@@ -37,7 +38,6 @@ const ProductDetailsPage = () => {
     useState("");
   const [edited_buy_price_company, set_edited_buy_price_company] = useState("");
   const [updatedProductImage, setUpdatedProductImage] = useState(null);
-
 
   const hanleUpdatedProductImage = (e) => {
     setUpdatedProductImage(e.target.files[0]);
@@ -73,21 +73,15 @@ const ProductDetailsPage = () => {
         name: response.data?.name,
         description: response.data?.description,
         sell_price: response.data?.sell_price,
-        buy_price_from_company:
-          response.data?.hq_secret?.buy_price_from_company,
-        sell_price_from_company:
-          response.data?.hq_secret?.sell_price_from_company,
+        buy_price_from_company: response.data?.hq_secret?.buy_price_from_company,
+        sell_price_from_company: response.data?.sell_price_from_company,
       });
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     fetchProductData();
   }, []);
-
-
 
   const statistics = [
     {
@@ -164,7 +158,7 @@ const ProductDetailsPage = () => {
           Swal.fire("Success", "Product Active Successful", "success");
         }
       } catch (error) {
-        Swal.fire("Ops!", "Error adding Distributor", "error");
+        Swal.fire("Ops!", "Error active product", "error");
       }
     } else if (value === "inactive") {
       try {
@@ -231,9 +225,9 @@ const ProductDetailsPage = () => {
           Swal.fire("Ops!", "Error Updating Product", "error");
         }
       } catch (error) {
-     
         setShow(false);
         Swal.fire("Ops!", "Error Updating Product", "error");
+        console.log(error);
       }
     } else if (value === "edit") {
       setShow(true);
@@ -241,8 +235,6 @@ const ProductDetailsPage = () => {
       Swal.fire("Ops!", "Something Went Wrong", "error");
     }
   };
-
-
 
   return (
     <div className=" space-y-5">
