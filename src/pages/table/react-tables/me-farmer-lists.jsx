@@ -226,41 +226,42 @@ const MeFarmerLists = ({
   );
   const defaultPageSize = 200;
 
-  // console.log(data);
+  const excel_data = data.map((farmer) => {
+    return {
+      farmer_id: farmer?.farmer_id,
+      image: `https://core.deshifarmer.co/storage${farmer?.image}`,
+      date_of_birth: farmer?.date_of_birth,
+      farm_area: farmer?.farm_area,
+      father_name: farmer?.father_name,
+      first_name: farmer?.first_name,
+      full_name: farmer?.full_name,
+      last_name: farmer?.last_name,
+      sex: farmer?.gender,
+      phone: farmer?.phone,
+      district: farmer?.district,
+      division: farmer?.division,
+      union: farmer?.union,
+      upazila: farmer?.upazila,
+      village: farmer?.village,
+      created_at: farmer?.created_at,
+    };
+  });
 
-  // const pappu = data.map((farmer) => {
-  //   return {
-  //     farmer_id: farmer?.farmer_id,
-  //     date_of_birth: farmer?.date_of_birth,
-  //     farm_area: farmer?.farm_area,
-  //     father_name: farmer?.father_name,
-  //     first_name: farmer?.first_name,
-  //     full_name: farmer?.full_name,
-  //     last_name: farmer?.last_name,
-  //     sex: farmer?.gender,
-  //     phone: farmer?.phone,
-  //     district: farmer?.district,
-  //     division: farmer?.division,
-  //     union: farmer?.union,
-  //     upazila: farmer?.upazila,
-  //     village: farmer?.village,
-  //   };
-  // });
+  const handleExport = async () => {
+    const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+    const worksheet = XLSX.utils.json_to_sheet(excel_data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
 
-  // const handleExport = async () => {
-  //   const XLSX = await import("xlsx"); // Use dynamic import for XLSX
-  //   const worksheet = XLSX.utils.json_to_sheet(pappu);
-  //   const workbook = XLSX.utils.book_new();
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-  //   const excelBuffer = XLSX.write(workbook, {
-  //     bookType: "xlsx",
-  //     type: "array",
-  //   });
-  //   const fileData = new Blob([excelBuffer], {
-  //     type: "application/octet-stream",
-  //   });
-  //   saveAs(fileData, "md.sumon_ali.xlsx");
-  // };
+    saveAs(fileData, "FAZLE_ALAHI.xlsx");
+  };
 
   const tableInstance = useTable(
     {
@@ -323,12 +324,12 @@ const MeFarmerLists = ({
             <h4 className="card-title">{title}</h4>
             <div className="flex gap-4">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-              {/* <button
+              <button
                 className="text-xs border px-4 border-slate-600 rounded bg-green-800"
                 onClick={handleExport}
               >
                 Export to Excel
-              </button> */}
+              </button>
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">

@@ -61,6 +61,13 @@ const COLUMNS = [
     },
   },
   {
+    Header: "Total Farmer",
+    accessor: "total_farmer",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
     Header: "Email",
     accessor: "email",
     Cell: (row) => {

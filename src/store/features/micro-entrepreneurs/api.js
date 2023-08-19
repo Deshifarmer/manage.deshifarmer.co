@@ -25,7 +25,7 @@ export const microEntrepreneursApiSlice = apiSlice.injectEndpoints({
         url: `/hq/me/${id}/order`,
         method: "GET",
         // headers: {
-        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        //   // Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
         // },
       }),
     }),
