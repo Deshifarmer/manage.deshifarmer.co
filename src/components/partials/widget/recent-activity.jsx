@@ -6,6 +6,7 @@ import User3 from "@/assets/images/users/user-3.jpg";
 import User4 from "@/assets/images/users/user-4.jpg";
 import User5 from "@/assets/images/users/user-5.jpg";
 import User6 from "@/assets/images/users/user-6.jpg";
+import { useGetAllOrdersQuery } from "../../../store/features/orders/api";
 const activity = [
   {
     id: 1,
@@ -50,10 +51,12 @@ const activity = [
 ];
 
 const RecentActivity = () => {
+  const { data } = useGetAllOrdersQuery();
+  console.log(data);
   return (
     <div>
       <ul className="list-item space-y-3 h-full overflow-x-auto">
-        {activity.map((item, i) => (
+        {data?.map((item, i) => (
           <li
             className="flex items-center space-x-3 rtl:space-x-reverse border-b border-slate-100 dark:border-slate-700 last:border-b-0 pb-3 last:pb-0"
             key={i}

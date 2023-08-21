@@ -224,6 +224,8 @@ const MeFarmerLists = ({
     () => (farmer_lists ? farmer_lists : []),
     [farmer_lists]
   );
+
+  console.log(data);
   const defaultPageSize = 200;
 
   const excel_data = data.map((farmer) => {
@@ -260,7 +262,7 @@ const MeFarmerLists = ({
       type: "application/octet-stream",
     });
 
-    saveAs(fileData, "FAZLE_ALAHI.xlsx");
+    saveAs(fileData, "Md.Sumon Ali.xlsx");
   };
 
   const tableInstance = useTable(
@@ -325,7 +327,7 @@ const MeFarmerLists = ({
             <div className="flex gap-4">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
               <button
-                className="text-xs border px-4 border-slate-600 rounded bg-green-800"
+                className="text-xs border text-white px-4 border-slate-600 rounded bg-green-800"
                 onClick={handleExport}
               >
                 Export to Excel

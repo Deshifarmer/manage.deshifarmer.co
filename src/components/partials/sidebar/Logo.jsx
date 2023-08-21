@@ -7,8 +7,8 @@ import useSemiDark from "@/hooks/useSemiDark";
 import useSkin from "@/hooks/useSkin";
 
 // import images
-import MobileLogo from "@/assets/images/logo/logo-c.svg";
-import MobileLogoWhite from "@/assets/images/logo/logo-c-white.svg";
+import MobileLogo from "@/assets/images/logo/logo.jpg";
+import MobileLogoWhite from "@/assets/images/logo/logo.jpg";
 
 const SidebarLogo = ({ menuHover }) => {
   const [isDark] = useDarkMode();
@@ -33,9 +33,13 @@ const SidebarLogo = ({ menuHover }) => {
         <div className="flex items-center space-x-4">
           <div className="logo-icon">
             {!isDark && !isSemiDark ? (
-              <img src={MobileLogo} alt="" />
+              <img className="w-8 h-8 rounded-xl" src={MobileLogo} alt="" />
             ) : (
-              <img src={MobileLogoWhite} alt="" />
+              <img
+                className="w-8 h-8 rounded-xl"
+                src={MobileLogoWhite}
+                alt=""
+              />
             )}
           </div>
 

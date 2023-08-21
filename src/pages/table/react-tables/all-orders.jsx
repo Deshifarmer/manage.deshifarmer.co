@@ -175,16 +175,12 @@ const AllOrders = ({ title = "All Orders" }) => {
         }
       );
       setOrders(res.data);
-    } catch (error) {
-  
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-
 
   const tableInstance = useTable(
     {
