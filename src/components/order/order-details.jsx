@@ -108,7 +108,7 @@ const SingleOrder = () => {
               </div>
               <div className="mt-[6px] flex space-x-2 leading-[1] rtl:space-x-reverse">
                 <Icon icon="heroicons-outline:mail" />
-                <span>Dashcode@example.com</span>
+                <span>deshifarmer@example.com</span>
               </div>
             </div>
           </div> */}

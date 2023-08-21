@@ -9,9 +9,9 @@ const initialUsers = () => {
     : [
         {
           id: uuidv4(),
-          name: "dashcode",
-          email: "dashcode@gmail.com",
-          password: "dashcode",
+          name: "deshifarmer",
+          email: "deshifarmer@gmail.com",
+          password: "deshifarmer",
         },
       ];
 };

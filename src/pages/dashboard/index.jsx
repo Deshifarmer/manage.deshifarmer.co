@@ -87,7 +87,7 @@ const Dashboard = () => {
             <MostSales filterMap={filterMap} />
           </Card>
         </div>
-        <div className="lg:col-span-4 col-span-12">
+        {/* <div className="lg:col-span-4 col-span-12">
           <Card title="Overview" headerslot={<SelectMonth />}>
             <RadarChart />
             <div className="bg-slate-50 dark:bg-slate-900 rounded p-4 mt-8 flex justify-between flex-wrap">
@@ -122,7 +122,7 @@ const Dashboard = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </div> */}
         {/* <div className="col-span-12">
 
           <Card title="Overview" headerslot={<SelectMonth />}>

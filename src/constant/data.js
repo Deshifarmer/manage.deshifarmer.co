@@ -340,14 +340,14 @@ export const menuItems = [
         childtitle: "All Orders",
         childlink: "all-orders",
       },
-      {
-        childtitle: "Orders from Distributors",
-        childlink: "orders-from-distributors",
-      },
-      {
-        childtitle: "Orders from Farmers",
-        childlink: "orders-from-farmers",
-      },
+      // {
+      //   childtitle: "Orders from Distributors",
+      //   childlink: "orders-from-distributors",
+      // },
+      // {
+      //   childtitle: "Orders from Farmers",
+      //   childlink: "orders-from-farmers",
+      // },
     ],
   },
   // note => category start

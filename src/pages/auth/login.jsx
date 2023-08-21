@@ -7,36 +7,37 @@ import { ToastContainer } from "react-toastify";
 import Lottie from "lottie-react";
 
 // image import
-import LogoWhite from "@/assets/images/logo/logo-white.svg";
-import Logo from "@/assets/images/logo/logo.svg";
-import Illustration from "@/assets/images/auth/hq.json";
+import LogoWhite from "@/assets/images/logo/logo.jpg";
+import Logo from "@/assets/images/logo/logo.jpg";
+import Illustration from "@/assets/images/auth/dashboard.jpg";
 
 const login = () => {
   const [isDark] = useDarkMode();
   return (
     <>
       <ToastContainer />
-      <div className="loginwrapper">
+      <div className="loginwrapper h-full">
         <div className="lg-inner-column">
           <div className="left-column relative z-[1]">
-            <div className="max-w-[520px] pt-20 ltr:pl-20 rtl:pr-20">
-              {/* <Link to="/">
+            {/* <div className="max-w-[520px] pt-20 ltr:pl-20 rtl:pr-20">
+              <Link to="/">
                 <img src={isDark ? LogoWhite : Logo} alt="" className="mb-10" />
-              </Link> */}
+              </Link>
               <h4>
                 Welcome to{" "}
                 <span className="text-slate-800 dark:text-slate-400 font-bold">
                   HQ Platform
                 </span>
               </h4>
-            </div>
-            <div className=" left-0 2xl:bottom-[-160px] bottom-[-130px] h-full w-full mt-10">
-              {/* <img
+            </div> */}
+            <div className="relative h-full w-full">
+              <img
                 src={Illustration}
                 alt=""
-                className="h-full w-full object-contain"
-              /> */}
-              <Lottie animationData={Illustration} loop={true} />
+                className=" w-full h-full object-contain"
+              />
+
+              {/* <Lottie animationData={Illustration} loop={true} /> */}
             </div>
           </div>
           <div className="right-column relative">
@@ -47,7 +48,7 @@ const login = () => {
                     <img
                       src={isDark ? LogoWhite : Logo}
                       alt=""
-                      className="mx-auto"
+                      className="mx-auto h-8 w-8 rounded-xl"
                     />
                   </Link>
                 </div>

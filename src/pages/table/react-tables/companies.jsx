@@ -153,7 +153,7 @@ const COLUMNS = [
               </button>
             </Link>
           </Tooltip>
-          <Tooltip content="Edit" placement="top" arrow animation="shift-away">
+          {/* <Tooltip content="Edit" placement="top" arrow animation="shift-away">
             <button className="action-btn" type="button">
               <Icon icon="heroicons:pencil-square" />
             </button>
@@ -168,7 +168,7 @@ const COLUMNS = [
             <button className="action-btn" type="button">
               <Icon icon="heroicons:trash" />
             </button>
-          </Tooltip>
+          </Tooltip> */}
         </div>
       );
     },
