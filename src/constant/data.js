@@ -110,9 +110,14 @@ export const menuItems = [
     link: "#",
     child: [
       {
-        childtitle: "All Farmers",
+        childtitle: "All Farmer's",
         childlink: "all-farmers",
       },
+      {
+        childtitle: "Farmer Group's",
+        childlink: "farmer-groups",
+      },
+
       // {
       //   childtitle: "Add Farmer ",
       //   childlink: "add-farmer",
