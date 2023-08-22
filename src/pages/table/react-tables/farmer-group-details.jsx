@@ -3,6 +3,9 @@ import { advancedTable } from "../../../constant/table-data";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
 import {
   useTable,
   useRowSelect,
@@ -14,6 +17,7 @@ import GlobalFilter from "./GlobalFilter";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { set } from "react-hook-form";
 
 const COLUMNS = [
   {
@@ -169,13 +173,14 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
   console.log(id);
   const [orders, setOrders] = useState([]);
   const [farmerList, setFarmerList] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (farmerList ? farmerList : []), [farmerList]);
   const token = localStorage.getItem("hq-token");
 
   const fetchData = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(
         `${import.meta.env.VITE_BASE}/hq/farmer_group/${id}`,
         {
@@ -187,7 +192,11 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
       );
       setOrders(res.data);
       setFarmerList(res?.data?.farmer_list);
-    } catch (error) {}
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -195,6 +204,49 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
   }, []);
 
   console.log(orders);
+
+  const farmer_data = data.map((farmer) => {
+    return {
+      farmer_id: farmer?.farmer_id,
+      image: `https://core.deshifarmer.co/storage${farmer?.image}`,
+      first_name: farmer?.first_name,
+      last_name: farmer?.last_name,
+      sex: farmer?.gender,
+      phone: farmer?.phone,
+      district: farmer?.district,
+      group_leader: orders?.group_leader?.full_name,
+    };
+  });
+
+  const leader_data = [
+    {
+      farmer_id: orders?.group_leader?.farmer_id,
+      image: `https://core.deshifarmer.co/storage${orders?.group_leader?.image}`,
+      first_name: orders?.group_leader?.first_name,
+      last_name: orders?.group_leader?.last_name,
+      sex: orders?.group_leader?.gender,
+      phone: orders?.group_leader?.phone,
+      district: orders?.group_leader?.district,
+    },
+  ];
+
+  const handleExport = async () => {
+    const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+    const worksheet = XLSX.utils.json_to_sheet(farmer_data);
+    const worksheet1 = XLSX.utils.json_to_sheet(leader_data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.utils.book_append_sheet(workbook, worksheet1, "Sheet2");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(fileData, `${orders?.farmer_group_name}.xlsx`);
+  };
 
   const tableInstance = useTable(
     {
@@ -252,8 +304,14 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
       <Card>
         <div className="md:flex justify-between items-center mb-6">
           <h4 className="card-title">{title}</h4>
-          <div>
+          <div className="flex gap-4">
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+            <button
+              className="text-xs border text-white px-4 border-slate-600 rounded bg-green-800"
+              onClick={handleExport}
+            >
+              Export to Excel
+            </button>
           </div>
         </div>
         <div className="overflow-x-auto -mx-6">
