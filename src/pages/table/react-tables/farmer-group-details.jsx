@@ -63,6 +63,20 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
+  {
+    Header: "district",
+    accessor: "district",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "farm_area",
+    accessor: "farm_area",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
   // {
   //   Header: "customer",
   //   accessor: "customer",
@@ -213,6 +227,7 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
       last_name: farmer?.last_name,
       sex: farmer?.gender,
       phone: farmer?.phone,
+      farm_area: farmer?.farm_area,
       district: farmer?.district,
       group_leader: orders?.group_leader?.full_name,
     };
