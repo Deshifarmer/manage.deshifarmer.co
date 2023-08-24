@@ -15,7 +15,17 @@ const Logo = () => {
     <div>
       <Link to="/dashboard">
         {width >= breakpoints.xl ? (
-          <img src={isDark ? LogoWhite : MainLogo} alt="" />
+          <div className="flex items-center gap-2">
+            <img
+              className="w-8 h-8 rounded-xl"
+              src={isDark ? LogoWhite : MainLogo}
+              alt=""
+            />
+            <p>
+              <span className="font-bold text-green-700">Deshi</span>{" "}
+              <span className="font-bold text-orange-500">Farmer</span>
+            </p>
+          </div>
         ) : (
           <img
             className="w-8 h-8 rounded-xl"

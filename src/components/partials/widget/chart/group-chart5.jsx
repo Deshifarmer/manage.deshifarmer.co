@@ -1,6 +1,8 @@
 import React from "react";
 import { colors } from "@/constant/data";
 import Chart from "react-apexcharts";
+import { useGetDashboardRadialChartQuery } from "../../../../store/features/dashboard/api";
+
 const columnCharthome2 = {
   series: [
     {
@@ -211,75 +213,100 @@ const columnCharthome4 = {
     },
   },
 };
-const statistics = [
-  {
-    name: columnCharthome3,
-    title: " Channels",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-info-500",
-    icon: "heroicons:shopping-cart",
-  },
-  {
-    name: columnCharthome2,
-    title: "Companies",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-[#5743BE]",
-    icon: "heroicons:arrow-trending-up-solid",
-  },
-  {
-    name: columnCharthome4,
-    title: " Distrubutors",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-warning-500",
-    icon: "heroicons:cube",
-  },
-  {
-    name: columnCharthome4,
-    title: " Microntrepreneurs",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-warning-500",
-    icon: "heroicons:cube",
-  },
 
-  {
-    name: columnCharthome2,
-    title: " Farmers",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-[#5743BE]",
-    icon: "heroicons:arrow-trending-up-solid",
-  },
-  {
-    name: columnCharthome3,
-    title: " Products",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-info-500",
-    icon: "heroicons:shopping-cart",
-  },
-
-  {
-    name: columnCharthome2,
-    title: "Groups",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-[#5743BE]",
-    icon: "heroicons:arrow-trending-up-solid",
-  },
-  {
-    name: columnCharthome4,
-    title: "Orders",
-    count: "0",
-    bg: "bg-[#E5F9FF] dark:bg-slate-900	",
-    text: "text-warning-500",
-    icon: "heroicons:cube",
-  },
-];
 const GroupChart5 = () => {
+  const { data, isLoading, isError, error } = useGetDashboardRadialChartQuery(
+    {},
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  const statistics = [
+    {
+      name: columnCharthome3,
+      title: " Total Members",
+      count: data?.total_member,
+      bg: "bg-[#793FDF] ",
+      text: "text-info-500",
+      icon: "heroicons:shopping-cart",
+    },
+    {
+      name: columnCharthome3,
+      title: " Channels",
+      count: data?.total_channel,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-info-500",
+      icon: "heroicons:shopping-cart",
+    },
+    {
+      name: columnCharthome2,
+      title: "Companies",
+      count: data?.total_co,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-[#5743BE]",
+      icon: "heroicons:arrow-trending-up-solid",
+    },
+    {
+      name: columnCharthome4,
+      title: " Distrubutors",
+      count: data?.total_cp,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
+    {
+      name: columnCharthome4,
+      title: " Microntrepreneurs",
+      count: data?.total_me,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
+    {
+      name: columnCharthome2,
+      title: " Farmers",
+      count: data?.total_farmer,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-[#5743BE]",
+      icon: "heroicons:arrow-trending-up-solid",
+    },
+    {
+      name: columnCharthome2,
+      title: " Total Project Managers",
+      count: data?.total_te,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-[#5743BE]",
+      icon: "heroicons:arrow-trending-up-solid",
+    },
+    {
+      name: columnCharthome3,
+      title: " Products",
+      count: data?.total_product,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-info-500",
+      icon: "heroicons:shopping-cart",
+    },
+
+    {
+      name: columnCharthome2,
+      title: "Groups",
+      count: data?.total_group,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-[#5743BE]",
+      icon: "heroicons:arrow-trending-up-solid",
+    },
+    {
+      name: columnCharthome4,
+      title: "Total Orders",
+      count: data?.total_order,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
+  ];
+
+  console.log(data);
   return (
     <>
       {statistics.map((item, i) => (
