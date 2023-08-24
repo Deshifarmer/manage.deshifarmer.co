@@ -82,9 +82,7 @@ const SingleOrderTable = ({ data, details }) => {
         </table>
         <div className="md:flex px-6 py-6 items-center">
           <div className="flex-1 text-slate-500 dark:text-slate-300 text-sm">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit <br />
-            officia consequat duis enim velit mollit.
+            Thank you for you purchase. <br />
           </div>
           <div className="flex-none min-w-[270px] space-y-3">
             {/* <div className="flex justify-between">
