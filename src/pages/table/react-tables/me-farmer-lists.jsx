@@ -216,6 +216,7 @@ const IndeterminateCheckbox = React.forwardRef(
 
 const MeFarmerLists = ({
   title = "Me Farmer Lists",
+  full_name,
   farmer_lists,
   isLoading,
 }) => {
@@ -262,7 +263,7 @@ const MeFarmerLists = ({
       type: "application/octet-stream",
     });
 
-    saveAs(fileData, "MD.ABUL HASNAT.xlsx");
+    saveAs(fileData, `${full_name}.xlsx`);
   };
 
   const tableInstance = useTable(

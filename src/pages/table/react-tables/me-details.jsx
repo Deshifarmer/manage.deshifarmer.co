@@ -10,6 +10,7 @@ const MeDetails = () => {
     params?.id
   );
   isError && console.log("Error fetching data from server for me details");
+  const { full_name } = data || {};
 
   return (
     <div>
@@ -19,6 +20,7 @@ const MeDetails = () => {
           <MeFarmerLists
             farmer_lists={data?.farmer_list}
             isLoading={isLoading}
+            full_name={full_name}
           />
         </div>
         <div>

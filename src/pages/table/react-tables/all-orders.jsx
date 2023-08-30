@@ -14,6 +14,7 @@ import GlobalFilter from "./GlobalFilter";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useGetAllOrdersQuery } from "../../../store/features/orders/api";
 
 const COLUMNS = [
   {
@@ -158,29 +159,9 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const AllOrders = ({ title = "All Orders" }) => {
-  const [orders, setOrders] = useState([]);
+  const { data: orders } = useGetAllOrdersQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => orders, [orders]);
-  const token = localStorage.getItem("hq-token");
-
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/all_input_order`,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setOrders(res.data);
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const data = useMemo(() => (orders ? orders : []), [orders]);
 
   const tableInstance = useTable(
     {

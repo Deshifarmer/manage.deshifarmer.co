@@ -117,7 +117,6 @@ import KPIS from "./pages/table/react-tables/kpis";
 import Channels from "./pages/table/react-tables/channels";
 import AddFarmer from "./pages/forms/add-farmer";
 import InputOrder from "./pages/forms/input-order";
-import AllFarmers from "./pages/table/react-tables/all-farmers";
 import DistributorsLists from "./pages/table/react-tables/distributors-lists";
 import MicroEntrepreneurs from "./pages/table/react-tables/micro-entrrepreneurs";
 import Managers from "./pages/table/react-tables/managers";
@@ -160,6 +159,8 @@ import AssignChannel from "./pages/table/react-tables/assign-channel";
 import AllFarmers2 from "./pages/table/react-tables/all-farmers-2";
 import FarmerGroups from "./pages/table/react-tables/farmer-groups";
 import FarmerGroupDetails from "./pages/table/react-tables/farmer-group-details";
+import AllFarms from "./pages/table/react-tables/all-farms";
+import AllFarmers from "./pages/table/farmers/all-farmers";
 
 function App() {
   return (
@@ -338,7 +339,8 @@ function App() {
           <Route path="recharts" element={<Recharts />} />
           <Route path="map" element={<MapPage />} />
           <Route path="channels" element={<Channels />} />
-          <Route path="all-farmers" element={<AllFarmers2 />} />
+          <Route path="all-farmers" element={<AllFarmers />} />
+          <Route path="all-farms" element={<AllFarms />} />
           <Route path="farmer-groups" element={<FarmerGroups />} />
           <Route
             path="farmer-groups-details/:id"

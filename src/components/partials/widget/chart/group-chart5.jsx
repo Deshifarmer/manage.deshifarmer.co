@@ -225,7 +225,7 @@ const GroupChart5 = () => {
   const statistics = [
     {
       name: columnCharthome3,
-      title: " Total Members",
+      title: "Members",
       count: data?.total_member,
       bg: "bg-[#793FDF] ",
       text: "text-info-500",
@@ -257,7 +257,7 @@ const GroupChart5 = () => {
     },
     {
       name: columnCharthome4,
-      title: " Microntrepreneurs",
+      title: "Microntrepreneurs",
       count: data?.total_me,
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
@@ -273,7 +273,7 @@ const GroupChart5 = () => {
     },
     {
       name: columnCharthome2,
-      title: " Total Project Managers",
+      title: "Project Managers",
       count: data?.total_te,
       bg: "bg-[#E5F9FF] ",
       text: "text-[#5743BE]",
@@ -298,7 +298,7 @@ const GroupChart5 = () => {
     },
     {
       name: columnCharthome4,
-      title: "Total Orders",
+      title: "Orders",
       count: data?.total_order,
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
