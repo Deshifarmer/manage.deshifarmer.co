@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { set } from "react-hook-form";
+import moment from "moment";
 
 const COLUMNS = [
   {
@@ -185,7 +186,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const FarmerGroupDetails = ({ title = "Group Details" }) => {
   const { id } = useParams();
   console.log(id);
-  const [orders, setOrders] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [farmerList, setFarmerList] = useState([]);
   const [loading, setLoading] = useState(false);
   const columns = useMemo(() => COLUMNS, []);
@@ -204,7 +205,7 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
           },
         }
       );
-      setOrders(res.data);
+      setAllData(res.data);
       setFarmerList(res?.data?.farmer_list);
       setLoading(false);
     } catch (error) {
@@ -217,41 +218,79 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
     fetchData();
   }, []);
 
-  console.log(orders);
+  console.log(allData);
+
+  // const farmer_data = data.map((farmer) => {
+  //   return {
+  //     farmer_id: farmer?.farmer_id,
+  //     image: `https://core.deshifarmer.co/storage${farmer?.image}`,
+  //     first_name: farmer?.first_name,
+  //     last_name: farmer?.last_name,
+  //     sex: farmer?.gender,
+  //     phone: farmer?.phone,
+  //     farm_area: farmer?.farm_area,
+  //     district: farmer?.district,
+  //     group_leader: orders?.group_leader?.full_name,
+  //   };
+  // });
+
+  // const birthDate = new Date(farmer_details?.date_of_birth);
+  const todayDate = new Date();
+
+  // const age = todayDate.getFullYear() - birthDate.getFullYear();
 
   const farmer_data = data.map((farmer) => {
     return {
-      farmer_id: farmer?.farmer_id,
-      image: `https://core.deshifarmer.co/storage${farmer?.image}`,
+      id: farmer?.usaid_id,
+      // image: `https://core.deshifarmer.co/storage${farmer?.image}`,
       first_name: farmer?.first_name,
+      middle_name: farmer?.middle_name,
       last_name: farmer?.last_name,
       sex: farmer?.gender,
-      phone: farmer?.phone,
-      farm_area: farmer?.farm_area,
-      district: farmer?.district,
-      group_leader: orders?.group_leader?.full_name,
+      age:
+        todayDate?.getFullYear() -
+        new Date(farmer?.date_of_birth).getFullYear(),
+      contact_number: farmer?.phone,
+      village: farmer?.village,
+      date: "",
+      // date: moment(farmer?.created_at).format("DD-MM-YYYY"),
+      // farm_area: farmer?.farm_area,
+      // district: farmer?.district,
+      // group_leader: orders?.group_leader?.full_name,
+      // group_leader: {
+      //   first_name: farmer?.group_leader?.first_name,
+      // },
     };
   });
 
   const leader_data = [
     {
-      farmer_id: orders?.group_leader?.farmer_id,
-      image: `https://core.deshifarmer.co/storage${orders?.group_leader?.image}`,
-      first_name: orders?.group_leader?.first_name,
-      last_name: orders?.group_leader?.last_name,
-      sex: orders?.group_leader?.gender,
-      phone: orders?.group_leader?.phone,
-      district: orders?.group_leader?.district,
+      id: allData?.group_leader?.usaid_id,
+      // image: `https://core.deshifarmer.co/storage${allData?.group_leader?.image}`,
+      first_name: allData?.group_leader?.first_name,
+      middle_name: allData?.group_leader?.middle_name,
+      last_name: allData?.group_leader?.last_name,
+      sex: allData?.group_leader?.gender,
+      age:
+        todayDate?.getFullYear() -
+        new Date(allData?.group_leader?.date_of_birth).getFullYear(),
+      contact_number: allData?.group_leader?.phone,
+      village: allData?.group_leader?.village,
+      date: "",
+      // date: moment(allData?.group_leader?.created_at).format("DD-MM-YYYY"),
+      role: "Group Leader",
     },
   ];
 
+  const newFarmerData = [...leader_data, ...farmer_data];
+
   const handleExport = async () => {
     const XLSX = await import("xlsx"); // Use dynamic import for XLSX
-    const worksheet = XLSX.utils.json_to_sheet(farmer_data);
-    const worksheet1 = XLSX.utils.json_to_sheet(leader_data);
+    const worksheet = XLSX.utils.json_to_sheet(newFarmerData);
+    // const worksheet1 = XLSX.utils.json_to_sheet(leader_data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-    XLSX.utils.book_append_sheet(workbook, worksheet1, "Sheet2");
+    // XLSX.utils.book_append_sheet(workbook, worksheet1, "Sheet2");
     const excelBuffer = XLSX.write(workbook, {
       bookType: "xlsx",
       type: "array",
@@ -260,7 +299,7 @@ const FarmerGroupDetails = ({ title = "Group Details" }) => {
       type: "application/octet-stream",
     });
 
-    saveAs(fileData, `${orders?.farmer_group_name}.xlsx`);
+    saveAs(fileData, `${allData?.farmer_group_name}.xlsx`);
   };
 
   const tableInstance = useTable(

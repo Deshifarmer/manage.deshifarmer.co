@@ -185,8 +185,6 @@ const FarmerGroups = ({ title = "All Groups" }) => {
     fetchData();
   }, []);
 
-  console.log(orders);
-
   const tableInstance = useTable(
     {
       columns,
