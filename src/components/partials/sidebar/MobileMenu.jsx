@@ -43,14 +43,18 @@ const MobileMenu = ({ className = "custom-class" }) => {
           <div className="flex items-center space-x-4">
             <div className="logo-icon">
               {!isDark && !isSemiDark ? (
-                <img src={MobileLogo} alt="" />
+                <img className="w-8 h-8 rounded-xl" src={MobileLogo} alt="" />
               ) : (
-                <img src={MobileLogoWhite} alt="" />
+                <img
+                  className="w-8 h-8 rounded-xl"
+                  src={MobileLogoWhite}
+                  alt=""
+                />
               )}
             </div>
             <div>
               <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                deshifarmer
+                Deshifarmer
               </h1>
             </div>
           </div>

@@ -3,7 +3,6 @@ import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
 import moment from "moment";
-
 import {
   useTable,
   useRowSelect,
@@ -37,7 +36,7 @@ const COLUMNS = [
               <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
-              <span className="text-[10px] text-green-600 font-bold">
+              <span className="text-[10px] text-green-600">
                 {row?.cell?.row?.original?.farmer_id}
               </span>
             </div>
@@ -66,7 +65,7 @@ const COLUMNS = [
     Header: "Joining Date",
     accessor: "onboard_date",
     Cell: (row) => {
-      return <span>{moment(row?.cell?.value).format("llll")}</span>;
+      return <span>{moment(row?.cell?.value).format("LLLL")}</span>;
     },
   },
   {
@@ -75,6 +74,13 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <div className="flex space-x-3 rtl:space-x-reverse">
+          {/* <Tooltip content="View" placement="top" arrow animation="shift-away">
+            <Link to={`/farmer-details/${row.cell.row.original.farmer_id}`}>
+              <button className="action-btn" type="button">
+                <Icon icon="heroicons:eye" />
+              </button>
+            </Link>
+          </Tooltip> */}
           <Tooltip content="View" placement="top" arrow animation="shift-away">
             <Link to={`/farmer-details/${row.cell.row.original.farmer_id}`}>
               <button className="action-btn" type="button">
@@ -144,8 +150,8 @@ const AllFarmers = ({ title = "All Farmers" }) => {
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
   };
-
   const pages = [];
+
   for (let i = 1; i <= Math.ceil(total_data / itemsPerPage); i++) {
     pages.push(i);
   }
@@ -192,8 +198,8 @@ const AllFarmers = ({ title = "All Farmers" }) => {
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
-
   let pageIncrementBtn = null;
+
   if (pages.length > maxPageNumberLimit) {
     pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
   }
@@ -225,26 +231,27 @@ const AllFarmers = ({ title = "All Farmers" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination,
-    useRowSelect,
+    useRowSelect
 
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    // hiding the checkbox column
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
 
   const {
