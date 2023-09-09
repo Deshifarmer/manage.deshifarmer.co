@@ -162,6 +162,7 @@ import FarmerGroupDetails from "./pages/table/react-tables/farmer-group-details"
 import AllFarms from "./pages/table/react-tables/all-farms";
 import AllFarmers from "./pages/table/farmers/all-farmers";
 import FarmerGroups from "./pages/table/farmers/farmer-groups";
+import GroupDetails from "./pages/table/farmers/farmer-group-details";
 
 function App() {
   return (
@@ -343,10 +344,7 @@ function App() {
           <Route path="all-farmers" element={<AllFarmers />} />
           <Route path="all-farms" element={<AllFarms />} />
           <Route path="farmer-groups" element={<FarmerGroups />} />
-          <Route
-            path="farmer-groups-details/:id"
-            element={<FarmerGroupDetails />}
-          />
+          <Route path="farmer-groups-details/:id" element={<GroupDetails />} />
           <Route path="distributors-lists" element={<DistributorsLists />} />
           <Route path="micro-entrepreneurs" element={<MicroEntrepreneurs />} />
           <Route path="managers" element={<Managers />} />
