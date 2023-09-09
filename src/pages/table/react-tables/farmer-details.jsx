@@ -11,6 +11,8 @@ const FarmerDetails = () => {
     data?.current_producing_crop && data?.current_producing_crop;
   const focused_crop = data?.focused_crop && data?.focused_crop;
 
+  console.log("from Farmer Details", data);
+
   return (
     <div className="space-y-10">
       <FarmerProfile

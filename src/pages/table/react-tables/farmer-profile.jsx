@@ -22,6 +22,8 @@ const FarmerProfile = ({
   const cpc = current_producing_crop && JSON.parse(current_producing_crop);
   const fc = focused_crop && JSON.parse(focused_crop);
 
+  console.log(farmer_details);
+
   return (
     <div>
       <div className="space-y-5 profile-page">
@@ -30,26 +32,26 @@ const FarmerProfile = ({
           <div className="profile-box flex-none md:text-start text-center">
             <div className="md:flex items-end md:space-x-6 rtl:space-x-reverse">
               <div className="flex-none">
-                <div className="md:h-[186px] md:w-[186px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded-full ring-4 ring-slate-100 relative">
+                <div className="md:h-[286px] md:w-[286px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded ring-4 ring-slate-100 relative">
                   {farmer_details?.image && (
                     <img
                       src={`${import.meta.env.VITE_IMG_URL}${
                         farmer_details?.image
                       }`}
                       alt=""
-                      className="w-full h-full object-cover  rounded-full"
+                      className="w-full h-full object-contain rounded"
                     />
                   )}
-                  <Link
+                  {/* <Link
                     to="#"
                     className="absolute right-2 h-8 w-8 bg-slate-50 text-slate-600 rounded-full shadow-sm flex flex-col items-center justify-center md:top-[140px] top-[100px]"
                   >
                     <Icon icon="heroicons:pencil-square" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
               <div className="flex-1">
-                <div className="text-2xl font-medium text-slate-900 dark:text-slate-200 mb-[3px]">
+                <div className="text-2xl font-bold text-slate-900 dark:text-slate-200 mb-[3px]">
                   {farmer_details?.full_name?.replace(/\b\w/g, (match) =>
                     match.toUpperCase()
                   )}
@@ -61,12 +63,28 @@ const FarmerProfile = ({
                     placement="top"
                     arrow
                     animation="shift-away"
-                    theme="info"
+                    theme="success"
                   >
                     <Link to={`/me-details/${farmer_details?.onboard_by}`}>
-                      <span className="text-slate-900 dark:text-slate-200">
-                        {farmer_details?.onboard_by}
-                      </span>
+                      <div className="flex space-x-2">
+                        <span className="text-blue-900 font-bold underline dark:text-slate-200">
+                          {farmer_details?.onboard_by}
+                        </span>
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            className="w-5 h-5 font-bold"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      </div>
                     </Link>
                   </Tooltip>
                 </div>
@@ -110,8 +128,8 @@ const FarmerProfile = ({
 
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-12 col-span-12">
-            <Card title="Info">
-              <ul className="list grid grid-cols-4 gap-10">
+            <Card title="Farmer Info">
+              <ul className="list grid grid-cols-4 gap-10 font-bold">
                 <li className="flex space-x-3 rtl:space-x-reverse">
                   <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
                     <Icon icon="heroicons:envelope" />

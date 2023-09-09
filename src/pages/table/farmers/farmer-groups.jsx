@@ -41,7 +41,13 @@ const COLUMNS = [
       return (
         <>
           <div>
-            <p className="font-bold">
+            <p
+              className={`font-bold ${
+                row?.cell?.row?.original?.group_leader?.full_name
+                  ? ""
+                  : "text-red-600"
+              }`}
+            >
               {row?.cell?.row?.original?.group_leader?.full_name ?? "N/A"}
             </p>
             <p className="text-[10px]">
@@ -61,7 +67,23 @@ const COLUMNS = [
           className="text-blue-600 underline"
           to={`/me-details/${row?.cell?.row?.original?.group_manager_id}`}
         >
-          <p className="font-bold">{row?.cell?.value}</p>
+          <div className="flex items-center gap-2">
+            <p className="font-bold">{row?.cell?.value}</p>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </p>
+          </div>
         </Link>
       );
     },
@@ -70,14 +92,20 @@ const COLUMNS = [
     Header: "Created At",
     accessor: "created_at",
     Cell: (row) => {
-      return <span>{moment(row?.cell?.value).format("LLLL")}</span>;
+      return (
+        <span className="font-semibold text-sm">
+          {moment(row?.cell?.value).format("LLLL")}
+        </span>
+      );
     },
   },
   {
     Header: "Total Farmer",
     accessor: "total_farmers",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <span className="text-green-600 font-bold">{row?.cell?.value}</span>
+      );
     },
   },
   {

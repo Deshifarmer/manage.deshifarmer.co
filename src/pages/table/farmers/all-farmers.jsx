@@ -23,7 +23,7 @@ const COLUMNS = [
       return (
         <div className="flex flex-col">
           <span className="inline-flex items-center">
-            <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
+            <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none">
               <img
                 src={`${import.meta.env.VITE_IMG_URL}${
                   row.cell.row?.original?.image
@@ -33,7 +33,7 @@ const COLUMNS = [
               />
             </span>
             <div>
-              <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+              <p className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
               <span className="text-[10px] text-green-600">
@@ -50,7 +50,7 @@ const COLUMNS = [
     Header: "Location",
     accessor: "address",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
   {
