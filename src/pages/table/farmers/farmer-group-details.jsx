@@ -21,7 +21,7 @@ import { useGetSingleGroupQuery } from "../../../store/features/farmers/api";
 const COLUMNS = [
   {
     Header: "Farmer Id",
-    accessor: "farmer_id",
+    accessor: "full_name",
     Cell: (row) => {
       return (
         <div className="flex flex-col">

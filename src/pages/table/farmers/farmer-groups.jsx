@@ -16,6 +16,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import GlobalFilter from "../react-tables/GlobalFilter";
 import moment from "moment";
+import { useGetAllGroupsQuery } from "../../../store/features/farmers/api";
 
 const COLUMNS = [
   {
@@ -25,7 +26,9 @@ const COLUMNS = [
       return (
         <>
           <div>
-            <p className="font-bold">{row?.cell?.value}</p>
+            <p className="font-bold">
+              {row?.cell?.row?.original?.farmer_group_name}
+            </p>
             <p className="text-[10px]">
               {row?.cell?.row?.original?.farmer_group_id}
             </p>
@@ -50,9 +53,31 @@ const COLUMNS = [
             >
               {row?.cell?.row?.original?.group_leader?.full_name ?? "N/A"}
             </p>
-            <p className="text-[10px]">
-              {row?.cell?.row?.original?.group_leader?.farmer_id}
-            </p>
+            <Link
+              to={`/farmer-details/${row?.cell?.row?.original?.group_leader?.farmer_id}`}
+            >
+              <div className="flex items-center gap-1">
+                <p className="text-[10px] underline text-blue-500">
+                  {row?.cell?.row?.original?.group_leader?.farmer_id}
+                </p>
+                {row?.cell?.row?.original?.group_leader?.farmer_id && (
+                  <p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-3 h-3"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </p>
+                )}
+              </div>
+            </Link>
           </div>
         </>
       );
@@ -67,7 +92,7 @@ const COLUMNS = [
           className="text-blue-600 underline"
           to={`/me-details/${row?.cell?.row?.original?.group_manager_id}`}
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <p className="font-bold">{row?.cell?.value}</p>
             <p>
               <svg
@@ -165,40 +190,13 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const FarmerGroups = ({ title = "All Groups" }) => {
-  const [orders, setOrders] = useState([]);
+const FarmerGroups = ({ title = "Farmer Groups" }) => {
+  const { data: groups, isLoading } = useGetAllGroupsQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => orders, [orders]);
-  const token = localStorage.getItem("hq-token");
-  const [loading, setLoading] = useState(false);
+  const data = useMemo(() => (groups ? groups : []), [groups]);
   const defaultPageSize = 25;
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        `${import.meta.env.VITE_BASE}/hq/farmer_group`,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setOrders(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(orders);
+  console.log(groups);
 
   const tableInstance = useTable(
     {
@@ -255,7 +253,7 @@ const FarmerGroups = ({ title = "All Groups" }) => {
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <div>
           <p>
             Loading Groups Data... Please wait or refresh if it takes longer
