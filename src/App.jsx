@@ -124,7 +124,7 @@ import Companies from "./pages/table/react-tables/companies";
 import InputCategory from "./pages/forms/input-category";
 import MyOrders from "./pages/table/react-tables/my-orders";
 import AllPayments from "./pages/table/react-tables/all-payments";
-import FarmerDetails from "./pages/table/react-tables/farmer-details";
+
 import MeDetails from "./pages/table/react-tables/me-details";
 import AllTransactions from "./pages/table/react-tables/all-transactions";
 import CashInRequests from "./pages/table/react-tables/cash-in-requests";
@@ -163,6 +163,7 @@ import AllFarms from "./pages/table/react-tables/all-farms";
 import AllFarmers from "./pages/table/farmers/all-farmers";
 import FarmerGroups from "./pages/table/farmers/farmer-groups";
 import GroupDetails from "./pages/table/farmers/farmer-group-details";
+import FarmerDetails from "./pages/table/farmers/farmer-details";
 
 function App() {
   return (
