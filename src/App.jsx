@@ -270,7 +270,7 @@ function App() {
           <Route path="crm" element={<CrmPage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
-          {/* <Route path="test-share" element={<TestShare />} /> */}
+          <Route path="test-share" element={<TestShare />} />
           {/* App pages */}
           <Route path="todo" element={<TodoPage />} />
           <Route path="email" element={<EmailPage />} />

@@ -100,7 +100,11 @@ const COLUMNS = [
     accessor: "date_of_birth",
     Cell: (row) => {
       return (
-        <span className="font-bold">
+        <span
+          className={`font-bold ${
+            calculateFarmerAge(row?.cell?.value) < 16 ? "text-red-500" : ""
+          }`}
+        >
           {calculateFarmerAge(row?.cell?.value)} years
         </span>
       );
@@ -110,7 +114,16 @@ const COLUMNS = [
     Header: "Phone No",
     accessor: "phone",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      console.log(row.cell.row.original.phone.length != 11);
+      return (
+        <span
+          className={`${
+            row.cell.row.original.phone.length != 11 ? "text-red-500" : "text-green-500"
+          }`}
+        >
+          {row?.cell?.value}
+        </span>
+      );
     },
   },
   {
