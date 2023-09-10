@@ -162,6 +162,7 @@ import FarmerGroups from "./pages/table/farmers/farmer-groups";
 import GroupDetails from "./pages/table/farmers/farmer-group-details";
 import FarmerDetails from "./pages/table/farmers/farmer-details";
 import AllFarms from "./pages/table/farmers/all-farms";
+import TestShare from "../__test__/__test__";
 
 function App() {
   return (
@@ -269,6 +270,7 @@ function App() {
           <Route path="crm" element={<CrmPage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
+          {/* <Route path="test-share" element={<TestShare />} /> */}
           {/* App pages */}
           <Route path="todo" element={<TodoPage />} />
           <Route path="email" element={<EmailPage />} />

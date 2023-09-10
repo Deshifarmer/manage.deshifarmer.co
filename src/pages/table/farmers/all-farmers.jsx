@@ -14,6 +14,28 @@ import { Link } from "react-router-dom";
 import { useGetAllFarmersQuery } from "../../../store/features/farmers/api";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import useFarmerAge from "../../../hooks/useFarmerAge";
+
+function calculateFarmerAge(birthdate) {
+  const today = new Date();
+  const birthDate = new Date(birthdate);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+}
+
+// Example usage:
+const birthdate = "1990-01-01"; // Replace with the actual birthdate
+const age = calculateFarmerAge(birthdate);
+console.log(`The farmer is ${age} years old.`);
 
 const COLUMNS = [
   {
@@ -23,7 +45,7 @@ const COLUMNS = [
       return (
         <div className="flex flex-col">
           <span className="inline-flex items-center">
-            <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none">
+            {/* <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none">
               <img
                 src={`${import.meta.env.VITE_IMG_URL}${
                   row.cell.row?.original?.image
@@ -31,12 +53,12 @@ const COLUMNS = [
                 alt=""
                 className="object-cover w-10 h-10 rounded-full"
               />
-            </span>
+            </span> */}
             <div>
-              <p className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
+              <p className=" font-bold text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
-              <span className="text-[10px] text-green-600">
+              <span className="text-[10px] font-bold text-green-600">
                 {row?.cell?.row?.original?.farmer_id}
               </span>
             </div>
@@ -47,25 +69,73 @@ const COLUMNS = [
   },
 
   {
-    Header: "Location",
-    accessor: "address",
+    Header: "onboarded by",
+    accessor: "onboard_by",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return (
+        <Link target="_black" to={`/me-details/${row?.cell?.value}`}>
+          <div className="flex items-center gap-1 text-blue-500 underline">
+            <p className="font-bold">{row?.cell?.value}</p>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </p>
+          </div>
+        </Link>
+      );
+    },
+  },
+  {
+    Header: "Date of Birth",
+    accessor: "date_of_birth",
+    Cell: (row) => {
+      return (
+        <span className="font-bold">
+          {calculateFarmerAge(row?.cell?.value)} years
+        </span>
+      );
     },
   },
   {
     Header: "Phone No",
     accessor: "phone",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
-
+  {
+    Header: "yearly income",
+    accessor: "yearly_income",
+    Cell: (row) => {
+      return <span className="font-bold">{row?.cell?.value} TK</span>;
+    },
+  },
   {
     Header: "Joining Date",
     accessor: "onboard_date",
     Cell: (row) => {
-      return <span>{moment(row?.cell?.value).format("LLLL")}</span>;
+      return (
+        <span className="font-bold">
+          {moment(row?.cell?.value).format("LLLL")}
+        </span>
+      );
+    },
+  },
+  {
+    Header: "Location",
+    accessor: "address",
+    Cell: (row) => {
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
   {
@@ -82,7 +152,10 @@ const COLUMNS = [
             </Link>
           </Tooltip> */}
           <Tooltip content="View" placement="top" arrow animation="shift-away">
-            <Link to={`/farmer-details/${row.cell.row.original.farmer_id}`}>
+            <Link
+              target="_black"
+              to={`/farmer-details/${row.cell.row.original.farmer_id}`}
+            >
               <button className="action-btn" type="button">
                 <Icon icon="heroicons:eye" />
               </button>
@@ -274,6 +347,8 @@ const AllFarmers = ({ title = "All Farmers" }) => {
   } = tableInstance;
 
   const { globalFilter, pageIndex, pageSize } = state;
+
+  console.log(farmers);
 
   return (
     <>

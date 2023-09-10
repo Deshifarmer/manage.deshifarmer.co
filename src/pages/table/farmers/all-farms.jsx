@@ -13,6 +13,7 @@ import {
 } from "react-table";
 import { useGetAllFarmsQuery } from "../../../store/features/farmers/api";
 import GlobalFilter from "../react-tables/GlobalFilter";
+import { Link } from "react-router-dom";
 
 const COLUMNS = [
   {
@@ -29,7 +30,22 @@ const COLUMNS = [
       );
     },
   },
-
+  {
+    Header: "farmer id",
+    accessor: "farmer_id",
+    Cell: (row) => {
+      return (
+        <Link
+          target="_black"
+          to={`/farmer-details/${row.cell.row.original.farmer_id}`}
+        >
+          <span className="font-bold text-blue-500 underline">
+            {row?.cell?.value}
+          </span>
+        </Link>
+      );
+    },
+  },
   {
     Header: "address",
     accessor: "address",
@@ -127,7 +143,7 @@ const COLUMNS = [
     accessor: "current_crop",
     Cell: (row) => {
       return (
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <img className="w-5 h-5" src={grain} alt="" />
           <p className="font-bold">
             {Array?.from(row?.cell?.value)?.map((grain) => (
