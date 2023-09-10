@@ -156,14 +156,12 @@ import Demo from "./pages/table/react-tables/_demo_";
 import CashOutRequests from "./pages/table/react-tables/cash-out-requests";
 import AddManager from "./pages/forms/add-manager";
 import AssignChannel from "./pages/table/react-tables/assign-channel";
-import AllFarmers2 from "./pages/table/react-tables/all-farmers-2";
-
-import FarmerGroupDetails from "./pages/table/react-tables/farmer-group-details";
-import AllFarms from "./pages/table/react-tables/all-farms";
+// import AllFarms from "./pages/table/react-tables/all-farms";
 import AllFarmers from "./pages/table/farmers/all-farmers";
 import FarmerGroups from "./pages/table/farmers/farmer-groups";
 import GroupDetails from "./pages/table/farmers/farmer-group-details";
 import FarmerDetails from "./pages/table/farmers/farmer-details";
+import AllFarms from "./pages/table/farmers/all-farms";
 
 function App() {
   return (
