@@ -35,12 +35,16 @@ const COLUMNS = [
               />
             </span> */}
             <div>
-              <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+              <p className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
-              <span className="text-[10px] text-green-600 font-bold">
-                {row?.cell?.row?.original?.farmer_id}
-              </span>
+              <Link
+                to={`/farmer-details/${row?.cell?.row?.original?.farmer_id}`}
+              >
+                <p className="text-[10px] text-green-600 underline font-bold">
+                  {row?.cell?.row?.original?.farmer_id}
+                </p>
+              </Link>
             </div>
           </span>
         </div>

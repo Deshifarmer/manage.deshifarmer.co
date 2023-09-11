@@ -17,15 +17,15 @@ const MeDetails = () => {
     <div>
       <MeProfile me_details={data} />
       <div className="mt-5">
+        <div className="mb-6">
+          <MeOrders params={params} />
+        </div>
         <div className="mb-10">
           <MeFarmerLists
             farmer_lists={data?.farmer_list}
             isLoading={isLoading}
             full_name={full_name}
           />
-        </div>
-        <div>
-          <MeOrders params={params} />
         </div>
       </div>
     </div>
