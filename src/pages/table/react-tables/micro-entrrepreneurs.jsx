@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { advancedTable } from "../../../constant/table-data";
+import React, { useMemo } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";

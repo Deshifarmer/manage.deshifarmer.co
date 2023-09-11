@@ -118,7 +118,6 @@ import Channels from "./pages/table/react-tables/channels";
 import AddFarmer from "./pages/forms/add-farmer";
 import InputOrder from "./pages/forms/input-order";
 import DistributorsLists from "./pages/table/react-tables/distributors-lists";
-import MicroEntrepreneurs from "./pages/table/react-tables/micro-entrrepreneurs";
 import Managers from "./pages/table/react-tables/managers";
 import Companies from "./pages/table/react-tables/companies";
 import InputCategory from "./pages/forms/input-category";
@@ -164,6 +163,7 @@ import AllFarms from "./pages/table/farmers/all-farms";
 import TestShare from "../__test__/__test__";
 import AllOrders from "./pages/table/orders/all-orders";
 import OrderDetails from "./pages/table/orders/order-details";
+import AllMicroEntrepreneurs from "./pages/table/micro-entrepreneurs/all-micro-entrepreneurs";
 
 function App() {
   return (
@@ -348,7 +348,10 @@ function App() {
           <Route path="farmer-groups" element={<FarmerGroups />} />
           <Route path="farmer-groups-details/:id" element={<GroupDetails />} />
           <Route path="distributors-lists" element={<DistributorsLists />} />
-          <Route path="micro-entrepreneurs" element={<MicroEntrepreneurs />} />
+          <Route
+            path="micro-entrepreneurs"
+            element={<AllMicroEntrepreneurs />}
+          />
           <Route path="managers" element={<Managers />} />
           <Route path="companies" element={<Companies />} />
           <Route path="all-products" element={<AllProducts />} />
