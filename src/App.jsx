@@ -123,12 +123,9 @@ import Companies from "./pages/table/react-tables/companies";
 import InputCategory from "./pages/forms/input-category";
 import MyOrders from "./pages/table/react-tables/my-orders";
 import AllPayments from "./pages/table/react-tables/all-payments";
-
-import MeDetails from "./pages/table/react-tables/me-details";
 import AllTransactions from "./pages/table/react-tables/all-transactions";
 import CashInRequests from "./pages/table/react-tables/cash-in-requests";
 import SetKpi from "./pages/forms/set-kpi";
-
 import UpdateDistributorInfo from "./pages/forms/update-distributor-info";
 import Distributors from "./pages/table/react-tables/distributors";
 import DistributorDetails from "./pages/table/react-tables/distributor-details";
@@ -164,6 +161,8 @@ import TestShare from "../__test__/__test__";
 import AllOrders from "./pages/table/orders/all-orders";
 import OrderDetails from "./pages/table/orders/order-details";
 import AllMicroEntrepreneurs from "./pages/table/micro-entrepreneurs/all-micro-entrepreneurs";
+import MEDetails from "./pages/table/micro-entrepreneurs/me-details";
+import MeDetails from "./pages/table/micro-entrepreneurs/me-details";
 
 function App() {
   return (

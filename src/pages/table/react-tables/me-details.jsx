@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import MeProfile from "./me-profile";
-import MeOrders from "./me-orders";
-import MeFarmerLists from "./me-farmer-lists";
 import { useGetSingleMicroEntrepreneurQuery } from "../../../store/features/micro-entrepreneurs/api";
+import MeProfile from "../micro-entrepreneurs/me-profile";
+import MeOrders from "../micro-entrepreneurs/me-order-list";
+import MeFarmerLists from "../micro-entrepreneurs/me-farmer-list";
 
 const MeDetails = () => {
   const params = useParams();
