@@ -23,10 +23,45 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <div className="flex flex-col">
-          <span className="text-[10px] text-yellow-500 font-bold">
-            #{row?.cell?.value}
-          </span>
-          <span>{row?.cell?.row?.original?.channel}</span>
+          <Link
+            target="_black"
+            to={`/channel-details/${row?.cell?.row?.original?.channel}`}
+          >
+            <div className="flex text-blue-500">
+              <p className="text-blue-500 underline font-bold">
+                {row?.cell?.row?.original?.channel}
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </Link>
+          <div className="flex">
+            <p className="text-[10px] underline text-blue-500 font-bold">
+              {row?.cell?.value}
+            </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-3 h-3"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
       );
     },
@@ -48,7 +83,7 @@ const COLUMNS = [
                 className="object-cover w-10 h-10 rounded-full"
               />
             </span>
-            <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+            <span className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
               {row?.cell?.row?.original.full_name}
             </span>
           </span>
@@ -60,28 +95,32 @@ const COLUMNS = [
     Header: "Balance",
     accessor: "balance",
     Cell: (row) => {
-      return <span>৳ {row?.cell?.value}</span>;
+      return <span className="font-bold">৳ {row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Transaction",
     accessor: "all_transaction",
     Cell: (row) => {
-      return <span>৳ {row?.cell?.value}</span>;
+      return <span className="font-bold">৳ {row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Sales",
     accessor: "total_sale",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
   {
     Header: "Joining Date",
     accessor: "joining_date",
     Cell: (row) => {
-      return <span>{moment(row?.cell?.value).format("llll")}</span>;
+      return (
+        <span className="font-bold">
+          {moment(row?.cell?.value).format("llll")}
+        </span>
+      );
     },
   },
 
@@ -191,6 +230,8 @@ const AllDistributors = ({ title = "All Distributors" }) => {
     [distributors]
   );
 
+  console.log(distributors);
+
   const tableInstance = useTable(
     {
       columns,
@@ -200,26 +241,26 @@ const AllDistributors = ({ title = "All Distributors" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination,
-    useRowSelect,
+    useRowSelect
 
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
   const {
     getTableProps,
