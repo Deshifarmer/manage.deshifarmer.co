@@ -127,7 +127,7 @@ import AllTransactions from "./pages/table/react-tables/all-transactions";
 import CashInRequests from "./pages/table/react-tables/cash-in-requests";
 import SetKpi from "./pages/forms/set-kpi";
 import UpdateDistributorInfo from "./pages/forms/update-distributor-info";
-import Distributors from "./pages/table/react-tables/distributors";
+// import Distributors from "./pages/table/react-tables/distributors";
 import DistributorDetails from "./pages/table/react-tables/distributor-details";
 import OrdersFromDistributor from "./pages/table/react-tables/orders-from-drstributor";
 import OrdersFromFarmers from "./pages/table/react-tables/orders-from-farmers";
@@ -163,6 +163,7 @@ import OrderDetails from "./pages/table/orders/order-details";
 import AllMicroEntrepreneurs from "./pages/table/micro-entrepreneurs/all-micro-entrepreneurs";
 import MEDetails from "./pages/table/micro-entrepreneurs/me-details";
 import MeDetails from "./pages/table/micro-entrepreneurs/me-details";
+import AllDistributors from "./pages/table/distributors/all-distributors";
 
 function App() {
   return (
@@ -309,7 +310,7 @@ function App() {
             path="update-distributors-info/:id"
             element={<UpdateDistributorInfo />}
           />
-          <Route path="distributors" element={<Distributors />} />
+          <Route path="distributors" element={<AllDistributors />} />
           <Route path="add-distributors" element={<AddDistributor />} />
 
           <Route
