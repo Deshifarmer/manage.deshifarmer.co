@@ -129,7 +129,7 @@ import MeDetails from "./pages/table/react-tables/me-details";
 import AllTransactions from "./pages/table/react-tables/all-transactions";
 import CashInRequests from "./pages/table/react-tables/cash-in-requests";
 import SetKpi from "./pages/forms/set-kpi";
-import AllOrders from "./pages/table/react-tables/all-orders";
+
 import UpdateDistributorInfo from "./pages/forms/update-distributor-info";
 import Distributors from "./pages/table/react-tables/distributors";
 import DistributorDetails from "./pages/table/react-tables/distributor-details";
@@ -143,7 +143,6 @@ import AddChannels from "./pages/forms/add-channels";
 import AddCategory from "./pages/forms/add-category";
 import AllCategories from "./pages/table/react-tables/all-categories";
 
-import OrderDetails from "./pages/table/react-tables/order-details";
 import AssignMicroEntrepreneurs from "./pages/table/react-tables/assign-micro-entreprenures";
 import ChannelDetails from "./pages/table/react-tables/channel-details";
 import CompanyProducts from "./pages/table/react-tables/company-products";
@@ -163,6 +162,8 @@ import GroupDetails from "./pages/table/farmers/farmer-group-details";
 import FarmerDetails from "./pages/table/farmers/farmer-details";
 import AllFarms from "./pages/table/farmers/all-farms";
 import TestShare from "../__test__/__test__";
+import AllOrders from "./pages/table/orders/all-orders";
+import OrderDetails from "./pages/table/orders/order-details";
 
 function App() {
   return (
@@ -399,7 +400,7 @@ function App() {
             path="order_details/:id"
             element={
               <Suspense fallback={<Loading />}>
-                <SingleOrder />
+                <OrderDetails />
               </Suspense>
             }
           />

@@ -1,0 +1,5 @@
+@media print {
+  .print-component {
+    margin: 30px;
+  }
+}

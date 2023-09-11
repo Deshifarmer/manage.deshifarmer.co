@@ -32,11 +32,6 @@ function calculateFarmerAge(birthdate) {
   return age;
 }
 
-// Example usage:
-const birthdate = "1990-01-01"; // Replace with the actual birthdate
-const age = calculateFarmerAge(birthdate);
-console.log(`The farmer is ${age} years old.`);
-
 const COLUMNS = [
   {
     Header: "Farmer Id",
@@ -118,7 +113,9 @@ const COLUMNS = [
       return (
         <span
           className={`${
-            row.cell.row.original.phone.length != 11 ? "text-red-500" : "text-green-500"
+            row.cell.row.original.phone.length != 11
+              ? "text-red-500"
+              : "text-green-500"
           }`}
         >
           {row?.cell?.value}
