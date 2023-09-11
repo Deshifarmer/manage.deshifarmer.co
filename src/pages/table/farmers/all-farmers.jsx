@@ -131,6 +131,13 @@ const COLUMNS = [
     },
   },
   {
+    Header: "Location",
+    accessor: "address",
+    Cell: (row) => {
+      return <span className="font-bold">{row?.cell?.value}</span>;
+    },
+  },
+  {
     Header: "Joining Date",
     accessor: "onboard_date",
     Cell: (row) => {
@@ -141,13 +148,7 @@ const COLUMNS = [
       );
     },
   },
-  {
-    Header: "Location",
-    accessor: "address",
-    Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
-    },
-  },
+
   {
     Header: "action",
     accessor: "action",

@@ -132,7 +132,7 @@ const FarmerProfile = ({
               <ul className="list grid grid-cols-4 gap-10 font-bold">
                 <li className="flex space-x-3 rtl:space-x-reverse">
                   <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                    <Icon icon="heroicons:envelope" />
+                    <Icon icon="heroicons:clock" />
                   </div>
                   <div className="flex-1">
                     <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
@@ -307,6 +307,19 @@ const FarmerProfile = ({
                     </div>
                     <div className="text-base text-slate-600 capitalize dark:text-slate-50">
                       {fc?.cropname}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:map" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Focused Crop
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.farm_area}
                     </div>
                   </div>
                 </li>

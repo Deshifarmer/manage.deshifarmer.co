@@ -11,7 +11,16 @@ export const order_api = apiSlice.injectEndpoints({
         // },
       }),
     }),
+    getSingleOrder: builder.query({
+      query: (id) => ({
+        url: `/hq/input_order/${id}`,
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
+      }),
+    }),
   }),
 });
 
-export const { useGetAllOrdersQuery } = order_api;
+export const { useGetAllOrdersQuery, useGetSingleOrderQuery } = order_api;
