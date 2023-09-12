@@ -19,63 +19,95 @@ const COLUMNS = [
     Header: "Channel Name",
     accessor: "channel_name",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <div>
+          <Link
+            to={`/channel-details/${row?.cell?.row?.original.channel_name}`}
+          >
+            <div className="flex gap-1 text-blue-500">
+              <span className="font-bold underline text-blue-500">
+                {row?.cell?.value}
+              </span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-5 h-5 "
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            </div>
+          </Link>
+        </div>
+      );
     },
   },
   {
     Header: "District",
     accessor: "district",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <span className="text-teal-500 font-bold">{row?.cell?.value}</span>
+      );
     },
   },
   {
     Header: "Division",
     accessor: "division",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <span className="text-orange-500 font-bold">{row?.cell?.value}</span>
+      );
     },
   },
   {
     Header: "Total Distributors",
     accessor: "toatal_distributor",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Order",
     accessor: "total_order",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Sales",
     accessor: "total_sales",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <span className="font-bold text-green-500">{row?.cell?.value}</span>
+      );
     },
   },
   {
     Header: "Total ME",
     accessor: "total_me",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "Action",
-    accessor: "action",
-    Cell: (props) => {
-      return (
-        // <button onClick={() => handleRowClick(props)}>Show Details</button>
-        <Link to={`/channel-details/${props.row.original.channel_name}`}>
-          Show Details
-        </Link>
-      );
-    },
-  },
+  // {
+  //   Header: "Action",
+  //   accessor: "action",
+  //   Cell: (props) => {
+  //     return (
+  //       // <button onClick={() => handleRowClick(props)}>Show Details</button>
+  //       <Link to={`/channel-details/${props.row.original.channel_name}`}>
+  //         Show Details
+  //       </Link>
+  //     );
+  //   },
+  // },
   // {
   //   Header: "Order",
   //   accessor: "order",
@@ -252,26 +284,26 @@ const Channels = () => {
     useGlobalFilter,
     useSortBy,
     usePagination,
-    useRowSelect,
+    useRowSelect
 
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
   const {
     getTableProps,
@@ -293,6 +325,8 @@ const Channels = () => {
   } = tableInstance;
 
   const { globalFilter, pageIndex, pageSize } = state;
+
+  console.log("channels", channels);
   return (
     <div>
       {isLoading ? (
@@ -300,7 +334,7 @@ const Channels = () => {
       ) : (
         <Card noborder>
           <div className="md:flex justify-between items-center mb-6">
-            <h4 className="card-title">Channels</h4>
+            <h4 className="card-title">Channel List</h4>
             <div>
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
             </div>
