@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-
-function calculateAge(birthdate) {
+function calculateFarmerAge(birthdate) {
   const today = new Date();
   const birthDate = new Date(birthdate);
   let age = today.getFullYear() - birthDate.getFullYear();
@@ -16,19 +14,6 @@ function calculateAge(birthdate) {
   return age;
 }
 
-function useFarmerAge(initialBirthdate) {
-  const [birthdate, setBirthdate] = useState(initialBirthdate);
-  const [age, setAge] = useState(calculateAge(initialBirthdate));
-
-  useEffect(() => {
-    setAge(calculateAge(birthdate));
-  }, [birthdate]);
-
-  return {
-    birthdate,
-    setBirthdate,
-    age,
-  };
-}
-
-export default useFarmerAge;
+export const calculateAge = {
+  calculateFarmerAge,
+};

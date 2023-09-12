@@ -20,6 +20,7 @@ import ViewReceipt from "./view-receipt";
 import { useForm } from "react-hook-form";
 import { useGetAllCashInRequestQuery } from "../../../store/features/payments/api";
 import GlobalFilter from "../react-tables/GlobalFilter";
+import { Link } from "react-router-dom";
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -57,10 +58,29 @@ const CashInRequests = ({ title = "Cash In Requests" }) => {
       Cell: (row) => {
         return (
           <div>
-            <p className="font-bold">{row?.cell?.value}</p>
-            <p className="text-[10px] font-bold text-green-600">
-              {row?.cell?.row?.original?.distributor?.df_id}
-            </p>
+            <p className="font-bold ">{row?.cell?.value}</p>
+            <Link
+              target="_blank"
+              to={`/distributor/${row?.cell?.row?.original?.distributor?.df_id}`}
+            >
+              <div className="flex items-center">
+                <p className="text-[10px] underline font-bold text-green-600">
+                  {row?.cell?.row?.original?.distributor?.df_id}
+                </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-3 h-3"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </Link>
           </div>
         );
       },

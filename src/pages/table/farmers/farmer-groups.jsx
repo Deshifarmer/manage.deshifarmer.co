@@ -29,9 +29,29 @@ const COLUMNS = [
             <p className="font-bold">
               {row?.cell?.row?.original?.farmer_group_name}
             </p>
-            <p className="text-[10px]">
-              {row?.cell?.row?.original?.farmer_group_id}
-            </p>
+            <Link
+              to={`/farmer-groups-details/${row?.cell?.row?.original?.farmer_group_id}`}
+            >
+              <div className="flex items-center ">
+                <p className="text-[10px] font-bold underline text-blue-500">
+                  {row?.cell?.row?.original?.farmer_group_id}
+                </p>
+                <p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-3 h-3"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </p>
+              </div>
+            </Link>
           </div>
         </>
       );
@@ -133,39 +153,31 @@ const COLUMNS = [
       );
     },
   },
-  {
-    Header: "action",
-    accessor: "action",
-    Cell: (row) => {
-      return (
-        <div className="flex space-x-3 rtl:space-x-reverse">
-          {/* <Tooltip content="View" placement="top" arrow animation="shift-away">
-            <Link
-              to={`/farmer-groups-details/${row?.cell?.row?.original?.farmer_group_id}`}
-            >
-              <button className="action-btn" type="button">
-                <Icon icon="heroicons:eye" />
-              </button>
-            </Link>
-          </Tooltip> */}
-          <Tooltip
-            content="Group Details"
-            placement="top"
-            arrow
-            animation="shift-away"
-          >
-            <Link
-              to={`/farmer-groups-details/${row?.cell?.row?.original?.farmer_group_id}`}
-            >
-              <button className="action-btn" type="button">
-                <Icon icon="heroicons:eye" />
-              </button>
-            </Link>
-          </Tooltip>
-        </div>
-      );
-    },
-  },
+  // {
+  //   Header: "action",
+  //   accessor: "action",
+  //   Cell: (row) => {
+  //     return (
+  //       <div className="flex space-x-3 rtl:space-x-reverse">
+
+  //         <Tooltip
+  //           content="Group Details"
+  //           placement="top"
+  //           arrow
+  //           animation="shift-away"
+  //         >
+  //           <Link
+  //             to={`/farmer-groups-details/${row?.cell?.row?.original?.farmer_group_id}`}
+  //           >
+  //             <button className="action-btn" type="button">
+  //               <Icon icon="heroicons:eye" />
+  //             </button>
+  //           </Link>
+  //         </Tooltip>
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const IndeterminateCheckbox = React.forwardRef(

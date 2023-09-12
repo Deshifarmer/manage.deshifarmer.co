@@ -45,23 +45,28 @@ const COLUMNS = [
               </svg>
             </div>
           </Link>
-          <div className="flex">
-            <p className="text-[10px] underline text-blue-500 font-bold">
-              {row?.cell?.value}
-            </p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-3 h-3"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
+          <Link
+            target="_blank"
+            to={`/distributor/${row?.cell?.row?.original.df_id}`}
+          >
+            <div className="flex">
+              <p className="text-[10px] underline text-blue-500 font-bold">
+                {row?.cell?.value}
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-3 h-3"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </Link>
         </div>
       );
     },
@@ -155,44 +160,28 @@ const COLUMNS = [
       );
     },
   },
-  {
-    Header: "action",
-    accessor: "action",
-    Cell: (row) => {
-      return (
-        <div className="flex space-x-3 rtl:space-x-reverse">
-          <Tooltip
-            content="View Distributor Profile"
-            placement="top"
-            arrow
-            animation="shift-away"
-          >
-            <Link to={`/distributor/${row?.cell?.row?.original.df_id}`}>
-              <button className="action-btn" type="button">
-                <Icon icon="heroicons:eye" />
-              </button>
-            </Link>
-          </Tooltip>
-          {/* <Tooltip content="Edit" placement="top" arrow animation="shift-away">
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:pencil-square" />
-            </button>
-          </Tooltip>
-          <Tooltip
-            content="Delete"
-            placement="top"
-            arrow
-            animation="shift-away"
-            theme="danger"
-          >
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:trash" />
-            </button>
-          </Tooltip> */}
-        </div>
-      );
-    },
-  },
+  // {
+  //   Header: "action",
+  //   accessor: "action",
+  //   Cell: (row) => {
+  //     return (
+  //       <div className="flex space-x-3 rtl:space-x-reverse">
+  //         <Tooltip
+  //           content="View Distributor Profile"
+  //           placement="top"
+  //           arrow
+  //           animation="shift-away"
+  //         >
+  //           <Link to={`/distributor/${row?.cell?.row?.original.df_id}`}>
+  //             <button className="action-btn" type="button">
+  //               <Icon icon="heroicons:eye" />
+  //             </button>
+  //           </Link>
+  //         </Tooltip>
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const IndeterminateCheckbox = React.forwardRef(
