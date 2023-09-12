@@ -46,6 +46,7 @@ const COLUMNS = [
                   <p className="text-[10px] underline text-green-600 font-bold">
                     {row?.cell?.row?.original?.farmer_id}
                   </p>
+                  {/* {} */}
                   <p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
