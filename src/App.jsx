@@ -111,7 +111,7 @@ import Loading from "@/components/Loading";
 import AddAgriInputProduct from "./pages/forms/add-agri-input-product";
 import AddCompanyPartner from "./pages/forms/add-company-partner";
 import CreateChannel from "./pages/forms/create-channe";
-import AllProducts from "./pages/table/react-tables/all-products";
+// import AllProducts from "./pages/table/react-tables/all-products";
 import PartnerDetails from "./pages/table/react-tables/partner-details";
 import KPIS from "./pages/table/react-tables/kpis";
 import Channels from "./pages/table/react-tables/channels";
@@ -124,7 +124,7 @@ import InputCategory from "./pages/forms/input-category";
 import MyOrders from "./pages/table/react-tables/my-orders";
 import AllPayments from "./pages/table/react-tables/all-payments";
 // import AllTransactions from "./pages/table/react-tables/all-transactions";
-import CashInRequests from "./pages/table/react-tables/cash-in-requests";
+// import CashInRequests from "./pages/table/react-tables/cash-in-requests";
 import SetKpi from "./pages/forms/set-kpi";
 import UpdateDistributorInfo from "./pages/forms/update-distributor-info";
 // import Distributors from "./pages/table/react-tables/distributors";
@@ -137,7 +137,7 @@ import UpdateMicroEntrepreneurInfo from "./pages/forms/update-micro-entrepreneur
 import AddMicroEntrepreneur from "./pages/forms/add-micro-entrepreneur";
 import AddChannels from "./pages/forms/add-channels";
 import AddCategory from "./pages/forms/add-category";
-import AllCategories from "./pages/table/react-tables/all-categories";
+// import AllCategories from "./pages/table/react-tables/all-categories";
 
 import AssignMicroEntrepreneurs from "./pages/table/react-tables/assign-micro-entreprenures";
 import ChannelDetails from "./pages/table/react-tables/channel-details";
@@ -158,7 +158,7 @@ import GroupDetails from "./pages/table/farmers/farmer-group-details";
 import FarmerDetails from "./pages/table/farmers/farmer-details";
 import AllFarms from "./pages/table/farmers/all-farms";
 import TestShare from "../__test__/__test__";
-import AllOrders from "./pages/table/orders/all-orders";
+import OrdersList from "./pages/table/orders/all-orders";
 import OrderDetails from "./pages/table/orders/order-details";
 import AllMicroEntrepreneurs from "./pages/table/micro-entrepreneurs/all-micro-entrepreneurs";
 import MEDetails from "./pages/table/micro-entrepreneurs/me-details";
@@ -167,6 +167,9 @@ import AllDistributors from "./pages/table/distributors/all-distributors";
 import ChannelLists from "./pages/table/channels/all-channels";
 import CompanyList from "./pages/table/comapnies/all-companies";
 import TransactionList from "./pages/table/payments/all-transactions";
+import CashInRequests from "./pages/table/payments/cash-in-requests";
+import ProductsList from "./pages/table/agri-inputs/all-products";
+import CategoryList from "./pages/table/agri-inputs/all-categories";
 
 function App() {
   return (
@@ -357,12 +360,12 @@ function App() {
           />
           <Route path="managers" element={<Managers />} />
           <Route path="companies" element={<CompanyList />} />
-          <Route path="all-products" element={<AllProducts />} />
+          <Route path="all-products" element={<ProductsList />} />
           <Route path="add-product" element={<AddProduct />} />
           <Route path="partner-details" element={<PartnerDetails />} />
           <Route path="kpi" element={<KPIS />} />
           <Route path="my-orders" element={<MyOrders />} />
-          <Route path="all-orders" element={<AllOrders />} />
+          <Route path="all-orders" element={<OrdersList />} />
           <Route path="order/:id" element={<SingleOrder />} />
           <Route path="all-payments" element={<AllPayments />} />
           <Route path="all-transactions" element={<TransactionList />} />
@@ -373,7 +376,7 @@ function App() {
             element={<OrdersFromDistributor />}
           />
           <Route path="orders-from-farmers" element={<OrdersFromFarmers />} />
-          <Route path="all-categories" element={<AllCategories />} />
+          <Route path="all-categories" element={<CategoryList />} />
           <Route path="table-basic" element={<BasicTablePage />} />
           <Route path="react-table" element={<TanstackTable />} />
           <Route path="invoice" element={<InvoicePage />} />

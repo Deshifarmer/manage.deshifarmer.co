@@ -20,7 +20,9 @@ const COLUMNS = [
     accessor: "transaction_id",
     Cell: (row) => {
       return (
-        <span className="font-bold text-blue-600">{row?.cell?.value}</span>
+        <span className="font-bold underline text-blue-600">
+          {row?.cell?.value}
+        </span>
       );
     },
   },

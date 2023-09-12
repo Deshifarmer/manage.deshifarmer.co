@@ -172,7 +172,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const AllOrders = ({ title = "All Orders" }) => {
+const OrdersList = ({ title = "Orders List" }) => {
   const { data: orders } = useGetAllOrdersQuery();
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (orders ? orders : []), [orders]);
@@ -382,4 +382,4 @@ const AllOrders = ({ title = "All Orders" }) => {
   );
 };
 
-export default AllOrders;
+export default OrdersList;
