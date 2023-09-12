@@ -25,7 +25,7 @@ const COLUMNS = [
       return (
         <div>
           <span className="inline-flex items-center">
-            <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none ">
+            {/* <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none ">
               <img
                 src={`${import.meta.env.VITE_IMG_URL}/${
                   row?.cell?.row?.original?.photo
@@ -33,14 +33,30 @@ const COLUMNS = [
                 alt=""
                 className="object-cover w-10 h-10 rounded-full"
               />
-            </span>
+            </span> */}
             <div className="">
-              <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+              <p className="text-sm  font-bold  text-blue-600 dark:text-slate-300 capitalize">
                 {row?.cell.row.original.full_name}
               </p>
-              <p className="text-[10px] font-semi-bold text-green-600">
-                {row?.cell?.row?.original?.df_id}
-              </p>
+              <Link to={`/company-details/${row?.cell?.row?.original?.df_id}`}>
+                <div className="text-[10px] text-teal-500 items-center font-bold gap-1 flex underline font-semi-bold">
+                  <p>{row?.cell?.row?.original?.df_id}</p>
+                  <p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-3 h-3"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </p>
+                </div>
+              </Link>
             </div>
           </span>
         </div>
@@ -48,33 +64,42 @@ const COLUMNS = [
     },
   },
   {
+    Header: "Total Products",
+    accessor: "total_product",
+    Cell: (row) => {
+      return <span className="font-bold">{row?.cell?.value}</span>;
+    },
+  },
+  {
     Header: "JOining Date",
     accessor: "joining_date",
     Cell: (row) => {
-      return <span>{moment(row?.cell?.value).format("llll")}</span>;
+      return (
+        <span className="font-bold">
+          {moment(row?.cell?.value).format("llll")}
+        </span>
+      );
     },
   },
   {
     Header: "Email",
     accessor: "email",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <span className="lowercase font-bold text-amber-600">
+          {row?.cell?.value}
+        </span>
+      );
     },
   },
   {
     Header: "Phone No",
     accessor: "phone",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span className="font-bold">{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "Total Products",
-    accessor: "total_product",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
+
   // {
   //   Header: "Order",
   //   accessor: "order",
@@ -135,44 +160,29 @@ const COLUMNS = [
   //     );
   //   },
   // },
-  {
-    Header: "action",
-    accessor: "action",
-    Cell: (row) => {
-      return (
-        <div className="flex space-x-3 rtl:space-x-reverse">
-          <Tooltip
-            content="View Commpany Profile"
-            placement="top"
-            arrow
-            animation="shift-away"
-          >
-            <Link to={`/company-details/${row?.cell?.row?.original?.df_id}`}>
-              <button className="action-btn" type="button">
-                <Icon icon="heroicons:eye" />
-              </button>
-            </Link>
-          </Tooltip>
-          {/* <Tooltip content="Edit" placement="top" arrow animation="shift-away">
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:pencil-square" />
-            </button>
-          </Tooltip>
-          <Tooltip
-            content="Delete"
-            placement="top"
-            arrow
-            animation="shift-away"
-            theme="danger"
-          >
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:trash" />
-            </button>
-          </Tooltip> */}
-        </div>
-      );
-    },
-  },
+  // {
+  //   Header: "action",
+  //   accessor: "action",
+  //   Cell: (row) => {
+  //     return (
+  //       <div className="flex space-x-3 rtl:space-x-reverse">
+  //         <Tooltip
+  //           content="View Commpany Profile"
+  //           placement="top"
+  //           arrow
+  //           animation="shift-away"
+  //         >
+  //           <Link to={`/company-details/${row?.cell?.row?.original?.df_id}`}>
+  //             <button className="action-btn" type="button">
+  //               <Icon icon="heroicons:eye" />
+  //             </button>
+  //           </Link>
+  //         </Tooltip>
+
+  //       </div>
+  //     );
+  //   },
+  // },
 ];
 
 const IndeterminateCheckbox = React.forwardRef(
@@ -215,26 +225,26 @@ const Companies = ({ title = "Companies" }) => {
     useGlobalFilter,
     useSortBy,
     usePagination,
-    useRowSelect,
+    useRowSelect
 
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
   const {
     getTableProps,
@@ -265,7 +275,7 @@ const Companies = ({ title = "Companies" }) => {
       ) : (
         <Card>
           <div className="md:flex justify-between items-center mb-6">
-            <h4 className="card-title">{title}</h4>
+            <h4 className="card-title">Company List</h4>
             <div>
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
             </div>

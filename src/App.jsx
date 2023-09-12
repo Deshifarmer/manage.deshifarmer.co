@@ -119,11 +119,11 @@ import AddFarmer from "./pages/forms/add-farmer";
 import InputOrder from "./pages/forms/input-order";
 import DistributorsLists from "./pages/table/react-tables/distributors-lists";
 import Managers from "./pages/table/react-tables/managers";
-import Companies from "./pages/table/react-tables/companies";
+// import Companies from "./pages/table/react-tables/companies";
 import InputCategory from "./pages/forms/input-category";
 import MyOrders from "./pages/table/react-tables/my-orders";
 import AllPayments from "./pages/table/react-tables/all-payments";
-import AllTransactions from "./pages/table/react-tables/all-transactions";
+// import AllTransactions from "./pages/table/react-tables/all-transactions";
 import CashInRequests from "./pages/table/react-tables/cash-in-requests";
 import SetKpi from "./pages/forms/set-kpi";
 import UpdateDistributorInfo from "./pages/forms/update-distributor-info";
@@ -164,6 +164,9 @@ import AllMicroEntrepreneurs from "./pages/table/micro-entrepreneurs/all-micro-e
 import MEDetails from "./pages/table/micro-entrepreneurs/me-details";
 import MeDetails from "./pages/table/micro-entrepreneurs/me-details";
 import AllDistributors from "./pages/table/distributors/all-distributors";
+import ChannelLists from "./pages/table/channels/all-channels";
+import CompanyList from "./pages/table/comapnies/all-companies";
+import TransactionList from "./pages/table/payments/all-transactions";
 
 function App() {
   return (
@@ -342,7 +345,7 @@ function App() {
           <Route path="chartjs" element={<ChartJs />} />
           <Route path="recharts" element={<Recharts />} />
           <Route path="map" element={<MapPage />} />
-          <Route path="channels" element={<Channels />} />
+          <Route path="channels" element={<ChannelLists />} />
           <Route path="all-farmers" element={<AllFarmers />} />
           <Route path="all-farms" element={<AllFarms />} />
           <Route path="farmer-groups" element={<FarmerGroups />} />
@@ -353,7 +356,7 @@ function App() {
             element={<AllMicroEntrepreneurs />}
           />
           <Route path="managers" element={<Managers />} />
-          <Route path="companies" element={<Companies />} />
+          <Route path="companies" element={<CompanyList />} />
           <Route path="all-products" element={<AllProducts />} />
           <Route path="add-product" element={<AddProduct />} />
           <Route path="partner-details" element={<PartnerDetails />} />
@@ -362,7 +365,7 @@ function App() {
           <Route path="all-orders" element={<AllOrders />} />
           <Route path="order/:id" element={<SingleOrder />} />
           <Route path="all-payments" element={<AllPayments />} />
-          <Route path="all-transactions" element={<AllTransactions />} />
+          <Route path="all-transactions" element={<TransactionList />} />
           <Route path="cash-in-requests" element={<CashInRequests />} />
           <Route path="cash-out-requests" element={<CashOutRequests />} />
           <Route
