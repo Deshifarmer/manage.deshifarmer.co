@@ -47,6 +47,7 @@ const COLUMNS = [
             <div className="flex items-center underline text-green-500">
               <p className="text-[10px]">
                 {row?.cell?.row?.original?.order_id}
+                {/* b */}
               </p>
               <p>
                 <svg
