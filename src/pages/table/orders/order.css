@@ -2,4 +2,11 @@
   .print-component {
     margin: 30px;
   }
+
+  html, body {
+    height: 100vh; /* Use 100% here to support printing more than a single page*/
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
 }

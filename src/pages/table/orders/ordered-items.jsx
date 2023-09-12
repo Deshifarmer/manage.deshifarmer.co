@@ -36,15 +36,12 @@ const OrderedItems = ({ data, details }) => {
                 className="border-b border-slate-100 dark:border-slate-700"
               >
                 <td
-                  colSpan={2}
+                  colSpan={3}
                   className="text-slate-900 dark:text-slate-300 text-sm  font-normal ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left px-6 py-4"
                 >
                   {item?.product_details?.name}
                 </td>
-                <td
-                  colSpan={2}
-                  className="text-slate-900 capitalize dark:text-slate-300 text-sm  font-normal ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left px-6 py-4"
-                >
+                <td className="text-slate-900 capitalize dark:text-slate-300 text-sm  font-normal ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left px-6 py-4">
                   {item?.product_details?.company}
                 </td>
                 <td className="text-slate-900 dark:text-slate-300 text-sm  font-normal ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left px-6 py-4">
@@ -62,21 +59,37 @@ const OrderedItems = ({ data, details }) => {
         </table>
         <div className="md:flex px-6 py-6 items-center">
           <div className="flex-1 text-slate-500 dark:text-slate-300 text-sm">
-            Thank you for you purchase. <br />
+            <br />
           </div>
           <div className="flex-none min-w-[270px] space-y-3">
             <div className="flex justify-between">
               <span className="font-medium text-slate-600 text-xs dark:text-slate-300 uppercase">
-                subtotal:
+                Sub total:
               </span>
-              <span className="text-slate-900 dark:text-slate-300">
+              <span className="text-slate-900 dark:text-slate-300 text-xs">
                 Tk {subtotal}
               </span>
             </div>
 
             <div className="flex justify-between">
               <span className="font-medium text-slate-600 text-xs dark:text-slate-300 uppercase">
-                Invoice total:
+                VAT 0%
+              </span>
+              <span className="text-slate-900 dark:text-slate-300 font-bold text-xs">
+                TK 0.00
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="font-medium text-slate-600 text-xs dark:text-slate-300 uppercase">
+                Delivery charge
+              </span>
+              <span className="text-slate-900 dark:text-slate-300 font-bold text-xs">
+                TK 0.00
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="font-medium text-slate-600 text-sm dark:text-slate-300 uppercase">
+                Grand total:
               </span>
               <span className="text-slate-900 dark:text-slate-300 font-bold">
                 Tk {subtotal}
