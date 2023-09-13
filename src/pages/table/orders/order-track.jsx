@@ -81,8 +81,12 @@ const OrderTrack = ({ status }) => {
           completeTitleColor={isDark ? "#fff" : "#000"}
           activeTitleColor={isDark ? "#fff" : "#000"}
           activeCircleColor={isDark ? "#fff" : "#000"}
+          completeColor={isDark ? "#D2DE32" : "#213555"}
+          activeColor={isDark ? "#D2DE32" : "#213555"}
+          circleFontColor={isDark ? "#000" : "#fff"}
+          circleActiveFontColor={isDark ? "#D2DE32" : "#213555"}
           circleFontSize={15}
-          completeBarColor="#004225"
+          completeBarColor={isDark ? "#fff" : "#000"}
           barStyle="solid"
           lineMarginOffset={2}
         />

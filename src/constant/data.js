@@ -400,6 +400,14 @@ export const menuItems = [
         childtitle: "Harvest ",
         childlink: "harvest",
       },
+      {
+        childtitle: "Advisory ",
+        childlink: "advisory",
+      },
+      {
+        childtitle: "Batch ",
+        childlink: "batch",
+      },
     ],
   },
   // {
