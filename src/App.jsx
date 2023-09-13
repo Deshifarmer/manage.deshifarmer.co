@@ -147,7 +147,7 @@ import FarmerGroups from "./pages/table/farmers/farmer-groups";
 import GroupDetails from "./pages/table/farmers/farmer-group-details";
 import FarmerDetails from "./pages/table/farmers/farmer-details";
 import AllFarms from "./pages/table/farmers/all-farms";
-import TestShare from "../__test__/__test__";
+
 import OrdersList from "./pages/table/orders/all-orders";
 import OrderDetails from "./pages/table/orders/order-details";
 import AllMicroEntrepreneurs from "./pages/table/micro-entrepreneurs/all-micro-entrepreneurs";
@@ -159,6 +159,7 @@ import TransactionList from "./pages/table/payments/all-transactions";
 import CashInRequests from "./pages/table/payments/cash-in-requests";
 import ProductsList from "./pages/table/agri-inputs/all-products";
 import CategoryList from "./pages/table/agri-inputs/all-categories";
+import OrderStatusBar from "../__test__/__test__";
 
 function App() {
   return (
@@ -266,7 +267,7 @@ function App() {
           <Route path="crm" element={<CrmPage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
-          <Route path="test-share" element={<TestShare />} />
+          <Route path="test-share" element={<OrderStatusBar />} />
           {/* App pages */}
           <Route path="todo" element={<TodoPage />} />
           <Route path="email" element={<EmailPage />} />
