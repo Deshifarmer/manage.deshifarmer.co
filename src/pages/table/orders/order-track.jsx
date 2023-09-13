@@ -1,4 +1,8 @@
-const OrderTrack = () => {
+import { useEffect, useState } from "react";
+import Stepper from "react-stepper-horizontal";
+import useDarkMode from "@/hooks/useDarkMode";
+
+const OrderTrack = ({ status }) => {
   const [statusUpdates, setStatusUpdates] = useState([]);
 
   useEffect(() => {
@@ -59,23 +63,27 @@ const OrderTrack = () => {
   };
 
   // Get the index of the "active" status based on its text
-  const activeStatusText = "collected by me"; // Change this to your desired status text
+  const activeStatusText = status; // Change this to your desired status text
   const activeStep = findStatusIndex(activeStatusText);
+  const [isDark] = useDarkMode();
+  console.log();
 
   return (
     <div>
-      <div className="p-4">
-        <h2 className="text-2xl font-semibold">Order Tracker</h2>
+      <div>
+        <h2 className="text-lg font-semibold text-gray-700">Order Tracker</h2>
         <Stepper
           steps={statusUpdates.map((update) => ({
             title: update.text,
           }))}
           activeStep={activeStep}
           size={50}
+          completeTitleColor={isDark ? "#fff" : "#000"}
+          activeTitleColor={isDark ? "#fff" : "#000"}
+          activeCircleColor={isDark ? "#fff" : "#000"}
           circleFontSize={15}
-          completeBarColor="#071952"
+          completeBarColor="#004225"
           barStyle="solid"
-          // want to set border height
           lineMarginOffset={2}
         />
         {/* <div className="mt-4 flex justify-center text-center">
