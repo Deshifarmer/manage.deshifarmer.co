@@ -35,11 +35,11 @@ const COLUMNS = [
               />
             </span> */}
             <div className="">
-              <p className="text-sm  font-bold  text-blue-600 dark:text-slate-300 capitalize">
+              <p className="text-sm     text-blue-600 dark:text-slate-300 capitalize">
                 {row?.cell.row.original.full_name}
               </p>
               <Link to={`/company-details/${row?.cell?.row?.original?.df_id}`}>
-                <div className="text-[10px] text-teal-500 items-center font-bold gap-1 flex underline font-semi-bold">
+                <div className="text-[10px] text-teal-500 items-center   gap-1 flex underline font-semi-bold">
                   <p>{row?.cell?.row?.original?.df_id}</p>
                   <p>
                     <svg
@@ -67,7 +67,7 @@ const COLUMNS = [
     Header: "Total Products",
     accessor: "total_product",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -75,7 +75,7 @@ const COLUMNS = [
     accessor: "joining_date",
     Cell: (row) => {
       return (
-        <span className="font-bold">
+        <span className=" ">
           {moment(row?.cell?.value).format("llll")}
         </span>
       );
@@ -86,7 +86,7 @@ const COLUMNS = [
     accessor: "email",
     Cell: (row) => {
       return (
-        <span className="lowercase font-bold text-amber-600">
+        <span className="lowercase   text-amber-600">
           {row?.cell?.value}
         </span>
       );
@@ -96,7 +96,7 @@ const COLUMNS = [
     Header: "Phone No",
     accessor: "phone",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
 

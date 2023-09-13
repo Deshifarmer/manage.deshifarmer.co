@@ -36,17 +36,17 @@ const COLUMNS = [
               />
             </span> */}
             <div>
-              <p className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
+              <p className="text-sm   text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
               <Link
                 to={`/farmer-details/${row?.cell?.row?.original?.farmer_id}`}
               >
                 <div className="flex items-center gap-1">
-                  <p className="text-[10px] underline text-green-600 font-bold">
+                  <p className="text-[10px] underline text-green-600  ">
                     {row?.cell?.row?.original?.farmer_id}
                   </p>
-                  {/* {} */}
+                  {/* {n} */}
                   <p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ const COLUMNS = [
                 to={`/farmer-details/${row?.cell?.row?.original?.onboard_by}`}
               >
                 <div className="flex items-center gap-1">
-                  <p className="text-[10px] underline text-green-600 font-bold">
+                  <p className="text-[10px] underline text-green-600  ">
                     {row?.cell?.row?.original?.onboard_by}
                   </p>
                   <p>
@@ -96,14 +96,14 @@ const COLUMNS = [
     Header: "date of birth",
     accessor: "date_of_birth",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
     Header: "Gender",
     accessor: "gender",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -111,7 +111,7 @@ const COLUMNS = [
     accessor: "phone",
     Cell: (row) => {
       return (
-        <span className="text-blue-500 font-bold underline">
+        <span className="text-blue-500   underline">
           {row?.cell?.value}
         </span>
       );
@@ -124,14 +124,14 @@ const COLUMNS = [
       return (
         <div>
           <p className="text-xs">
-            <span className="font-bold">District :</span> {row?.cell?.value}
+            <span className=" ">District :</span> {row?.cell?.value}
           </p>
           <p className="text-xs">
-            <span className="font-bold">village :</span>{" "}
+            <span className=" ">village :</span>{" "}
             {row?.cell?.row?.original?.village}
           </p>
           <p className="text-xs">
-            <span className="font-bold">Address :</span>{" "}
+            <span className=" ">Address :</span>{" "}
             {row?.cell?.row?.original?.address}
           </p>
         </div>
@@ -143,7 +143,7 @@ const COLUMNS = [
     accessor: "created_at",
     Cell: (row) => {
       return (
-        <span className="font-bold">
+        <span className=" ">
           {moment(row?.cell?.value).format("LLL")}
         </span>
       );

@@ -25,7 +25,7 @@ const COLUMNS = [
             to={`/channel-details/${row?.cell?.row?.original.channel_name}`}
           >
             <div className="flex gap-1 text-blue-500">
-              <span className="font-bold underline text-blue-500">
+              <span className="  underline text-blue-500">
                 {row?.cell?.value}
               </span>
               <span>
@@ -53,7 +53,7 @@ const COLUMNS = [
     accessor: "district",
     Cell: (row) => {
       return (
-        <span className="text-teal-500 font-bold">{row?.cell?.value}</span>
+        <span className="text-teal-500  ">{row?.cell?.value}</span>
       );
     },
   },
@@ -62,7 +62,7 @@ const COLUMNS = [
     accessor: "division",
     Cell: (row) => {
       return (
-        <span className="text-orange-500 font-bold">{row?.cell?.value}</span>
+        <span className="text-orange-500  ">{row?.cell?.value}</span>
       );
     },
   },
@@ -70,14 +70,14 @@ const COLUMNS = [
     Header: "Total Distributors",
     accessor: "toatal_distributor",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Order",
     accessor: "total_order",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -85,7 +85,7 @@ const COLUMNS = [
     accessor: "total_sales",
     Cell: (row) => {
       return (
-        <span className="font-bold text-green-500">{row?.cell?.value}</span>
+        <span className="  text-green-500">{row?.cell?.value}</span>
       );
     },
   },
@@ -93,7 +93,7 @@ const COLUMNS = [
     Header: "Total ME",
     accessor: "total_me",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   // {

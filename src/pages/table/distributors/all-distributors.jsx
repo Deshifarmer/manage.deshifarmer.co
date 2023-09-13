@@ -28,7 +28,7 @@ const COLUMNS = [
             to={`/channel-details/${row?.cell?.row?.original?.channel}`}
           >
             <div className="flex text-blue-500">
-              <p className="text-blue-500 underline font-bold">
+              <p className="text-blue-500 underline  ">
                 {row?.cell?.row?.original?.channel}
               </p>
               <svg
@@ -50,7 +50,7 @@ const COLUMNS = [
             to={`/distributor/${row?.cell?.row?.original.df_id}`}
           >
             <div className="flex">
-              <p className="text-[10px] underline text-blue-500 font-bold">
+              <p className="text-[10px] underline text-blue-500  ">
                 {row?.cell?.value}
               </p>
               <svg
@@ -88,7 +88,7 @@ const COLUMNS = [
                 className="object-cover w-10 h-10 rounded-full"
               />
             </span>
-            <span className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
+            <span className="text-sm   text-slate-600 dark:text-slate-300 capitalize">
               {row?.cell?.row?.original.full_name}
             </span>
           </span>
@@ -100,21 +100,21 @@ const COLUMNS = [
     Header: "Balance",
     accessor: "balance",
     Cell: (row) => {
-      return <span className="font-bold">৳ {row?.cell?.value}</span>;
+      return <span className=" ">৳ {row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Transaction",
     accessor: "all_transaction",
     Cell: (row) => {
-      return <span className="font-bold">৳ {row?.cell?.value}</span>;
+      return <span className=" ">৳ {row?.cell?.value}</span>;
     },
   },
   {
     Header: "Total Sales",
     accessor: "total_sale",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -122,7 +122,7 @@ const COLUMNS = [
     accessor: "joining_date",
     Cell: (row) => {
       return (
-        <span className="font-bold">
+        <span className=" ">
           {moment(row?.cell?.value).format("llll")}
         </span>
       );

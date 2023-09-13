@@ -51,7 +51,7 @@ const FarmerProfile = ({
                 </div>
               </div>
               <div className="flex-1">
-                <div className="text-2xl font-bold text-slate-900 dark:text-slate-200 mb-[3px]">
+                <div className="text-2xl   text-slate-900 dark:text-slate-200 mb-[3px]">
                   {farmer_details?.full_name?.replace(/\b\w/g, (match) =>
                     match.toUpperCase()
                   )}
@@ -67,7 +67,7 @@ const FarmerProfile = ({
                   >
                     <Link to={`/me-details/${farmer_details?.onboard_by}`}>
                       <div className="flex space-x-2">
-                        <span className="text-blue-900 font-bold underline dark:text-slate-200">
+                        <span className="text-blue-900   underline dark:text-slate-200">
                           {farmer_details?.onboard_by}
                         </span>
                         <span>
@@ -75,7 +75,7 @@ const FarmerProfile = ({
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
                             fill="currentColor"
-                            className="w-5 h-5 font-bold"
+                            className="w-5 h-5  "
                           >
                             <path
                               fillRule="evenodd"
@@ -129,7 +129,7 @@ const FarmerProfile = ({
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-12 col-span-12">
             <Card title="Farmer Info">
-              <ul className="list grid grid-cols-4 gap-10 font-bold">
+              <ul className="list grid grid-cols-4 gap-10  ">
                 <li className="flex space-x-3 rtl:space-x-reverse">
                   <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
                     <Icon icon="heroicons:clock" />

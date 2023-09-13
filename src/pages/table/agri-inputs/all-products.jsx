@@ -22,9 +22,9 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <div>
-          <p className="font-bold ">{row?.cell.row.original.name}</p>
+          <p className="  ">{row?.cell.row.original.name}</p>
           <Link to={`/product/${row?.cell?.row?.original?.product_id}`}>
-            <div className="font-bold text-[10px] items-center text-green-500 underline flex">
+            <div className="  text-[10px] items-center text-green-500 underline flex">
               <p>{row?.cell?.value}</p>
               <p>
                 <svg
@@ -63,7 +63,7 @@ const COLUMNS = [
                 className="object-cover w-10 h-10 rounded-full"
               />
             </span> */}
-            <span className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
+            <span className="text-sm   text-slate-600 dark:text-slate-300 capitalize">
               {row?.cell.row.original.name}
             </span>
           </span>
@@ -75,7 +75,7 @@ const COLUMNS = [
     Header: "Category",
     accessor: "category",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
 
@@ -84,7 +84,7 @@ const COLUMNS = [
     accessor: "company",
     Cell: (row) => {
       return (
-        <span className="font-bold text-blue-600">{row?.cell?.value}</span>
+        <span className="  text-blue-600">{row?.cell?.value}</span>
       );
     },
   },
@@ -93,7 +93,7 @@ const COLUMNS = [
     accessor: "sell_price",
     Cell: (row) => {
       return (
-        <span className="text-green-600 font-bold">{row?.cell?.value} TK</span>
+        <span className="text-green-600  ">{row?.cell?.value} TK</span>
       );
     },
   },

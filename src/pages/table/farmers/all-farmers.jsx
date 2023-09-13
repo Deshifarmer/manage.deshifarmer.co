@@ -33,7 +33,7 @@ const COLUMNS = [
               />
             </span> */}
             <div>
-              <p className=" font-bold text-slate-600 dark:text-slate-300 capitalize">
+              <p className="    text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
               <Link
@@ -41,7 +41,7 @@ const COLUMNS = [
                 to={`/farmer-details/${row.cell.row.original.farmer_id}`}
               >
                 <div className="flex">
-                  <p className="text-[10px] font-bold text-green-600 underline">
+                  <p className="text-[10px]    text-green-600 underline">
                     {row?.cell?.row?.original?.farmer_id}
                   </p>
                   <p>
@@ -74,7 +74,7 @@ const COLUMNS = [
       return (
         <Link target="_black" to={`/me-details/${row?.cell?.value}`}>
           <div className="flex items-center gap-1 text-blue-500 underline">
-            <p className="font-bold">{row?.cell?.value}</p>
+            <p className="  ">{row?.cell?.value}</p>
             <p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <span
-          className={`font-bold ${
+          className={`   ${
             calculateAge.calculateFarmerAge(row?.cell?.value) < 16
               ? "text-red-500"
               : ""
@@ -133,14 +133,14 @@ const COLUMNS = [
     Header: "yearly income",
     accessor: "yearly_income",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value} TK</span>;
+      return <span className="  ">{row?.cell?.value} TK</span>;
     },
   },
   {
     Header: "Location",
     accessor: "address",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className="  ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -148,7 +148,7 @@ const COLUMNS = [
     accessor: "onboard_date",
     Cell: (row) => {
       return (
-        <span className="font-bold">
+        <span className="  ">
           {moment(row?.cell?.value).format("LLLL")}
         </span>
       );

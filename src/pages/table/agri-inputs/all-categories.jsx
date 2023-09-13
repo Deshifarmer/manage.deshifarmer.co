@@ -17,7 +17,7 @@ const COLUMNS = [
     Header: "Id",
     accessor: "id",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -36,7 +36,7 @@ const COLUMNS = [
                 className="object-cover w-10 h-10 rounded-full"
               />
             </span> */}
-            <span className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
+            <span className="text-sm   text-slate-600 dark:text-slate-300 capitalize">
               {row?.cell?.row?.original.title}
             </span>
           </span>
@@ -48,7 +48,7 @@ const COLUMNS = [
     Header: "total product",
     accessor: "total_product",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
 ];

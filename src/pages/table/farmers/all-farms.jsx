@@ -22,8 +22,8 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <div className="">
-          <p className="font-bold">{row?.cell?.value}</p>
-          <p className="font-bold text-[10px] text-green-600">
+          <p className=" ">{row?.cell?.value}</p>
+          <p className="  text-[10px] text-green-600">
             {row?.cell?.row?.original?.farm_id}
           </p>
         </div>
@@ -39,7 +39,7 @@ const COLUMNS = [
           target="_black"
           to={`/farmer-details/${row.cell.row.original.farmer_id}`}
         >
-          <span className="font-bold text-blue-500 underline">
+          <span className="  text-blue-500 underline">
             {row?.cell?.value}
           </span>
         </Link>
@@ -54,16 +54,16 @@ const COLUMNS = [
         <div>
           <p className="text-xs">
             {" "}
-            <span className="font-bold">address :</span> {row?.cell?.value}
+            <span className=" ">address :</span> {row?.cell?.value}
           </p>
           <p className="text-xs">
             {" "}
-            <span className="font-bold">union :</span>{" "}
+            <span className=" ">union :</span>{" "}
             {row?.cell?.row?.original?.union}
           </p>
           <p className="text-xs">
             {" "}
-            <span className="font-bold">mouza :</span>{" "}
+            <span className=" ">mouza :</span>{" "}
             {row?.cell?.row?.original?.mouaza}
           </p>
         </div>
@@ -97,7 +97,7 @@ const COLUMNS = [
               />
             </svg>
           </p>
-          <p className="font-bold">{row?.cell?.value}</p>
+          <p className=" ">{row?.cell?.value}</p>
         </div>
       );
     },
@@ -128,14 +128,14 @@ const COLUMNS = [
     Header: "farm area",
     accessor: "farm_area",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
     Header: "soil type",
     accessor: "soil_type",
     Cell: (row) => {
-      return <span className="font-bold">{row?.cell?.value}</span>;
+      return <span className=" ">{row?.cell?.value}</span>;
     },
   },
   {
@@ -145,7 +145,7 @@ const COLUMNS = [
       return (
         <div className="flex items-center gap-2">
           <img className="w-5 h-5" src={grain} alt="" />
-          <p className="font-bold">
+          <p className=" ">
             {Array?.from(row?.cell?.value)?.map((grain) => (
               <span className="text-xs">{grain}</span>
             ))}

@@ -17,12 +17,12 @@ import GlobalFilter from "../react-tables/GlobalFilter";
 
 const COLUMNS = [
   {
-    Header: "Me Name & Picture",
+    Header: "Me Details",
     accessor: "full_name",
     Cell: (row) => {
       return (
         <div>
-          <span className="inline-flex items-center">
+          <span className="inline-flex items-center ">
             {/* <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
               <img
                 src={`${import.meta.env.VITE_IMG_URL}${
@@ -33,20 +33,20 @@ const COLUMNS = [
               />
             </span> */}
             <div>
-              <p className="text-sm font-bold text-slate-600 dark:text-slate-300 capitalize">
+              <p className="text-sm   text-slate-600 dark:text-slate-300 capitalize">
                 {row.cell.row?.original?.full_name}
               </p>
               <Link to={`/me-details/${row?.cell?.row?.original?.df_id}`}>
                 <div className="flex items-center text-green-500">
-                  <p className="text-[10px] text-green-600 font-bold underline">
-                    Me Profile : {row?.cell?.row?.original?.df_id}
+                  <p className="text-[10px] text-green-600  underline">
+                    <span>Me Profile :</span> {row?.cell?.row?.original?.df_id}
                   </p>
                   <p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-3 h-3 font-bold text-blue-600"
+                      className="w-3 h-3   text-blue-600"
                     >
                       <path
                         fillRule="evenodd"
@@ -61,7 +61,7 @@ const COLUMNS = [
                 to={`/channel-details/${row?.cell?.row?.original?.channel}`}
               >
                 <div className="flex items-center">
-                  <p className="text-[10px] underline text-blue-600 font-bold">
+                  <p className="text-[10px] underline text-blue-600  ">
                     Channel : {row?.cell?.row?.original?.channel}
                   </p>
                   <p>
@@ -69,7 +69,7 @@ const COLUMNS = [
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                      className="w-3 h-3 font-bold text-blue-600"
+                      className="w-3 h-3   text-blue-600"
                     >
                       <path
                         fillRule="evenodd"
@@ -82,7 +82,7 @@ const COLUMNS = [
               </Link>
               <Link to={`/distributor/${row?.cell?.row?.original?.under}`}>
                 <div className="flex items-center">
-                  <p className="text-[10px] underline text-blue-600 font-bold">
+                  <p className="text-[10px] underline text-blue-600  ">
                     Under : {row?.cell?.row?.original?.under}
                   </p>
                   <p>
@@ -123,7 +123,7 @@ const COLUMNS = [
               <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
             </svg>
           </p>
-          <span className="font-bold">{row?.cell?.value}</span>
+          <span className=" ">{row?.cell?.value}</span>
         </div>
       );
     },
@@ -150,7 +150,7 @@ const COLUMNS = [
                 />
               </svg>
             </p>
-            <p className="font-bold text-xs">{row?.cell?.value}</p>
+            <p className="  text-xs">{row?.cell?.value}</p>
           </div>
           <div className="flex gap-1 items-center">
             <p>
@@ -164,7 +164,7 @@ const COLUMNS = [
                 <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
               </svg>
             </p>
-            <p className="text-[10px] text-green-600 font-bold">
+            <p className="text-[10px] text-green-600  ">
               {row?.cell?.row?.original?.email}
             </p>
           </div>
@@ -183,8 +183,8 @@ const COLUMNS = [
                 />
               </svg>
             </p>
-            <p className="text-[10px] text-slate-900 font-bold">
-              Present Address : {row?.cell?.row?.original?.present_address}
+            <p className="text-[10px] dark:text-gray-200   font-barlow">
+              {row?.cell?.row?.original?.present_address}
             </p>
           </div>
         </div>
@@ -211,7 +211,7 @@ const COLUMNS = [
               />
             </svg>
           </p>
-          <span className="font-bold">
+          <span className=" ">
             {moment(row?.cell?.value).format("llll")}
           </span>
         </div>

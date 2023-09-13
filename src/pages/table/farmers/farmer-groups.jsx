@@ -26,14 +26,14 @@ const COLUMNS = [
       return (
         <>
           <div>
-            <p className="font-bold">
+            <p className=" ">
               {row?.cell?.row?.original?.farmer_group_name}
             </p>
             <Link
               to={`/farmer-groups-details/${row?.cell?.row?.original?.farmer_group_id}`}
             >
               <div className="flex items-center ">
-                <p className="text-[10px] font-bold underline text-blue-500">
+                <p className="text-[10px]   underline text-blue-500">
                   {row?.cell?.row?.original?.farmer_group_id}
                 </p>
                 <p>
@@ -65,7 +65,7 @@ const COLUMNS = [
         <>
           <div>
             <p
-              className={`font-bold ${
+              className={`  ${
                 row?.cell?.row?.original?.group_leader?.full_name
                   ? ""
                   : "text-red-600"
@@ -113,7 +113,7 @@ const COLUMNS = [
           to={`/me-details/${row?.cell?.row?.original?.group_manager_id}`}
         >
           <div className="flex items-center gap-1">
-            <p className="font-bold">{row?.cell?.value}</p>
+            <p className=" ">{row?.cell?.value}</p>
             <p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +149,7 @@ const COLUMNS = [
     accessor: "total_farmers",
     Cell: (row) => {
       return (
-        <span className="text-green-600 font-bold">{row?.cell?.value}</span>
+        <span className="text-green-600  ">{row?.cell?.value}</span>
       );
     },
   },
