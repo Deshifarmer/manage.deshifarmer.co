@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Stepper from "react-stepper-horizontal";
-
-const OrderStatusBar = () => {
+const OrderTrack = () => {
   const [statusUpdates, setStatusUpdates] = useState([]);
 
   useEffect(() => {
@@ -100,4 +97,4 @@ const OrderStatusBar = () => {
   );
 };
 
-export default OrderStatusBar;
+export default OrderTrack;
