@@ -387,6 +387,21 @@ export const menuItems = [
       },
     ],
   },
+  {
+    isHeadr: true,
+    title: "Tracking",
+  },
+  {
+    title: "Track Activities",
+    icon: "heroicons-outline:clipboard",
+    link: "#",
+    child: [
+      {
+        childtitle: "Harvest ",
+        childlink: "harvest",
+      },
+    ],
+  },
   // {
   //   isHeadr: true,
   //   title: "Pages",
