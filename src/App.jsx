@@ -160,6 +160,7 @@ import CashInRequests from "./pages/table/payments/cash-in-requests";
 import ProductsList from "./pages/table/agri-inputs/all-products";
 import CategoryList from "./pages/table/agri-inputs/all-categories";
 import OrderStatusBar from "../__test__/__test__";
+import Advisory from "./pages/table/tracking/advisory";
 
 function App() {
   return (
@@ -387,6 +388,7 @@ function App() {
           <Route path="changelog" element={<ChangelogPage />} />
           <Route path="channel-details/:id" element={<ChannelDetails />} />
           <Route path="company-details/:id" element={<CompanyDetails />} />
+          <Route path="advisory" element={<Advisory />} />
           <Route
             path="farmer-details/:id"
             element={
