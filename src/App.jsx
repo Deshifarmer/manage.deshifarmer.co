@@ -162,6 +162,8 @@ import CategoryList from "./pages/table/agri-inputs/all-categories";
 
 import Advisory from "./pages/table/tracking/advisory";
 import Attendance from "./pages/table/tracking/attendance";
+import Batch from "./pages/table/tracking/batch";
+import BatchDetails from "./pages/table/tracking/batch-details";
 
 function App() {
   return (
@@ -347,6 +349,7 @@ function App() {
           <Route path="farmer-groups-details/:id" element={<GroupDetails />} />
           <Route path="distributors-lists" element={<DistributorsLists />} />
           <Route path="attendance" element={<Attendance />} />
+          <Route path="batch" element={<Batch />} />
           <Route
             path="micro-entrepreneurs"
             element={<AllMicroEntrepreneurs />}
@@ -360,6 +363,7 @@ function App() {
           <Route path="my-orders" element={<MyOrders />} />
           <Route path="all-orders" element={<OrdersList />} />
           <Route path="order/:id" element={<SingleOrder />} />
+          <Route path="batch/:id" element={<BatchDetails />} />
           <Route path="all-payments" element={<AllPayments />} />
           <Route path="all-transactions" element={<TransactionList />} />
           <Route path="cash-in-requests" element={<CashInRequests />} />

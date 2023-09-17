@@ -20,6 +20,12 @@ export const trackingApi = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getSignleBatch: builder.query({
+      query: (id) => ({
+        url: `/hq/batch/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -27,4 +33,5 @@ export const {
   useGetAllAdvisoryQuery,
   useGetAllAttendanceQuery,
   useGetAllBatchQuery,
+  useGetSignleBatchQuery,
 } = trackingApi;

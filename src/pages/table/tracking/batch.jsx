@@ -11,118 +11,121 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../react-tables/GlobalFilter";
-import { useGetAllAttendanceQuery } from "../../../store/features/tracking/api";
+import {
+  useGetAllAttendanceQuery,
+  useGetAllBatchQuery,
+} from "../../../store/features/tracking/api";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
 const COLUMNS = [
   {
-    Header: "id",
-    accessor: "id",
+    Header: "batch id",
+    accessor: "batch_id",
     Cell: (row) => {
       return (
         <div>
-          <p>{row?.cell?.value}</p>
-        </div>
-      );
-    },
-  },
-  //   {
-  //     Header: "check in",
-  //     accessor: "check_in",
-  //     Cell: (row) => {
-  //       return (
-  //         <div>
-  //           <p className="">{moment(row?.cell?.value).format("LT")}</p>
-  //         </div>
-  //       );
-  //     },
-  //   },
-  {
-    Header: "check in",
-    accessor: "check_in",
-    Cell: (row) => {
-      // Get the time value and format it
-      const timeValue = moment(row?.cell?.value);
-      const formattedTime = timeValue.format("LT");
-
-      // Define CSS classes based on conditions
-      let textColorClass = "";
-      if (
-        timeValue.isBetween(
-          moment("09:15 AM", "hh:mm A"),
-          moment("09:30 AM", "hh:mm A")
-        )
-      ) {
-        textColorClass = "text-yellow-500 font-bold";
-      } else if (
-        timeValue.isAfter(moment("09:30 AM", "hh:mm A")) &&
-        timeValue.isBefore(moment("06:00 PM", "hh:mm A"))
-      ) {
-        textColorClass = "text-red-500 font-bold";
-      } else {
-        textColorClass = "text-green-500 font-bold";
-      }
-
-      return (
-        <div>
-          <p className={textColorClass}>{formattedTime}</p>
+          <Link to={`/batch/${row?.cell?.row?.original?.batch_id}`}>
+            <div className="flex items-center">
+              <p className="font-bold text-green-600 underline">
+                {row?.cell?.value}
+              </p>
+              <p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </p>
+            </div>
+          </Link>
         </div>
       );
     },
   },
 
   {
-    Header: "employee id",
-    accessor: "order",
+    Header: "created by",
+    accessor: "created_by",
     Cell: (row) => {
       return (
-        <Link to={`/me-details/${row?.cell?.row?.original?.employee_id}`}>
-          <p className="text-xs underline">
-            {row?.cell?.row?.original?.employee_id}
-          </p>
+        <Link to={`/me-details/${row?.cell?.row?.original?.created_by}`}>
+          <div className="flex items-center">
+            <p className="text-xs underline">
+              {row?.cell?.row?.original?.created_by}
+            </p>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-3 h-3"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </p>
+          </div>
         </Link>
       );
     },
   },
   {
-    Header: "Employee Name",
-    accessor: "date",
+    Header: "Farm id",
+    accessor: "farm_id",
     Cell: (row) => {
       return (
-        <p className="text-xs underline">
-          {row?.cell?.row?.original?.employee_name}
-        </p>
+        <div className="flex items-center">
+          <p className="text-xs underline">
+            {row?.cell?.row?.original?.farm_id}
+          </p>
+
+          <p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </p>
+        </div>
       );
     },
   },
   {
-    Header: "check in note",
-    accessor: "cin_note",
+    Header: "season",
+    accessor: "season",
     Cell: (row) => {
       return (
-        <p className="text-xs underline">
-          {row?.cell?.row?.original?.cin_note}
-        </p>
+        <p className="text-xs underline">{row?.cell?.row?.original?.season}</p>
       );
     },
   },
   {
-    Header: "check out note",
-    accessor: "cout_note",
+    Header: "crop",
+    accessor: "which_crop",
     Cell: (row) => {
       return (
         <p className="text-xs underline">
-          {row?.cell?.row?.original?.cout_note}
+          {row?.cell?.row?.original?.which_crop}
         </p>
       );
-    },
-  },
-  {
-    Header: "Check Out",
-    accessor: "check_out",
-    Cell: (row) => {
-      return <span>{moment(row?.cell?.value).format("LT")}</span>;
     },
   },
 ];
@@ -149,12 +152,12 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Batch = ({ title = "Attendance" }) => {
-  const { data: attendances } = useGetAllAttendanceQuery();
+const Batch = ({ title = "Batch" }) => {
+  const { data: batch } = useGetAllBatchQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => (attendances ? attendances : []), [attendances]);
+  const data = useMemo(() => (batch ? batch : []), [batch]);
 
-  console.log(attendances);
+  console.log(batch);
 
   const tableInstance = useTable(
     {

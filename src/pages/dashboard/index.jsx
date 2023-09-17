@@ -7,6 +7,8 @@ import RecentActivity from "@/components/partials/widget/recent-activity";
 import MostSales from "../../components/partials/widget/most-sales";
 import HomeBredCurbs from "./HomeBredCurbs";
 import GroupChart5 from "../../components/partials/widget/chart/group-chart5";
+import Calculation from "../components/dashboard/calculation";
+// import Calculation from "../components/dashboard/calculation";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
@@ -34,11 +36,11 @@ const Dashboard = () => {
             </div>
           </Card>
         </div>
-        {/* <div className="lg:col-span-4 col-span-12">
-          <Card title="Overview" headerslot={<SelectMonth />}>
-            <RadialsChart />
+        <div className="lg:col-span-12 col-span-12">
+          <Card title="Gender Analytics" headerslot={<SelectMonth />}>
+            <Calculation />
           </Card>
-        </div> */}
+        </div>
         <div className="lg:col-span-8 col-span-12">
           <Card title="All Company" headerslot={<SelectMonth />} noborder>
             <CompanyTable />
