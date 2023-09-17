@@ -161,6 +161,7 @@ import ProductsList from "./pages/table/agri-inputs/all-products";
 import CategoryList from "./pages/table/agri-inputs/all-categories";
 
 import Advisory from "./pages/table/tracking/advisory";
+import Attendance from "./pages/table/tracking/attendance";
 
 function App() {
   return (
@@ -345,6 +346,7 @@ function App() {
           <Route path="farmer-groups" element={<FarmerGroups />} />
           <Route path="farmer-groups-details/:id" element={<GroupDetails />} />
           <Route path="distributors-lists" element={<DistributorsLists />} />
+          <Route path="attendance" element={<Attendance />} />
           <Route
             path="micro-entrepreneurs"
             element={<AllMicroEntrepreneurs />}

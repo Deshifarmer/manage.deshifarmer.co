@@ -398,8 +398,8 @@ export const menuItems = [
     link: "#",
     child: [
       {
-        childtitle: "Harvest ",
-        childlink: "harvest",
+        childtitle: "Attendance ",
+        childlink: "attendance",
       },
       {
         childtitle: "Advisory ",

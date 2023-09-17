@@ -8,7 +8,13 @@ export const trackingApi = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllAttendance: builder.query({
+      query: () => ({
+        url: `/hq/attendance`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllAdvisoryQuery } = trackingApi;
+export const { useGetAllAdvisoryQuery, useGetAllAttendanceQuery } = trackingApi;
