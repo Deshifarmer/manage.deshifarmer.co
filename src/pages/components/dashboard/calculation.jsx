@@ -21,12 +21,12 @@ const Calculation = () => {
     options: {
       chart: {
         type: "bar",
-        height: 430,
+        height: 630,
         stacked: true,
         toolbar: {
           show: true,
-          offsetX: 0,
-          offsetY: 0,
+          offsetX: 10,
+          offsetY: 10,
           tools: {
             download: false,
             selection: true,
@@ -74,8 +74,8 @@ const Calculation = () => {
         "Loading"
       ) : (
         <ReactApexChart
-          options={chartData.options}
-          series={chartData.series}
+          options={chartData?.options}
+          series={chartData?.series}
           type="bar"
           height={430}
         />
