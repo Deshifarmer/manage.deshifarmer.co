@@ -14,7 +14,17 @@ export const trackingApi = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllBatch: builder.query({
+      query: () => ({
+        url: `/hq/batch`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllAdvisoryQuery, useGetAllAttendanceQuery } = trackingApi;
+export const {
+  useGetAllAdvisoryQuery,
+  useGetAllAttendanceQuery,
+  useGetAllBatchQuery,
+} = trackingApi;
