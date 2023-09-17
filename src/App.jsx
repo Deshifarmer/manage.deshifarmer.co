@@ -159,7 +159,7 @@ import TransactionList from "./pages/table/payments/all-transactions";
 import CashInRequests from "./pages/table/payments/cash-in-requests";
 import ProductsList from "./pages/table/agri-inputs/all-products";
 import CategoryList from "./pages/table/agri-inputs/all-categories";
-import OrderStatusBar from "../__test__/__test__";
+
 import Advisory from "./pages/table/tracking/advisory";
 
 function App() {
@@ -268,7 +268,7 @@ function App() {
           <Route path="crm" element={<CrmPage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route path="banking" element={<BankingPage />} />
-          <Route path="test-share" element={<OrderStatusBar />} />
+
           {/* App pages */}
           <Route path="todo" element={<TodoPage />} />
           <Route path="email" element={<EmailPage />} />
