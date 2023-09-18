@@ -22,8 +22,6 @@ const FarmerProfile = ({
   const cpc = current_producing_crop && JSON.parse(current_producing_crop);
   const fc = focused_crop && JSON.parse(focused_crop);
 
-  console.log(farmer_details);
-
   return (
     <div>
       <div className="space-y-5 profile-page">

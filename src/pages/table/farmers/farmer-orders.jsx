@@ -148,26 +148,26 @@ const FarmerOrders = ({ title = "Recent Orders", orders, isLoading }) => {
     useGlobalFilter,
     useSortBy,
     usePagination,
-    useRowSelect,
+    useRowSelect
 
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+    //         </div>
+    //       ),
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
   const {
     getTableProps,

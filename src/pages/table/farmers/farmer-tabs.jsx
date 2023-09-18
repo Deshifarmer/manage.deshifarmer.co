@@ -16,18 +16,18 @@ const FarmerTabs = ({ params }) => {
   const buttons = [
     {
       title: "Recent Orders",
-      icon: "heroicons-outline:home",
+      icon: "heroicons-outline:shopping-cart",
     },
     {
       title: "Farms",
-      icon: "heroicons-outline:user",
+      icon: "heroicons-outline:map",
     },
     {
-      title: "Messages",
+      title: "Overview",
       icon: "heroicons-outline:chat-alt-2",
     },
     {
-      title: "Settings",
+      title: "Map",
       icon: "heroicons-outline:cog",
     },
   ];
