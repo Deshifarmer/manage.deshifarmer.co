@@ -164,6 +164,7 @@ import Advisory from "./pages/table/tracking/advisory";
 import Attendance from "./pages/table/tracking/attendance";
 import Batch from "./pages/table/tracking/batch";
 import BatchDetails from "./pages/table/tracking/batch-details";
+import FarmBatch from "./pages/table/farmers/farm-batch";
 
 function App() {
   return (
@@ -364,6 +365,7 @@ function App() {
           <Route path="all-orders" element={<OrdersList />} />
           <Route path="order/:id" element={<SingleOrder />} />
           <Route path="batch/:id" element={<BatchDetails />} />
+          <Route path="farm-details/:id" element={<FarmBatch />} />
           <Route path="all-payments" element={<AllPayments />} />
           <Route path="all-transactions" element={<TransactionList />} />
           <Route path="cash-in-requests" element={<CashInRequests />} />

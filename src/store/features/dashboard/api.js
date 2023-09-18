@@ -40,6 +40,15 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         // },
       }),
     }),
+    getMapDetails: builder.query({
+      query: () => ({
+        url: `/hq/dashboard/map?location=district`,
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
+      }),
+    }),
   }),
 });
 
@@ -48,4 +57,5 @@ export const {
   useGetCompaniesQuery,
   useGetLocationWiseFarmerQuery,
   useGetMaleFemaleQuery,
+  useGetMapDetailsQuery,
 } = dashboardApiSlice;

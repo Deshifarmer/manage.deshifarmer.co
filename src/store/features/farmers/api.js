@@ -40,6 +40,18 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getFarmDetails: builder.query({
+      query: (id) => ({
+        url: `/hq/farm/${id}`,
+        method: "GET",
+      }),
+    }),
+    getBatchDetails: builder.query({
+      query: (id) => ({
+        url: `/hq/batch/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -50,4 +62,6 @@ export const {
   useGetAllGroupsQuery,
   useGetSingleGroupQuery,
   useGetFarmerWiseFarmQuery,
+  useGetFarmDetailsQuery,
+  useGetBatchDetailsQuery,
 } = farmersApiSlice;

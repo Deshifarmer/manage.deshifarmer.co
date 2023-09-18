@@ -222,6 +222,8 @@ const GroupChart5 = () => {
     }
   );
 
+  console.log(data);
+
   const statistics = [
     {
       name: columnCharthome3,
@@ -300,6 +302,14 @@ const GroupChart5 = () => {
       name: columnCharthome4,
       title: "Orders",
       count: data?.total_order,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
+    {
+      name: columnCharthome2,
+      title: "Total Sell Amount",
+      count: data?.agri_input_sell,
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
       icon: "heroicons:cube",
