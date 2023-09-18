@@ -28,11 +28,11 @@ const FarmerProfile = ({
     <div>
       <div className="space-y-5 profile-page">
         <div className="profiel-wrap px-[35px] pb-10 md:pt-[84px] pt-10 rounded-lg bg-white dark:bg-slate-800 lg:flex lg:space-y-0 space-y-6 justify-between items-end relative z-[1]">
-          <div className="bg-lime-200 dark:bg-slate-700 absolute left-0 top-0 md:h-1/2 h-[150px] w-full z-[-1] "></div>
+          <div className="bg-black-500 dark:bg-slate-700 absolute left-0 top-0 md:h-1/2 h-[150px] w-full z-[-1] "></div>
           <div className="profile-box flex-none md:text-start text-center">
             <div className="md:flex items-end md:space-x-6 rtl:space-x-reverse">
               <div className="flex-none">
-                <div className="md:h-[286px] md:w-[286px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded ring-4 ring-slate-100 relative">
+                <div className="md:h-[286px] md:w-[286px] h-[140px] w-[140px] md:ml-0 md:mr-0 ml-auto mr-auto md:mb-0 mb-4 rounded ring-1 ring-slate-100 relative">
                   {farmer_details?.image && (
                     <img
                       src={`${import.meta.env.VITE_IMG_URL}${
