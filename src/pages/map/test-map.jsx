@@ -132,7 +132,7 @@ const TestGeoJSONMap = () => {
           <MapContainer
             center={[23.685, 90.3563]}
             zoom={7}
-            style={{ height: "40vh" }}
+            style={{ height: "60vh", width: "100%" }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

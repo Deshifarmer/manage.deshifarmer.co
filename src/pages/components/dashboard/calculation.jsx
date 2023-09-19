@@ -117,7 +117,7 @@ const StackBarChart = ({ height = 325 }) => {
     },
     plotOptions: {
       bar: {
-        horizontal: false,
+        horizontal: true,
         endingShape: "rounded",
         columnWidth: "55%",
       },

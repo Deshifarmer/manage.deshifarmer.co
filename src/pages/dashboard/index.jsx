@@ -87,7 +87,9 @@ const Dashboard = () => {
             //   </div>
             // }
           >
-            <MostSales filterMap={filterMap} />
+            <div className="grid col-span-6">
+              <MostSales filterMap={filterMap} />
+            </div>
           </Card>
         </div>
         {/* <div className="lg:col-span-4 col-span-12">
