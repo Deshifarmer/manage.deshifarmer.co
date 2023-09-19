@@ -411,6 +411,29 @@ export const menuItems = [
       },
     ],
   },
+  {
+    title: "Other Activities",
+    icon: "heroicons-outline:clipboard",
+    link: "#",
+    child: [
+      {
+        childtitle: "Insurance Request",
+        childlink: "insurance",
+      },
+      {
+        childtitle: "Crop Advisory",
+        childlink: "crop-advisory",
+      },
+      {
+        childtitle: "Logistics Request",
+        childlink: "logistics-request",
+      },
+      {
+        childtitle: "Agri Finance Request",
+        childlink: "agri-finance-request",
+      },
+    ],
+  },
   // {
   //   isHeadr: true,
   //   title: "Pages",
