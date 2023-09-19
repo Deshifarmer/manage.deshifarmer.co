@@ -100,7 +100,7 @@ const MostSales = ({ filterMap }) => {
         <div className="flex-none">
           <h4 className="text-slate-600 dark:text-slate-200 text-sm font-normal mb-[6px]">
             {/* Total earnings */}
-            Total Farmers (division wise)
+            Total Farmers (Division Wise)
           </h4>
           {filterMap === "usa" && (
             <div className="text-lg font-medium mb-[6px] dark:text-white text-slate-900">
@@ -128,8 +128,8 @@ const MostSales = ({ filterMap }) => {
                         ${item.cls}
                         `}
                   ></span>
-                  <span>{item.title}</span>
                 </span>
+                <span className="mx-2">{item.title}</span> -{" "}
                 <span>{item.amount}</span>
               </li>
             ))}
