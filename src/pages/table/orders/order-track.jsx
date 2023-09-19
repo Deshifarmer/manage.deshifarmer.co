@@ -66,7 +66,7 @@ const OrderTrack = ({ status }) => {
   const activeStatusText = status; // Change this to your desired status text
   const activeStep = findStatusIndex(activeStatusText);
   const [isDark] = useDarkMode();
-  console.log();
+
 
   return (
     <div>

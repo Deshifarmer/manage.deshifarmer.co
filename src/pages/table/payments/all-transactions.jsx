@@ -220,7 +220,7 @@ const TransactionList = ({ title = "All Transactions" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  console.log("transactions", transactions);
+
   return (
     <>
       {isLoading ? (

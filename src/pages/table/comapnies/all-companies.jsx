@@ -212,7 +212,7 @@ const CompanyList = ({ title = "Companies" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (companies ? companies : []), [companies]);
 
-  console.log(companies);
+
 
   isError && console.log("Error in Company Table");
 

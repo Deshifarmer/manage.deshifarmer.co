@@ -45,7 +45,7 @@ const COLUMNS = [
 
 const RecentActivity = () => {
   const { data: orders, isLoading, isError, error } = useGetAllOrdersQuery();
-  console.log(orders);
+
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (orders ? orders : []), [orders]);
   isError && console.log("Error in Company Table");

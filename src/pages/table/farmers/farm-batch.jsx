@@ -169,7 +169,7 @@ const FarmBatch = ({ title = "Farm Batches" }) => {
     [batch?.batch]
   );
 
-  console.log(batch);
+
 
   const tableInstance = useTable(
     {

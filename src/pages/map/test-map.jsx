@@ -51,7 +51,7 @@ import { useGetMapDetailsQuery } from "../../store/features/dashboard/api";
 
 const TestGeoJSONMap = () => {
   const { data, isLoading } = useGetMapDetailsQuery();
-  console.log(data);
+ 
   const [markerData, setMarkerData] = useState([
     {
       id: 1,

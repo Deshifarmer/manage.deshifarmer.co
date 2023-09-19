@@ -208,7 +208,7 @@ const FarmerGroups = ({ title = "Farmer Groups" }) => {
   const data = useMemo(() => (groups ? groups : []), [groups]);
   const defaultPageSize = 25;
 
-  console.log(groups);
+
 
   const tableInstance = useTable(
     {

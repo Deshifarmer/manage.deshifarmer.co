@@ -223,7 +223,7 @@ const OrdersList = ({ title = "Orders List" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (orders ? orders : []), [orders]);
 
-  console.log(data);
+
 
   const tableInstance = useTable(
     {

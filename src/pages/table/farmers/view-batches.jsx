@@ -18,7 +18,7 @@ const ViewBatches = ({ row }) => {
   const token = localStorage.getItem("hq-token");
   const [showModal, setShowModal] = useState(false);
 
-  console.log(row);
+
 
   const closeModal = () => {
     setShowModal(false);

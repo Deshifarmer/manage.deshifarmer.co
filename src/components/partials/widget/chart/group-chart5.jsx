@@ -222,7 +222,7 @@ const GroupChart5 = () => {
     }
   );
 
-  console.log(data);
+
 
   const statistics = [
     {
@@ -340,7 +340,7 @@ const GroupChart5 = () => {
     // },
   ];
 
-  console.log(data);
+
   return (
     <>
       {statistics.map((item, i) => (

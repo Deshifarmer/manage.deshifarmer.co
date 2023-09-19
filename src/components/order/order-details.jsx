@@ -40,7 +40,7 @@ const SingleOrder = () => {
     } catch (error) {}
   };
 
-  console.log(order_details);
+
 
   useEffect(() => {
     dataFetch();

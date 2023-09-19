@@ -18,7 +18,7 @@ const OrderDetails = () => {
   };
   const componentRef = useRef();
 
-  console.log(status);
+
 
   return (
     <div>

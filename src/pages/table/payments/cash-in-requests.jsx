@@ -258,7 +258,7 @@ const CashInRequests = ({ title = "Cash In Requests" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  console.log("cash_in_requests", cash_in_requests);
+
   return (
     <>
       <Card>

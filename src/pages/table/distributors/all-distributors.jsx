@@ -219,7 +219,7 @@ const AllDistributors = ({ title = "All Distributors" }) => {
     [distributors]
   );
 
-  console.log(distributors);
+
 
   const tableInstance = useTable(
     {

@@ -80,8 +80,7 @@ const CategoryList = ({ title = "All Category" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (categories ? categories : []), [categories]);
 
-  console.log(data);
-
+ 
   const tableInstance = useTable(
     {
       columns,

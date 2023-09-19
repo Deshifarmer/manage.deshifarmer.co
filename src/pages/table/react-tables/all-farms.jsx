@@ -169,7 +169,7 @@ const AllFarms = ({ title = "All Farms" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (farms ? farms : []), [farms]);
 
-  console.log(farms);
+ 
 
   const tableInstance = useTable(
     {

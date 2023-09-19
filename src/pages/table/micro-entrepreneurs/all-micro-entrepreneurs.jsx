@@ -352,7 +352,7 @@ const AllMicroEntrepreneurs = ({ title = "All Micro Entrepreneurs" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  console.log("me", me);
+ 
   return (
     <>
       {isLoading ? (
