@@ -1,4 +1,3 @@
-import { useGetCompaniesQuery } from "../../../store/features/dashboard/api";
 import React, { useMemo } from "react";
 import moment from "moment";
 import Icon from "@/components/ui/Icon";
@@ -12,38 +11,15 @@ import {
 import { useGetAllOrdersQuery } from "../../../store/features/orders/api";
 
 const COLUMNS = [
-  // {
-  //   Header: "company",
-  //   accessor: "full_name",
-  //   Cell: (row) => {
-  //     return (
-  //       <span className="inline-flex items-center">
-  //         <span className="w-10 h-10 rounded-full ltr:mr-3 rtl:ml-3 flex-none ">
-  //           <img
-  //             src={`${import.meta.env.VITE_IMG_URL}/${
-  //               row?.cell?.row?.original?.photo
-  //             }`}
-  //             alt=""
-  //             className="object-cover w-10 h-10 rounded-full"
-  //           />
-  //         </span>
-  //         <div className="">
-  //           <p className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-  //             {row?.cell.row.original.full_name}
-  //           </p>
-  //           <p className="text-[8px] font-bold text-[#0CE7FA] ">
-  //             {row?.cell?.row?.original?.df_id}
-  //           </p>
-  //         </div>
-  //       </span>
-  //     );
-  //   },
-  // },
   {
     Header: "Placement Time",
     accessor: "created_at",
     Cell: (row) => {
-      return <span>{moment(row?.cell?.value).startOf("day").fromNow()}</span>;
+      return (
+        <span className="text-xs">
+          {moment(row?.cell?.value).startOf("day").fromNow()}
+        </span>
+      );
     },
   },
 
@@ -51,7 +27,7 @@ const COLUMNS = [
     Header: "Total Amount",
     accessor: "total_price",
     Cell: (row) => {
-      return <span>{row?.cell?.value} TK</span>;
+      return <span className="text-xs">{row?.cell?.value} TK</span>;
     },
   },
   {
@@ -59,7 +35,7 @@ const COLUMNS = [
     accessor: "status",
     Cell: (row) => {
       return (
-        <span className="text-red-500 bg-red-100 px-4 py-1 rounded-full">
+        <span className="text-red-500 text-xs bg-red-100 px-4 py-1 rounded-full">
           {row?.cell?.value}
         </span>
       );

@@ -47,8 +47,11 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import axios from "axios";
+import { useGetMapDetailsQuery } from "../../store/features/dashboard/api";
 
 const TestGeoJSONMap = () => {
+  const { data, isLoading } = useGetMapDetailsQuery();
+  console.log(data);
   const [markerData, setMarkerData] = useState([
     {
       id: 1,
@@ -121,31 +124,37 @@ const TestGeoJSONMap = () => {
   // }, []);
 
   return (
-    <div style={{ borderRadius: "15px", overflow: "hidden" }}>
-      <MapContainer
-        center={[23.685, 90.3563]}
-        zoom={7}
-        style={{ height: "40vh" }}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {markerData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={[marker.latitude, marker.longitude]}
+    <>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div style={{ borderRadius: "15px", overflow: "hidden" }}>
+          <MapContainer
+            center={[23.685, 90.3563]}
+            zoom={7}
+            style={{ height: "40vh" }}
           >
-            <Popup>
-              <div>
-                <h3>{marker.title}</h3>
-                <p>{marker.description}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
-    </div>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {data?.map((marker) => (
+              <Marker
+                key={marker.id}
+                position={[marker.latitude, marker.longitude]}
+              >
+                <Popup>
+                  <div>
+                    <h3>{marker.title}</h3>
+                    <p>{marker.description}</p>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+        </div>
+      )}
+    </>
   );
 };
 
