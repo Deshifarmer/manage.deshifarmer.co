@@ -418,7 +418,7 @@ export const menuItems = [
     child: [
       {
         childtitle: "Insurance Request",
-        childlink: "insurance",
+        childlink: "insurance-request",
       },
       {
         childtitle: "Crop Advisory",
@@ -426,7 +426,7 @@ export const menuItems = [
       },
       {
         childtitle: "Logistics Request",
-        childlink: "logistics-request",
+        childlink: "logsitics-request",
       },
       {
         childtitle: "Agri Finance Request",

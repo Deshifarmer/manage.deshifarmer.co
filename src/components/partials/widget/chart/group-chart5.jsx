@@ -308,12 +308,36 @@ const GroupChart5 = () => {
     },
     {
       name: columnCharthome2,
-      title: "Total Sell Amount",
+      title: "Sell Amount (Input)",
       count: data?.agri_input_sell,
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
       icon: "heroicons:cube",
     },
+    // {
+    //   name: columnCharthome2,
+    //   title: "Sell Amount (Vegetables)",
+    //   count: data?.agri_input_sell,
+    //   bg: "bg-[#E5F9FF] ",
+    //   text: "text-warning-500",
+    //   icon: "heroicons:cube",
+    // },
+    // {
+    //   name: columnCharthome2,
+    //   title: "Hours of Advisory",
+    //   count: data?.agri_input_sell,
+    //   bg: "bg-[#E5F9FF] ",
+    //   text: "text-warning-500",
+    //   icon: "heroicons:cube",
+    // },
+    // {
+    //   name: columnCharthome2,
+    //   title: "Weight of Sold Vegetables (Kg)",
+    //   count: data?.agri_input_sell,
+    //   bg: "bg-[#E5F9FF] ",
+    //   text: "text-warning-500",
+    //   icon: "heroicons:cube",
+    // },
   ];
 
   console.log(data);
