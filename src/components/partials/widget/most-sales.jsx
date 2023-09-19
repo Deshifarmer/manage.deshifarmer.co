@@ -85,11 +85,12 @@ const MostSales = ({ filterMap }) => {
 
   const division_data = data?.map((division) => {
     return {
-      title: division?.division_name,
+      title: division?.district_name,
       amount: division?.total,
       cls: getRandomClass(),
     };
   });
+
   const total = data?.reduce((acc, curr) => acc + parseInt(curr.total), 0);
 
   return (

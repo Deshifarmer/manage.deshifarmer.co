@@ -14,7 +14,7 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
     }),
     getLocationWiseFarmer: builder.query({
       query: () => ({
-        url: `/hq/dashboard/location_wise_farmer?location=division`,
+        url: `/hq/dashboard/location_wise_farmer?location=district`,
         method: "GET",
         // headers: {
         //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
