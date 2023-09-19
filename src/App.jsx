@@ -165,6 +165,10 @@ import Attendance from "./pages/table/tracking/attendance";
 import Batch from "./pages/table/tracking/batch";
 import BatchDetails from "./pages/table/tracking/batch-details";
 import FarmBatch from "./pages/table/farmers/farm-batch";
+import InsuranceRequest from "./pages/table/other-activities/insurance-request";
+import CropAdvisory from "./pages/table/other-activities/crop-advisory";
+import LogisticsRequest from "./pages/table/other-activities/logistics-request";
+import AgriFinanceRequest from "./pages/table/other-activities/agri-finance-request";
 
 function App() {
   return (
@@ -283,7 +287,10 @@ function App() {
           <Route path="kanban" element={<KanbanPage />} />
           <Route path="calender" element={<CalenderPage />} />
           {/* Other Activities */}
-
+          <Route path="insurance-request" element={<InsuranceRequest />} />
+          <Route path="crop-advisory" element={<CropAdvisory />} />
+          <Route path="logsitics-request" element={<LogisticsRequest />} />
+          <Route path="agri-finance-request" element={<AgriFinanceRequest />} />
           {/* Components pages */}
           <Route path="button" element={<Button />} />
           <Route path="dropdown" element={<Dropdown />} />
