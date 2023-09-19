@@ -282,6 +282,8 @@ function App() {
           <Route path="project-details" element={<ProjectDetailsPage />} />
           <Route path="kanban" element={<KanbanPage />} />
           <Route path="calender" element={<CalenderPage />} />
+          {/* Other Activities */}
+
           {/* Components pages */}
           <Route path="button" element={<Button />} />
           <Route path="dropdown" element={<Dropdown />} />
