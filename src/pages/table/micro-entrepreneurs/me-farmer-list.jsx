@@ -230,7 +230,6 @@ const MeFarmerLists = ({
     [farmer_lists]
   );
 
-
   const defaultPageSize = 200;
 
   const excel_data = data.map((farmer) => {
@@ -331,12 +330,12 @@ const MeFarmerLists = ({
             <h4 className="card-title">{title}</h4>
             <div className="flex gap-4">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-              {/* <button
+              <button
                 className="text-xs border text-white px-4 border-slate-600 rounded bg-green-800"
                 onClick={handleExport}
               >
                 Export to Excel
-              </button> */}
+              </button>
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">

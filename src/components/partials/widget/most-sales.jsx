@@ -117,13 +117,13 @@ const MostSales = ({ filterMap }) => {
           {/* <div className="text-xs font-light dark:text-slate-200">
           <span className="text-primary-500">+08%</span> From last month
         </div> */}
-          <ul className="bg-slate-50 flex dark:bg-slate-900 rounded p-4 min-w-[184px] space-x-10 my-4">
+          <ul className="bg-slate-50 grid grid-cols-4 lg:grid-cols-5 dark:bg-slate-900 rounded p-4 min-w-[184px] gap-4  my-4">
             {division_data?.map((item, i) => (
               <li
                 key={i}
-                className="flex justify-between text-xs text-slate-600 dark:text-slate-300"
+                className="flex border p-2 rounded-lg justify-between  text-xs text-slate-600 dark:text-slate-300"
               >
-                <span className="flex space-x-2 rtl:space-x-reverse items-center">
+                <span className="flex space-x-2 rtl:space-x-reverse items-center ">
                   <span
                     className={` inline-flex h-[6px] w-[6px] bg-primary-500 ring-opacity-25 rounded-full ring-4
                         ${item.cls}
