@@ -389,6 +389,21 @@ export const menuItems = [
   },
   {
     isHeadr: true,
+    title: "Agri Outputs",
+  },
+  {
+    title: "All Agri Outputs",
+    icon: "heroicons-outline:clipboard",
+    link: "#",
+    child: [
+      {
+        childtitle: "Sourcing",
+        childlink: "sourcing",
+      },
+    ],
+  },
+  {
+    isHeadr: true,
     title: "Tracking",
   },
   //

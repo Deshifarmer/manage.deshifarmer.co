@@ -314,7 +314,7 @@ const FarmerProfile = ({
                   </div>
                   <div className="flex-1">
                     <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
-                      Focused Crop
+                      Farm Area
                     </div>
                     <div className="text-base text-slate-600 capitalize dark:text-slate-50">
                       {farmer_details?.farm_area}

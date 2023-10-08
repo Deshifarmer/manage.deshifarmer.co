@@ -148,9 +148,7 @@ const COLUMNS = [
     accessor: "onboard_date",
     Cell: (row) => {
       return (
-        <span className="  ">
-          {moment(row?.cell?.value).format("LLLL")}
-        </span>
+        <span className="  ">{moment(row?.cell?.value).format("LLLL")}</span>
       );
     },
   },
@@ -226,7 +224,7 @@ const AllFarmers = ({ title = "All Farmers" }) => {
     const fileData = new Blob([excelBuffer], {
       type: "application/octet-stream",
     });
-    saveAs(fileData, "exported_data.xlsx");
+    saveAs(fileData, "all_farmers_data.xlsx");
   };
 
   const {
@@ -383,12 +381,12 @@ const AllFarmers = ({ title = "All Farmers" }) => {
                 onChange={(e) => setSearchValue(e.target.value)}
               />
               {/* Excel Import */}
-              {/* <button
+              <button
                 className="text-xs border px-4 border-slate-600 rounded bg-green-800 text-white"
                 onClick={handleExport}
               >
                 Export to Excel
-              </button> */}
+              </button>
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">

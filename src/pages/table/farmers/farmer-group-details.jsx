@@ -111,9 +111,7 @@ const COLUMNS = [
     accessor: "phone",
     Cell: (row) => {
       return (
-        <span className="text-blue-500   underline">
-          {row?.cell?.value}
-        </span>
+        <span className="text-blue-500   underline">{row?.cell?.value}</span>
       );
     },
   },
@@ -143,9 +141,7 @@ const COLUMNS = [
     accessor: "created_at",
     Cell: (row) => {
       return (
-        <span className=" ">
-          {moment(row?.cell?.value).format("LLL")}
-        </span>
+        <span className=" ">{moment(row?.cell?.value).format("LLL")}</span>
       );
     },
   },
@@ -320,12 +316,12 @@ const GroupDetails = ({ title = "Group Details" }) => {
             <h4 className="card-title">{title}</h4>
             <div className="flex gap-4">
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-              {/* <button
+              <button
                 className="text-xs border text-white px-4 border-slate-600 rounded bg-green-800"
                 onClick={handleExport}
               >
                 Export to Excel
-              </button> */}
+              </button>
             </div>
           </div>
           <div className="overflow-x-auto -mx-6">

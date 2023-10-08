@@ -123,7 +123,7 @@ import MyOrders from "./pages/table/react-tables/my-orders";
 import AllPayments from "./pages/table/react-tables/all-payments";
 import SetKpi from "./pages/forms/set-kpi";
 import UpdateDistributorInfo from "./pages/forms/update-distributor-info";
-import DistributorDetails from "./pages/table/react-tables/distributor-details";
+// import DistributorDetails from "./pages/table/react-tables/distributor-details";
 import OrdersFromDistributor from "./pages/table/react-tables/orders-from-drstributor";
 import OrdersFromFarmers from "./pages/table/react-tables/orders-from-farmers";
 import AddDistributor from "./pages/forms/add-distributor";
@@ -169,6 +169,8 @@ import InsuranceRequest from "./pages/table/other-activities/insurance-request";
 import CropAdvisory from "./pages/table/other-activities/crop-advisory";
 import LogisticsRequest from "./pages/table/other-activities/logistics-request";
 import AgriFinanceRequest from "./pages/table/other-activities/agri-finance-request";
+import TrackSources from "./pages/table/agri-outputs/track-source";
+import DistributorDetails from "./pages/table/distributors/distributor-details";
 
 function App() {
   return (
@@ -333,6 +335,8 @@ function App() {
           <Route path="add-manager" element={<AddManager />} />
           <Route path="set-kpi" element={<SetKpi />} />
           <Route path="input-order" element={<InputOrder />} />
+          {/* Agri Outputs */}
+          <Route path="sourcing" element={<TrackSources />} />
           <Route path="input-category" element={<InputCategory />} />
           <Route path="create-channel" element={<CreateChannel />} />
           <Route path="textarea" element={<TextareaPage />} />

@@ -16,9 +16,8 @@ const OrderDetails = () => {
   const printPage = () => {
     window.print();
   };
+
   const componentRef = useRef();
-
-
 
   return (
     <div>
