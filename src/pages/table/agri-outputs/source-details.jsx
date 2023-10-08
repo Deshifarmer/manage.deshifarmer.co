@@ -1,12 +1,10 @@
 import React, { useState, useRef } from "react";
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import Textinput from "@/components/ui/Textinput";
 import { saveAs } from "file-saver";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ViewSource = ({ row }) => {
@@ -106,7 +104,7 @@ const ViewSource = ({ row }) => {
   return (
     <div>
       <Modal
-        title="Receipt Details"
+        title="View Details"
         label="View Source"
         labelClass="btn-outline-dark"
         uncontrol
@@ -127,7 +125,7 @@ const ViewSource = ({ row }) => {
                 Already Accepted, You can't accept it again
               </p>
             ) : (
-              <div>
+              <div className="space-x-4">
                 <Button
                   text="Accept"
                   className="btn-success "
@@ -164,10 +162,10 @@ const ViewSource = ({ row }) => {
         </div> */}
         <div className="mt-6">
           <Textinput
-            label="Requested Amount"
+            label="test fields"
             id="am"
             type="text"
-            placeholder="Requested Amount"
+            placeholder="test fields"
             defaultValue=""
           />
         </div>
