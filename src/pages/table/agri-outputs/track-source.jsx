@@ -1,8 +1,7 @@
-import React, { useState, useMemo } from "react";
-import { advancedTable } from "../../../constant/table-data";
+import React, { useMemo } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import Tooltip from "@/components/ui/Tooltip";
+
 import {
   useTable,
   useRowSelect,
@@ -12,6 +11,8 @@ import {
 } from "react-table";
 import GlobalFilter from "../react-tables/GlobalFilter";
 import { useGetAllSourcesQuery } from "../../../store/features/agri-output/api";
+import { Link } from "react-router-dom";
+import ViewSource from "./source-details";
 
 const COLUMNS = [
   {
@@ -65,72 +66,28 @@ const COLUMNS = [
     Header: "farmer id",
     accessor: "which_farmer",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return (
+        <span className="text-blue-600 underline">
+          <Link to={`/farmer-details/${row.cell.row.original.which_farmer}`}>
+            {row?.cell?.value}
+          </Link>
+        </span>
+      );
     },
   },
-
-  // {
-  //   Header: "status",
-  //   accessor: "status",
-  //   Cell: (row) => {
-  //     return (
-  //       <span className="block w-full">
-  //         <span
-  //           className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
-  //             row?.cell?.value === "paid"
-  //               ? "text-success-500 bg-success-500"
-  //               : ""
-  //           }
-  //           ${
-  //             row?.cell?.value === "due"
-  //               ? "text-warning-500 bg-warning-500"
-  //               : ""
-  //           }
-  //           ${
-  //             row?.cell?.value === "cancled"
-  //               ? "text-danger-500 bg-danger-500"
-  //               : ""
-  //           }
-
-  //            `}
-  //         >
-  //           {row?.cell?.value}
-  //         </span>
-  //       </span>
-  //     );
-  //   },
-  // },
-  // {
-  //   Header: "action",
-  //   accessor: "action",
-  //   Cell: (row) => {
-  //     return (
-  //       <div className="flex space-x-3 rtl:space-x-reverse">
-  //         <Tooltip content="View" placement="top" arrow animation="shift-away">
-  //           <button className="action-btn" type="button">
-  //             <Icon icon="heroicons:eye" />
-  //           </button>
-  //         </Tooltip>
-  //         <Tooltip content="Edit" placement="top" arrow animation="shift-away">
-  //           <button className="action-btn" type="button">
-  //             <Icon icon="heroicons:pencil-square" />
-  //           </button>
-  //         </Tooltip>
-  //         <Tooltip
-  //           content="Delete"
-  //           placement="top"
-  //           arrow
-  //           animation="shift-away"
-  //           theme="danger"
-  //         >
-  //           <button className="action-btn" type="button">
-  //             <Icon icon="heroicons:trash" />
-  //           </button>
-  //         </Tooltip>
-  //       </div>
-  //     );
-  //   },
-  // },
+  {
+    Header: "Action",
+    accessor: "action",
+    Cell: (row) => {
+      return (
+        <span>
+          <button>
+            <ViewSource />
+          </button>
+        </span>
+      );
+    },
+  },
 ];
 
 const IndeterminateCheckbox = React.forwardRef(
