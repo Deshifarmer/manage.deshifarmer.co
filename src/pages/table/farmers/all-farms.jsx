@@ -23,9 +23,27 @@ const COLUMNS = [
       return (
         <div className="">
           <p className=" ">{row?.cell?.value}</p>
-          <p className="  text-[10px] text-green-600">
-            {row?.cell?.row?.original?.farm_id}
-          </p>
+          <Link to={`/farm-batch-list/${row?.cell?.row?.original?.farm_id}`}>
+            <div className="flex items-center gap-1">
+              <p className="  text-[10px] text-green-600 underline">
+                {row?.cell?.row?.original?.farm_id}
+              </p>
+              <p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-3 h-3"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </p>
+            </div>
+          </Link>
         </div>
       );
     },
@@ -39,9 +57,25 @@ const COLUMNS = [
           target="_black"
           to={`/farmer-details/${row.cell.row.original.farmer_id}`}
         >
-          <span className="  text-blue-500 underline">
-            {row?.cell?.value}
-          </span>
+          <div className="flex items-center ga-2">
+            <span className="  text-blue-500 underline">
+              {row?.cell?.value}
+            </span>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </p>
+          </div>
         </Link>
       );
     },
@@ -58,8 +92,7 @@ const COLUMNS = [
           </p>
           <p className="text-xs">
             {" "}
-            <span className=" ">union :</span>{" "}
-            {row?.cell?.row?.original?.union}
+            <span className=" ">union :</span> {row?.cell?.row?.original?.union}
           </p>
           <p className="text-xs">
             {" "}
@@ -198,7 +231,6 @@ const AllFarms = ({ title = "All Farms" }) => {
   const { data: farms, isLoading, isError } = useGetAllFarmsQuery();
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (farms ? farms : []), [farms]);
-
 
   const tableInstance = useTable(
     {

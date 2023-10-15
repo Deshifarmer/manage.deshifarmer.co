@@ -1,8 +1,6 @@
-import React, { useState, useMemo } from "react";
-import { advancedTable } from "../../../constant/table-data";
+import React, { useState, useMemo, useEffect } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import Tooltip from "@/components/ui/Tooltip";
 import {
   useTable,
   useRowSelect,
@@ -11,12 +9,8 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../react-tables/GlobalFilter";
-import {
-  useGetAllAttendanceQuery,
-  useGetAllBatchQuery,
-} from "../../../store/features/tracking/api";
-import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const COLUMNS = [
   {
@@ -154,12 +148,34 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const Batch = ({ title = "Batch" }) => {
-  const { data: batch } = useGetAllBatchQuery();
+const FarmBatchList = ({ title = "Batch List" }) => {
+  const params = useParams();
+  const [farmListData, setFarmListData] = useState([]);
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => (batch ? batch : []), [batch]);
+  const data = useMemo(
+    () => (farmListData ? farmListData : []),
+    [farmListData]
+  );
 
-  console.log(batch);
+  const getFarmBatchLists = async () => {
+    try {
+      const rersponse = await axios.get(
+        `${import.meta.env.VITE_BASE}/hq/farm_batch?farm_id=${params?.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+          },
+        }
+      );
+      setFarmListData(rersponse?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getFarmBatchLists();
+  }, []);
 
   const tableInstance = useTable(
     {
@@ -344,4 +360,4 @@ const Batch = ({ title = "Batch" }) => {
   );
 };
 
-export default Batch;
+export default FarmBatchList;

@@ -2,11 +2,12 @@ import { useParams } from "react-router-dom";
 import { useGetSignleBatchQuery } from "../../../store/features/tracking/api";
 import Card from "@/components/ui/Card";
 import ActivityMap from "./activity-map";
+import moment from "moment";
 
 const BatchDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetSignleBatchQuery(id);
-  console.log(data)
+  console.log(data);
 
   // const json = [
   //   {
@@ -52,18 +53,126 @@ const BatchDetails = () => {
 
   // console.log(mappedData);
 
+  const {
+    buy_price,
+    // category,
+    // created_at,
+    description,
+    farmer_name,
+    product_name,
+    quantity,
+    sell_price,
+    source_by,
+    source_id,
+    transportation_id,
+    unit,
+    which_farmer,
+  } = data?.sourcing || {};
+
+  const {
+    batch_id,
+    details,
+    seed_company,
+    seed_name,
+    seed_price,
+    seed_quantity,
+    seed_unit,
+  } = data?.sowing || {};
+
   return (
     <div>
-      {data?.activities?.map((activity) => (
-        <div className="lg:col-span-6 col-span-12">
-          {/* <Card title="User Location">
-            <ActivityMap lat={activity?.lat} long={activity?.lon} />
-          </Card> */}
-          {data?.activities?.map((item, i) => (
-            <p key={i}>Activities will come {item?.farm_id}</p>
-          ))}
+      <div className="border p-4 rounded-lg">
+        <div className="p-6">
+          <div className="card-title mb-5">Batch Details</div>
+          <div className="text-sm">
+            <p>
+              <b>Batch Id:</b> {data?.batch_id}
+            </p>
+            <p>
+              <b>Season:</b> {data?.season}
+            </p>
+            <p>
+              <b>Farm ID:</b> {data?.farm_id}
+            </p>
+            <p>
+              <b>Which Crop:</b> {data?.which_crop}
+            </p>
+            <p>
+              <b>Created_by:</b> {data?.created_by}
+            </p>
+          </div>
         </div>
-      ))}
+        <div className="p-6">
+          <div className="card-title mb-5">Land Preparation</div>
+          <div className="text-sm">
+            <p>
+              <b>Batch Id:</b> {data?.land_preparation?.batch_id}
+            </p>
+            <p>
+              <b>Details:</b> {data?.land_preparation?.details}
+            </p>
+            <p>
+              <b>Land Preparation:</b>{" "}
+              {moment(data?.land_preparation?.date).format("LL")}
+            </p>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="card-title mb-5">Sourcing</div>
+          <div className="text-sm">
+            <p>
+              <b>Farmer Name:</b> {farmer_name}
+            </p>
+            <p>
+              <b>Details:</b> {description}
+            </p>
+            <p>
+              <b>Product Name:</b> {product_name}
+            </p>
+            <p>
+              <b>Quantity:</b> {quantity} / {unit}
+            </p>
+            <p>
+              <b>Which Farmer:</b> {which_farmer}
+            </p>
+            <p>
+              <b>Transportation Id:</b> {transportation_id}
+            </p>
+            <p>
+              <b>Source Id:</b> {source_id}
+            </p>
+            <p>
+              <b>Source By:</b> {source_by}
+            </p>
+            <p>
+              <b>Sell Price:</b> {sell_price}
+            </p>
+            <p>
+              <b>Buy Price:</b> {buy_price}
+            </p>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="card-title mb-5">Sowing</div>
+          <div className="text-sm">
+            <p>
+              <b>Batch ID:</b> {batch_id}
+            </p>
+            <p>
+              <b>Details:</b> {details}
+            </p>
+            <p>
+              <b>Seed Company:</b> {seed_company}
+            </p>
+            <p>
+              <b>Seed Name:</b> {seed_quantity} {seed_unit}
+            </p>
+            <p>
+              <b>Seed Price:</b> {seed_price}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

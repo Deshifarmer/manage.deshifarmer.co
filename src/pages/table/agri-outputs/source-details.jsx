@@ -104,8 +104,8 @@ const ViewSource = ({ row }) => {
   return (
     <div>
       <Modal
-        title="View Details"
-        label="View Source"
+        title="Track Source"
+        label="Track Source"
         labelClass="btn-outline-dark"
         uncontrol
         centered

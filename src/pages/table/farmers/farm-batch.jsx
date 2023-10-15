@@ -93,7 +93,7 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <div className="flex items-center">
-          <p className="text-xs underline">
+          <p className="text-xs underlin">
             {row?.cell?.row?.original?.farm_id}
           </p>
 
@@ -168,8 +168,6 @@ const FarmBatch = ({ title = "Farm Batches" }) => {
     () => (batch?.batch ? batch?.batch : []),
     [batch?.batch]
   );
-
-
 
   const tableInstance = useTable(
     {

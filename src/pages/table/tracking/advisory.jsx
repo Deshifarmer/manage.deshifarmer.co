@@ -372,7 +372,7 @@
 
 // export default Advisory;
 
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/Card"
 import { useGetAllAdvisoryQuery } from "../../../store/features/tracking/api";
 import { data } from "autoprefixer";
 import moment from "moment";
