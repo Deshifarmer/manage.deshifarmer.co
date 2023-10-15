@@ -174,6 +174,7 @@ import DistributorDetails from "./pages/table/distributors/distributor-details";
 import FarmBatchList from "./pages/table/tracking/farm-batch-list";
 import Sales from "./pages/table/agri-outputs/sales";
 import SalesInvoice from "./pages/table/agri-outputs/sales-invoice";
+import CreateSourcing from "./pages/table/agri-outputs/create-sourcing";
 
 function App() {
   return (
@@ -414,6 +415,7 @@ function App() {
           <Route path="company-details/:id" element={<CompanyDetails />} />
           <Route path="advisory" element={<Advisory />} />
           <Route path="sales" element={<Sales />} />
+          <Route path="create-sourcing" element={<CreateSourcing />} />
           <Route
             path="farmer-details/:id"
             element={

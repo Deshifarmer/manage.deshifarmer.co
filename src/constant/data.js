@@ -435,6 +435,10 @@ export const menuItems = [
     link: "#",
     child: [
       {
+        childtitle: "Create Sourcing",
+        childlink: "create-sourcing",
+      },
+      {
         childtitle: "Sourcing",
         childlink: "sourcing",
       },
