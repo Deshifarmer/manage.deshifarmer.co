@@ -288,7 +288,26 @@ export const menuItems = [
     title: "Payments",
   },
   {
-    title: "All Payments",
+    title: "Input",
+    icon: "heroicons-outline:currency-bangladeshi",
+    link: "#",
+    child: [
+      {
+        childtitle: "All Transactions",
+        childlink: "all-transactions",
+      },
+      {
+        childtitle: "Cash in Requests",
+        childlink: "cash-in-requests",
+      },
+      {
+        childtitle: "Cash out Requests",
+        childlink: "cash-out-requests",
+      },
+    ],
+  },
+  {
+    title: "Output",
     icon: "heroicons-outline:currency-bangladeshi",
     link: "#",
     child: [
@@ -341,7 +360,7 @@ export const menuItems = [
     title: "Orders",
   },
   {
-    title: "All Orders",
+    title: "Input",
     icon: "heroicons-outline:truck",
     link: "#",
     child: [
@@ -359,10 +378,29 @@ export const menuItems = [
       // },
     ],
   },
+  {
+    title: "Output",
+    icon: "heroicons-outline:truck",
+    link: "#",
+    child: [
+      {
+        childtitle: "All Orders",
+        childlink: "all-output-orders",
+      },
+      // {
+      //   childtitle: "Orders from Distributors",
+      //   childlink: "orders-from-distributors",
+      // },
+      // {
+      //   childtitle: "Orders from Farmers",
+      //   childlink: "orders-from-farmers",
+      // },
+    ],
+  },
   // note => category start
   {
     isHeadr: true,
-    title: "Agri Inputs",
+    title: "Products",
   },
   {
     title: "All Agri Inputs",
@@ -389,16 +427,20 @@ export const menuItems = [
   },
   {
     isHeadr: true,
-    title: "Agri Outputs",
+    title: "Agri Output",
   },
   {
-    title: "All Agri Outputs",
+    title: "Channels",
     icon: "heroicons-outline:clipboard",
     link: "#",
     child: [
       {
         childtitle: "Sourcing",
         childlink: "sourcing",
+      },
+      {
+        childtitle: "Sales",
+        childlink: "sales",
       },
     ],
   },
@@ -427,7 +469,7 @@ export const menuItems = [
     ],
   },
   {
-    title: "Other Activities",
+    title: "Services",
     icon: "heroicons-outline:clipboard",
     link: "#",
     child: [

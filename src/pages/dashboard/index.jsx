@@ -9,7 +9,6 @@ import HomeBredCurbs from "./HomeBredCurbs";
 import GroupChart5 from "../../components/partials/widget/chart/group-chart5";
 import Calculation from "../components/dashboard/calculation";
 
-
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
 

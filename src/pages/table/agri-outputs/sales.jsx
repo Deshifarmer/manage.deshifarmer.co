@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useState, useMemo } from "react";
+import { advancedTable } from "../../../constant/table-data";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-
+import Tooltip from "@/components/ui/Tooltip";
 import {
   useTable,
   useRowSelect,
@@ -10,115 +11,124 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../react-tables/GlobalFilter";
-import { useGetAllSourcesQuery } from "../../../store/features/agri-output/api";
-import { Link } from "react-router-dom";
-import ViewSource from "./source-details";
 
 const COLUMNS = [
   {
-    Header: "product name",
-    accessor: "product_name",
+    Header: "Id",
+    accessor: "id",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "Order",
+    accessor: "order",
+    Cell: (row) => {
+      return <span>#{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "customer",
+    accessor: "customer",
     Cell: (row) => {
       return (
         <div>
-          <span>{row?.cell?.value}</span>
-          <p className="text-xs underline text-blue-600">
-            {row?.cell?.row?.original?.source_id}
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    Header: "Buy Price",
-    accessor: "buy_price",
-    Cell: (row) => {
-      return <span>{row?.cell?.value} ৳</span>;
-    },
-  },
-  {
-    Header: "Sell Price",
-    accessor: "sell_price",
-    Cell: (row) => {
-      return <span>{row?.cell?.value ? `${row?.cell?.value} ৳` : "-"}</span>;
-    },
-  },
-  {
-    Header: "Quantity",
-    accessor: "quantity",
-    Cell: (row) => {
-      return (
-        <span>
-          {row?.cell?.value} {row?.cell?.row?.original?.unit}
-        </span>
-      );
-    },
-  },
-  {
-    Header: "Source by",
-    accessor: "source_by",
-    Cell: (row) => {
-      return (
-        <div>
-          <span className="underline text-blue-600">{row?.cell?.value}</span>
-        </div>
-      );
-    },
-  },
-  // {
-  //   Header: "customer",
-  //   accessor: "customer",
-  //   Cell: (row) => {
-  //     return (
-  //       <div>
-  //         <span className="inline-flex items-center">
-  //           <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-  //             <img
-  //               src={row?.cell?.value.image}
-  //               alt=""
-  //               className="object-cover w-full h-full rounded-full"
-  //             />
-  //           </span>
-  //           <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-  //             {row?.cell?.value.name}
-  //           </span>
-  //         </span>
-  //       </div>
-  //     );
-  //   },
-  // },
-  {
-    Header: "farmer id",
-    accessor: "which_farmer",
-    Cell: (row) => {
-      return (
-        <div>
-          <p>{row?.cell?.row?.original?.farmer_name}</p>
-          <span className="text-blue-600 underline text-xs">
-            <Link to={`/farmer-details/${row.cell.row.original.which_farmer}`}>
-              {row?.cell?.value}
-            </Link>
+          <span className="inline-flex items-center">
+            <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
+              <img
+                src={row?.cell?.value.image}
+                alt=""
+                className="object-cover w-full h-full rounded-full"
+              />
+            </span>
+            <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
+              {row?.cell?.value.name}
+            </span>
           </span>
         </div>
       );
     },
   },
   {
-    Header: "Action",
+    Header: "date",
+    accessor: "date",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "quantity",
+    accessor: "quantity",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "amount",
+    accessor: "amount",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "status",
+    accessor: "status",
+    Cell: (row) => {
+      return (
+        <span className="block w-full">
+          <span
+            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
+              row?.cell?.value === "paid"
+                ? "text-success-500 bg-success-500"
+                : ""
+            } 
+            ${
+              row?.cell?.value === "due"
+                ? "text-warning-500 bg-warning-500"
+                : ""
+            }
+            ${
+              row?.cell?.value === "cancled"
+                ? "text-danger-500 bg-danger-500"
+                : ""
+            }
+            
+             `}
+          >
+            {row?.cell?.value}
+          </span>
+        </span>
+      );
+    },
+  },
+  {
+    Header: "action",
     accessor: "action",
     Cell: (row) => {
       return (
-        <span>
-          {row?.cell?.row?.original?.quantity > 0 ? (
-            <button>
-              <ViewSource row={row} />
+        <div className="flex space-x-3 rtl:space-x-reverse">
+          <Tooltip content="View" placement="top" arrow animation="shift-away">
+            <button className="action-btn" type="button">
+              <Icon icon="heroicons:eye" />
             </button>
-          ) : (
-            <span className="text-white font-bold border px-7 py-4 rounded-md bg-red-600 ">
-              Sold Out
-            </span>
-          )}
-        </span>
+          </Tooltip>
+          <Tooltip content="Edit" placement="top" arrow animation="shift-away">
+            <button className="action-btn" type="button">
+              <Icon icon="heroicons:pencil-square" />
+            </button>
+          </Tooltip>
+          <Tooltip
+            content="Delete"
+            placement="top"
+            arrow
+            animation="shift-away"
+            theme="danger"
+          >
+            <button className="action-btn" type="button">
+              <Icon icon="heroicons:trash" />
+            </button>
+          </Tooltip>
+        </div>
       );
     },
   },
@@ -146,45 +156,19 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const TrackSources = ({ title = "Sourcing" }) => {
-  const { data: sourcing } = useGetAllSourcesQuery();
+const Sales = ({ title = "Sales" }) => {
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(
-    () => (sourcing?.data ? sourcing?.data : []),
-    [sourcing?.data]
-  );
-
-  console.log(sourcing);
+  const data = useMemo(() => advancedTable, []);
 
   const tableInstance = useTable(
     {
       columns,
       data,
     },
-
     useGlobalFilter,
     useSortBy,
     usePagination,
     useRowSelect
-
-    // (hooks) => {
-    //   hooks.visibleColumns.push((columns) => [
-    //     {
-    //       id: "selection",
-    //       Header: ({ getToggleAllRowsSelectedProps }) => (
-    //         <div>
-    //           <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-    //         </div>
-    //       ),
-    //       Cell: ({ row }) => (
-    //         <div>
-    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-    //         </div>
-    //       ),
-    //     },
-    //     ...columns,
-    //   ]);
-    // }
   );
   const {
     getTableProps,
@@ -358,4 +342,4 @@ const TrackSources = ({ title = "Sourcing" }) => {
   );
 };
 
-export default TrackSources;
+export default Sales;

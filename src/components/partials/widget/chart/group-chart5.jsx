@@ -222,7 +222,7 @@ const GroupChart5 = () => {
     }
   );
 
-
+  console.log(data);
 
   const statistics = [
     {
@@ -234,7 +234,7 @@ const GroupChart5 = () => {
       icon: "heroicons:shopping-cart",
     },
     {
-      name: columnCharthome3,
+      name: columnCharthome4,
       title: " Channels",
       count: data?.total_channel,
       bg: "bg-[#E5F9FF] ",
@@ -308,38 +308,37 @@ const GroupChart5 = () => {
     },
     {
       name: columnCharthome2,
-      title: "Sell Amount (Input)",
+      title: "Sale Amount (Input)",
       count: data?.agri_input_sell,
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
       icon: "heroicons:cube",
     },
-    // {
-    //   name: columnCharthome2,
-    //   title: "Sell Amount (Vegetables)",
-    //   count: data?.agri_input_sell,
-    //   bg: "bg-[#E5F9FF] ",
-    //   text: "text-warning-500",
-    //   icon: "heroicons:cube",
-    // },
-    // {
-    //   name: columnCharthome2,
-    //   title: "Hours of Advisory",
-    //   count: data?.agri_input_sell,
-    //   bg: "bg-[#E5F9FF] ",
-    //   text: "text-warning-500",
-    //   icon: "heroicons:cube",
-    // },
-    // {
-    //   name: columnCharthome2,
-    //   title: "Weight of Sold Vegetables (Kg)",
-    //   count: data?.agri_input_sell,
-    //   bg: "bg-[#E5F9FF] ",
-    //   text: "text-warning-500",
-    //   icon: "heroicons:cube",
-    // },
+    {
+      name: columnCharthome3,
+      title: "Sell Amount (Output)",
+      count: data?.output_sell,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
+    {
+      name: columnCharthome4,
+      title: "Sell Volume (Output)",
+      count: data?.output_sell_volume,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
+    {
+      name: columnCharthome2,
+      title: "Advisory Hours",
+      count: data?.total_advisory,
+      bg: "bg-[#E5F9FF] ",
+      text: "text-warning-500",
+      icon: "heroicons:cube",
+    },
   ];
-
 
   return (
     <>

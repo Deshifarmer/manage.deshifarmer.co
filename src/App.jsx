@@ -172,6 +172,7 @@ import AgriFinanceRequest from "./pages/table/other-activities/agri-finance-requ
 import TrackSources from "./pages/table/agri-outputs/track-source";
 import DistributorDetails from "./pages/table/distributors/distributor-details";
 import FarmBatchList from "./pages/table/tracking/farm-batch-list";
+import Sales from "./pages/table/agri-outputs/sales";
 
 function App() {
   return (
@@ -411,6 +412,7 @@ function App() {
           <Route path="channel-details/:id" element={<ChannelDetails />} />
           <Route path="company-details/:id" element={<CompanyDetails />} />
           <Route path="advisory" element={<Advisory />} />
+          <Route path="sales" element={<Sales />} />
           <Route
             path="farmer-details/:id"
             element={
