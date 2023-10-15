@@ -173,6 +173,7 @@ import TrackSources from "./pages/table/agri-outputs/track-source";
 import DistributorDetails from "./pages/table/distributors/distributor-details";
 import FarmBatchList from "./pages/table/tracking/farm-batch-list";
 import Sales from "./pages/table/agri-outputs/sales";
+import SalesInvoice from "./pages/table/agri-outputs/sales-invoice";
 
 function App() {
   return (
@@ -418,6 +419,14 @@ function App() {
             element={
               <Suspense fallback={<Loading />}>
                 <FarmerDetails />
+              </Suspense>
+            }
+          />
+          <Route
+            path="sales-invoice/:id"
+            element={
+              <Suspense fallback={<Loading />}>
+                <SalesInvoice />
               </Suspense>
             }
           />

@@ -6,12 +6,25 @@ export const agriOutputsApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `/hq/sourcing`,
         method: "GET",
-        // headers: {
-        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
-        // },
+      }),
+    }),
+    getAllSales: builder.query({
+      query: () => ({
+        url: `/hq/source_selling`,
+        method: "GET",
+      }),
+    }),
+    getSalesInvoiceDetails: builder.query({
+      query: (id) => ({
+        url: `/hq/source_selling/${id}`,
+        method: "GET",
       }),
     }),
   }),
 });
 
-export const { useGetAllSourcesQuery } = agriOutputsApiSlice;
+export const {
+  useGetAllSourcesQuery,
+  useGetAllSalesQuery,
+  useGetSalesInvoiceDetailsQuery,
+} = agriOutputsApiSlice;

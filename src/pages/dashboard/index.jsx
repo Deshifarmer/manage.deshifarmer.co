@@ -8,6 +8,7 @@ import MostSales from "../../components/partials/widget/most-sales";
 import HomeBredCurbs from "./HomeBredCurbs";
 import GroupChart5 from "../../components/partials/widget/chart/group-chart5";
 import Calculation from "../components/dashboard/calculation";
+import SalesChart from "../table/dashboard/sales-chart";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
@@ -27,7 +28,15 @@ const Dashboard = () => {
           </Card>
         </div>
       </div>
+
       <div className="grid grid-cols-12 gap-5">
+        <div className="col-span-12">
+          <Card>
+            <div className="legend-ring">
+              <SalesChart />
+            </div>
+          </Card>
+        </div>
         <div className="lg:col-span-8 col-span-12">
           <Card>
             <div className="legend-ring">

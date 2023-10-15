@@ -11,127 +11,127 @@ import {
   usePagination,
 } from "react-table";
 import GlobalFilter from "../react-tables/GlobalFilter";
+import { useGetAllSalesQuery } from "../../../store/features/agri-output/api";
+import { Link } from "react-router-dom";
 
 const COLUMNS = [
   {
-    Header: "Id",
-    accessor: "id",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "Order",
-    accessor: "order",
-    Cell: (row) => {
-      return <span>#{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "customer",
-    accessor: "customer",
+    Header: "market type",
+    accessor: "market_type",
     Cell: (row) => {
       return (
         <div>
-          <span className="inline-flex items-center">
-            <span className="w-7 h-7 rounded-full ltr:mr-3 rtl:ml-3 flex-none bg-slate-600">
-              <img
-                src={row?.cell?.value.image}
-                alt=""
-                className="object-cover w-full h-full rounded-full"
-              />
+          <span>{row?.cell?.value}</span>
+          <p>
+            <span className="text-sm text-slate-600 dark:text-slate-300 text-xs">
+              {row?.cell?.row?.original?.source_id}
             </span>
-            <span className="text-sm text-slate-600 dark:text-slate-300 capitalize">
-              {row?.cell?.value.name}
-            </span>
-          </span>
+          </p>
         </div>
       );
-    },
-  },
-  {
-    Header: "date",
-    accessor: "date",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
     },
   },
   {
     Header: "quantity",
     accessor: "quantity",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "amount",
-    accessor: "amount",
-    Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
-    },
-  },
-  {
-    Header: "status",
-    accessor: "status",
-    Cell: (row) => {
       return (
-        <span className="block w-full">
-          <span
-            className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
-              row?.cell?.value === "paid"
-                ? "text-success-500 bg-success-500"
-                : ""
-            } 
-            ${
-              row?.cell?.value === "due"
-                ? "text-warning-500 bg-warning-500"
-                : ""
-            }
-            ${
-              row?.cell?.value === "cancled"
-                ? "text-danger-500 bg-danger-500"
-                : ""
-            }
-            
-             `}
-          >
-            {row?.cell?.value}
-          </span>
-        </span>
-      );
-    },
-  },
-  {
-    Header: "action",
-    accessor: "action",
-    Cell: (row) => {
-      return (
-        <div className="flex space-x-3 rtl:space-x-reverse">
-          <Tooltip content="View" placement="top" arrow animation="shift-away">
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:eye" />
-            </button>
-          </Tooltip>
-          <Tooltip content="Edit" placement="top" arrow animation="shift-away">
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:pencil-square" />
-            </button>
-          </Tooltip>
-          <Tooltip
-            content="Delete"
-            placement="top"
-            arrow
-            animation="shift-away"
-            theme="danger"
-          >
-            <button className="action-btn" type="button">
-              <Icon icon="heroicons:trash" />
-            </button>
-          </Tooltip>
+        <div className="flex gap-2">
+          <span>{row?.cell?.value}</span>
+          <p>{row?.cell?.row?.original?.unit}</p>
         </div>
       );
     },
   },
+  {
+    Header: "sell location",
+    accessor: "sell_location",
+    Cell: (row) => {
+      return <span>{row?.cell?.value}</span>;
+    },
+  },
+  {
+    Header: "sell price",
+    accessor: "sell_price",
+    Cell: (row) => {
+      return <span>{row?.cell?.value} ৳</span>;
+    },
+  },
+  {
+    Header: "action",
+    accessor: "",
+    Cell: (row) => {
+      return (
+        <div>
+          <Link to={`/sales-invoice/${row?.cell?.row?.original?.id}`}>
+            <div className="">View Details</div>
+          </Link>
+        </div>
+      );
+    },
+  },
+  //   {
+  //     Header: "status",
+  //     accessor: "status",
+  //     Cell: (row) => {
+  //       return (
+  //         <span className="block w-full">
+  //           <span
+  //             className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
+  //               row?.cell?.value === "paid"
+  //                 ? "text-success-500 bg-success-500"
+  //                 : ""
+  //             }
+  //             ${
+  //               row?.cell?.value === "due"
+  //                 ? "text-warning-500 bg-warning-500"
+  //                 : ""
+  //             }
+  //             ${
+  //               row?.cell?.value === "cancled"
+  //                 ? "text-danger-500 bg-danger-500"
+  //                 : ""
+  //             }
+
+  //              `}
+  //           >
+  //             {row?.cell?.value}
+  //           </span>
+  //         </span>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     Header: "action",
+  //     accessor: "action",
+  //     Cell: (row) => {
+  //       return (
+  //         <div className="flex space-x-3 rtl:space-x-reverse">
+  //           <Tooltip content="View" placement="top" arrow animation="shift-away">
+  //             <button className="action-btn" type="button">
+  //               <Icon icon="heroicons:eye" />
+  //             </button>
+  //           </Tooltip>
+  //           <Tooltip content="Edit" placement="top" arrow animation="shift-away">
+  //             <button className="action-btn" type="button">
+  //               <Icon icon="heroicons:pencil-square" />
+  //             </button>
+  //           </Tooltip>
+  //           <Tooltip
+  //             content="Delete"
+  //             placement="top"
+  //             arrow
+  //             animation="shift-away"
+  //             theme="danger"
+  //           >
+  //             <button className="action-btn" type="button">
+  //               <Icon icon="heroicons:trash" />
+  //             </button>
+  //           </Tooltip>
+  //         </div>
+  //       );
+  //     },
+  //   },
 ];
 
 const IndeterminateCheckbox = React.forwardRef(
@@ -157,8 +157,11 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const Sales = ({ title = "Sales" }) => {
+  const { data: sales } = useGetAllSalesQuery();
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => advancedTable, []);
+  const data = useMemo(() => (sales?.data ? sales?.data : []), [sales?.data]);
+
+  console.log(sales);
 
   const tableInstance = useTable(
     {
