@@ -33,7 +33,7 @@ const SalesInvoice = () => {
         ) : (
           <div>
             <div className="lg:flex justify-between flex-wrap items-center">
-              <h4 className="text-lg">Order Details</h4>
+              <h4 className="text-lg">Sales Invoice</h4>
               <div className="flex lg:justify-end items-center flex-wrap space-xy-5">
                 <button className="invocie-btn inline-flex btn btn-sm whitespace-nowrap space-x-1 cursor-pointer bg-white dark:bg-slate-800 dark:text-slate-300 btn-md h-min text-sm font-normal text-slate-900 rtl:space-x-reverse">
                   <span className="text-lg">
@@ -117,7 +117,7 @@ const SalesInvoice = () => {
                     </span>
 
                     <div className="text-slate-500 text-xs dark:text-slate-300 font-normal leading-5 mt-4 text-sm">
-                      <p className="mt-1 ">
+                      <div className="mt-1 ">
                         <div className="flex gap-2">
                           <span className="font-semibold">Customer Name -</span>{" "}
                           <p>
@@ -129,7 +129,7 @@ const SalesInvoice = () => {
                             {details?.customer_id ? details?.customer_id : ""}
                           </p>
                         </div>
-                      </p>{" "}
+                      </div>{" "}
                       <p className="mt-1">
                         <span className="font-semibold">Phone No -</span>{" "}
                         {details?.customer_phone}

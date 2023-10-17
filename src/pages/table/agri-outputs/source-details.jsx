@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Select from "react-select";
+import { useGetSalesCustomerQuery } from "../../../store/features/agri-output/api";
 
 const FormValadtionSchema = yup
   .object({
@@ -18,6 +19,8 @@ const FormValadtionSchema = yup
     sale_location: yup.string().required("Sold Location is required"),
     sale_amount: yup.string().required("Sale amount is required"),
     quantity: yup.string().required("Quantity is required"),
+    phone_number: yup.string().required("Phone number is required"),
+    name: yup.string().required("Customer name is required"),
   })
   .required();
 
@@ -25,9 +28,14 @@ const ViewSource = ({ row }) => {
   // const [amount, setAmount] = useState(row?.cell?.row?.original?.amount);
   const token = localStorage.getItem("hq-token");
   const [showModal, setShowModal] = useState(false);
-  const [marketType, setMarketType] = useState("Rich");
+  const [marketType, setMarketType] = useState("");
+  const [customerId, setCustomerId] = useState(null);
 
-  console.log(row?.cell?.row?.original?.source_id);
+  const {
+    data: sales_customers,
+    isLoading,
+    isFetching,
+  } = useGetSalesCustomerQuery();
 
   const closeModal = () => {
     setShowModal(false);
@@ -64,100 +72,39 @@ const ViewSource = ({ row }) => {
     resolver: yupResolver(FormValadtionSchema),
   });
 
-  // const handleDownloadImage = () => {
-  //   let url = `${import.meta.env.VITE_IMG_URL}/${
-  //     row?.cell?.row?.original?.receipt
-  //   }`;
-  //   saveAs(url, `${row?.cell?.row?.original?.distributor?.full_name}`);
-  // };
-
-  // const handle_accept = async () => {
-  //   if (row?.cell?.row?.original?.status === "approved") {
-  //     closeModal();
-  //     return Swal.fire(
-  //       "Ops!",
-  //       "Request Already Accepted, You can't accept it again",
-  //       "info"
-  //     );
-  //   }
-  //   try {
-  //     const response = await axios.put(
-  //       `${import.meta.env.VITE_BASE}/hq/distributor/cash_in_request/${
-  //         row?.cell?.row?.original?.receipt_id
-  //       }`,
-  //       {
-  //         status: "approved",
-  //         accepted_amount: parseFloat(amount),
-  //       },
-  //       {
-  //         headers: {
-  //           Accept: "application/json",
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     Swal.fire("Success!", "Request Accepted", "success");
-  //     closeModal();
-  //   } catch (error) {
-  //     Swal.fire("Ops!", "Something went wrong", "error");
-  //     closeModal();
-  //   }
-  // };
-
-  // const handle_reject = async () => {
-  //   if (row?.cell?.row?.original?.status === "approved") {
-  //     closeModal();
-  //     return Swal.fire(
-  //       "Ops!",
-  //       "Request Already Accepted, Once you accept the request you can't reject it",
-  //       "info"
-  //     );
-  //   }
-  //   try {
-  //     const response = await axios.put(
-  //       `${import.meta.env.VITE_BASE}/hq/distributor/cash_in_request/${
-  //         row?.cell?.row?.original?.receipt_id
-  //       }`,
-  //       {
-  //         status: "rejected",
-  //       },
-  //       {
-  //         headers: {
-  //           Accept: "application/json",
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     if (response.statusText === "OK") {
-  //       Swal.fire("Ops!", "Request Already Rejected", "info");
-  //     } else if (response.statusText === "Created") {
-  //       Swal.fire("Success", "Request Rejected", "success");
-  //     } else {
-  //       Swal.fire("Ops!", "Something went wrong ", "error");
-  //     }
-  //     closeModal();
-  //   } catch (error) {
-  //     Swal.fire("Ops!", "Something went wrong", "error");
-  //   }
-  // };
-
   const onSubmit = async (data) => {
     try {
+      let postData = {
+        source_id: row?.cell?.row?.original?.source_id,
+        market_type: marketType,
+        sell_location: data.sale_location,
+        sell_price: parseFloat(data.sale_amount),
+        quantity: parseFloat(data.quantity),
+      };
+
+      if (customerId === "addNewCustomer") {
+        postData = {
+          ...postData,
+          name: data.name,
+          phone_number: data.phone_number,
+        };
+      } else {
+        postData = {
+          ...postData,
+          customer_id: customerId,
+        };
+      }
+
       const response = await axios.post(
         `${import.meta.env.VITE_BASE}/hq/source_selling`,
-        {
-          source_id: row?.cell?.row?.original?.source_id,
-          market_type: marketType,
-          sell_location: data.sale_location,
-          sell_price: parseFloat(data.sale_amount),
-          quantity: parseFloat(data.quantity),
-        },
+        postData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+
       if (response) {
         Swal.fire("Success!", "Source Sold", "success");
         reset();
@@ -171,6 +118,8 @@ const ViewSource = ({ row }) => {
       }
     }
   };
+
+  console.log(sales_customers);
 
   return (
     <div>
@@ -186,53 +135,28 @@ const ViewSource = ({ row }) => {
         setShowModal={setShowModal}
         openModal={openModal}
         closeModal={closeModal}
-        // footerContent={
-        //   <>
-        //     {row?.cell?.row?.original?.status === "approved" ? (
-        //       <p
-        //         onClick={() => toast.error("Already Accepted")}
-        //         className="bg-red-500 cursor-pointer text-white p-2 rounded"
-        //       >
-        //         Already Accepted, You can't accept it again
-        //       </p>
-        //     ) : (
-        //       <div className="space-x-4">
-        //         <Button
-        //           text="Accept"
-        //           className="btn-success "
-        //           onClick={handle_accept}
-        //         />
-        //         <Button
-        //           text="Reject"
-        //           className="btn-warning "
-        //           onClick={handle_reject}
-        //         />
-        //       </div>
-        //     )}
-        //   </>
-        // }
       >
-        {/* <div className="flex justify-between items-center">
-          <h4 className="font-medium text-lg mb-3 text-slate-900">Receipt</h4>
-          <button
-            onClick={handleDownloadImage}
-            className="font-medium text-lg mb-3 text-slate-900 bg-green-500  px-4 py-1 rounded-full"
-          >
-            Download Receipt
-          </button>
-        </div> */}
-
-        {/* <div className="text-base text-slate-600 dark:text-slate-300">
-          <img
-            src={`${import.meta.env.VITE_IMG_URL}${
-              row?.cell?.row?.original?.receipt
-            }`}
-            alt="thumb-1"
-            className="rounded-md border-4 border-slate-300 w-full h-full"
-          />
-        </div> */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-6 space-y-4">
+            <div>
+              <div>
+                <label htmlFor=" hh" className="form-label ">
+                  Select Customer
+                </label>
+                <Select
+                  className="react-select"
+                  classNamePrefix="select"
+                  options={type_of_market?.map((market) => ({
+                    value: market.value,
+                    label: market.label,
+                  }))}
+                  onChange={(e) => setMarketType(e.value)}
+                  styles={styles}
+                  required
+                  id="hh"
+                />
+              </div>
+            </div>
             <div>
               <label htmlFor=" hh" className="form-label ">
                 Type of market
@@ -278,24 +202,26 @@ const ViewSource = ({ row }) => {
               msgTooltip
             />
 
-            {/* <Textinput
-            name="customer_id"
-            label="Customer ID"
-            placeholder="Customer ID"
-            type="text"
-            register={register}
-            error={errors.customer_id}
-            msgTooltip
-          />
-          <Textinput
-            name="payment_id"
-            label="Payment ID"
-            placeholder="Payment ID"
-            type="text"
-            register={register}
-            error={errors.payment_id}
-            msgTooltip
-          /> */}
+            <div className="space-y-4">
+              <Textinput
+                name="name"
+                label="Customer Name"
+                placeholder="Customer Name"
+                type="text"
+                register={register}
+                error={errors.name}
+                msgTooltip
+              />
+              <Textinput
+                name="phone_number"
+                label="Phone Number"
+                placeholder="Phone Number"
+                type="text"
+                register={register}
+                error={errors.phone_number}
+                msgTooltip
+              />
+            </div>
           </div>
           <button
             // disabled={loading}

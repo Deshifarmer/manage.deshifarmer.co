@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import { colors } from "@/constant/data";
 import useDarkMode from "@/hooks/useDarkMode";
 
-const SalesChart = ({ height = 360 }) => {
+const MonthlySalesChart = ({ height = 360 }) => {
   const [isDark] = useDarkMode();
   const series = [
     {
@@ -113,4 +113,4 @@ const SalesChart = ({ height = 360 }) => {
   );
 };
 
-export default SalesChart;
+export default MonthlySalesChart;

@@ -13,6 +13,7 @@ import {
 import GlobalFilter from "../react-tables/GlobalFilter";
 import { useGetAllSalesQuery } from "../../../store/features/agri-output/api";
 import { Link } from "react-router-dom";
+import { conditionalConsoleLog } from "../../../hooks/conditionalConsoleLog";
 
 const COLUMNS = [
   {
@@ -157,16 +158,88 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 const Sales = ({ title = "Sales" }) => {
-  const { data: sales } = useGetAllSalesQuery();
+  const [searchValue, setSearchValue] = useState("");
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, setitemsPerPage] = useState(150);
+  const [pageNumberLimit, setpageNumberLimit] = useState(5);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
+  const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+
+  const { data: sales } = useGetAllSalesQuery({
+    itemsPerPage,
+    currentPage,
+    searchValue,
+  });
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (sales?.data ? sales?.data : []), [sales?.data]);
 
-  console.log(sales);
+  const total_data = sales?.meta?.total;
+
+  const handleClick = (event) => {
+    setcurrentPage(Number(event.target.id));
+  };
+  const pages = [];
+
+  for (let i = 1; i <= Math.ceil(total_data / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  const renderPageNumbers = pages?.map((number) => {
+    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={handleClick}
+          className={
+            currentPage == number
+              ? "active bg-white px-5 py-2 text-black-500 rounded-full cursor-pointer"
+              : "cursor-pointer"
+          }
+        >
+          {number}
+        </li>
+      );
+    } else {
+      return null;
+    }
+  });
+
+  const handleNextbtn = () => {
+    setcurrentPage(currentPage + 1);
+
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+      setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+    }
+  };
+
+  const handlePrevbtn = () => {
+    setcurrentPage(currentPage - 1);
+
+    if ((currentPage - 1) % pageNumberLimit == 0) {
+      setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+      setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+    }
+  };
+  let pageIncrementBtn = null;
+
+  if (pages.length > maxPageNumberLimit) {
+    pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
+  }
+
+  let pageDecrementBtn = null;
+  if (minPageNumberLimit >= 1) {
+    pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
+  }
+
+  const defaultPageSize = 200;
 
   const tableInstance = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0, pageSize: defaultPageSize },
     },
     useGlobalFilter,
     useSortBy,
@@ -191,6 +264,8 @@ const Sales = ({ title = "Sales" }) => {
     setGlobalFilter,
     prepareRow,
   } = tableInstance;
+
+  console.log(page);
 
   const { globalFilter, pageIndex, pageSize } = state;
   return (
@@ -256,7 +331,7 @@ const Sales = ({ title = "Sales" }) => {
             </div>
           </div>
         </div>
-        <div className="md:flex md:space-y-0 space-y-5 justify-between mt-6 items-center">
+        {/* <div className="md:flex md:space-y-0 space-y-5 justify-between mt-6 items-center">
           <div className=" flex items-center space-x-3 rtl:space-x-reverse">
             <select
               className="form-control py-2 w-max"
@@ -338,6 +413,42 @@ const Sales = ({ title = "Sales" }) => {
               </button>
             </li>
           </ul>
+        </div> */}
+        <div className="md:flex md:space-y-0 space-y-5 justify-between mt-6 items-center">
+          <div className="flex justify-between w-full">
+            {/* <button
+                onClick={handleLoadMore}
+                className="loadmore border px-4 py-2 rounded"
+              >
+                Load More
+              </button> */}
+            <ul className="pageNumbers flex items-center gap-10">
+              <li>
+                <button
+                  onClick={handlePrevbtn}
+                  className="border px-4 py-2 disabled:cursor-not-allowed rounded"
+                  disabled={currentPage == pages[0] ? true : false}
+                >
+                  Prev
+                </button>
+              </li>
+              {pageDecrementBtn}
+              {renderPageNumbers}
+              {pageIncrementBtn}
+
+              <li>
+                <button
+                  onClick={handleNextbtn}
+                  className="border px-4 py-2 disabled:cursor-not-allowed rounded"
+                  disabled={
+                    currentPage == pages[pages.length - 1] ? true : false
+                  }
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
         {/*end*/}
       </Card>

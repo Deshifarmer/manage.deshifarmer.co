@@ -222,7 +222,7 @@ const GroupChart5 = () => {
     }
   );
 
-  console.log(data);
+  
 
   const statistics = [
     {

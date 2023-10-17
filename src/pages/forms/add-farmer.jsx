@@ -121,9 +121,7 @@ const AddFarmer = () => {
         },
       });
       setDivisions(res.data);
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -179,18 +177,14 @@ const AddFarmer = () => {
           },
         }
       );
-      
+
       if (res.status === 201) {
         toast.success("Farmer Added Successfully");
       } else {
         toast.error("Something went wrong");
       }
-    } catch (error) {
-    
-    }
+    } catch (error) {}
   };
-
-
 
   return (
     <div>

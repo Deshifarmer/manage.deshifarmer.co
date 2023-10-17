@@ -627,77 +627,77 @@ export const menuItems = [
   //   ],
   // },
   // note -> components
-  {
-    title: "Components",
-    icon: "heroicons-outline:collection",
-    link: "#",
-    child: [
-      {
-        childtitle: "Typography",
-        childlink: "typography",
-      },
-      {
-        childtitle: "Colors",
-        childlink: "colors",
-      },
-      {
-        childtitle: "Alert",
-        childlink: "alert",
-      },
-      {
-        childtitle: "Button",
-        childlink: "button",
-      },
-      {
-        childtitle: "Card",
-        childlink: "card",
-      },
-      {
-        childtitle: "Carousel",
-        childlink: "carousel",
-      },
-      {
-        childtitle: "Dropdown",
-        childlink: "dropdown",
-      },
-      {
-        childtitle: "Image",
-        childlink: "image",
-      },
-      {
-        childtitle: "Modal",
-        childlink: "modal",
-      },
-      {
-        childtitle: "Progress bar",
-        childlink: "progress-bar",
-      },
-      {
-        childtitle: "Placeholder",
-        childlink: "placeholder",
-      },
-      {
-        childtitle: "Tab & Accordion",
-        childlink: "tab-accordion",
-      },
-      {
-        childtitle: "Badges",
-        childlink: "badges",
-      },
-      {
-        childtitle: "Paginatins",
-        childlink: "paginations",
-      },
-      {
-        childtitle: "Video",
-        childlink: "video",
-      },
-      {
-        childtitle: "Tooltip & Popover",
-        childlink: "tooltip-popover",
-      },
-    ],
-  },
+  // {
+  //   title: "Components",
+  //   icon: "heroicons-outline:collection",
+  //   link: "#",
+  //   child: [
+  //     {
+  //       childtitle: "Typography",
+  //       childlink: "typography",
+  //     },
+  //     {
+  //       childtitle: "Colors",
+  //       childlink: "colors",
+  //     },
+  //     {
+  //       childtitle: "Alert",
+  //       childlink: "alert",
+  //     },
+  //     {
+  //       childtitle: "Button",
+  //       childlink: "button",
+  //     },
+  //     {
+  //       childtitle: "Card",
+  //       childlink: "card",
+  //     },
+  //     {
+  //       childtitle: "Carousel",
+  //       childlink: "carousel",
+  //     },
+  //     {
+  //       childtitle: "Dropdown",
+  //       childlink: "dropdown",
+  //     },
+  //     {
+  //       childtitle: "Image",
+  //       childlink: "image",
+  //     },
+  //     {
+  //       childtitle: "Modal",
+  //       childlink: "modal",
+  //     },
+  //     {
+  //       childtitle: "Progress bar",
+  //       childlink: "progress-bar",
+  //     },
+  //     {
+  //       childtitle: "Placeholder",
+  //       childlink: "placeholder",
+  //     },
+  //     {
+  //       childtitle: "Tab & Accordion",
+  //       childlink: "tab-accordion",
+  //     },
+  //     {
+  //       childtitle: "Badges",
+  //       childlink: "badges",
+  //     },
+  //     {
+  //       childtitle: "Paginatins",
+  //       childlink: "paginations",
+  //     },
+  //     {
+  //       childtitle: "Video",
+  //       childlink: "video",
+  //     },
+  //     {
+  //       childtitle: "Tooltip & Popover",
+  //       childlink: "tooltip-popover",
+  //     },
+  //   ],
+  // },
   // note => forms
   // {
   //   title: "Forms",
