@@ -1,8 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { advancedTable } from "../../../constant/table-data";
 import Card from "@/components/ui/Card";
-import Icon from "@/components/ui/Icon";
-import Tooltip from "@/components/ui/Tooltip";
 import {
   useTable,
   useRowSelect,
@@ -13,7 +10,6 @@ import {
 import GlobalFilter from "../react-tables/GlobalFilter";
 import { useGetAllSalesQuery } from "../../../store/features/agri-output/api";
 import { Link } from "react-router-dom";
-import { conditionalConsoleLog } from "../../../hooks/conditionalConsoleLog";
 
 const COLUMNS = [
   {
@@ -175,8 +171,6 @@ const Sales = ({ title = "Sales" }) => {
 
   const total_data = sales?.meta?.total;
 
-
-
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
   };
@@ -266,8 +260,6 @@ const Sales = ({ title = "Sales" }) => {
     setGlobalFilter,
     prepareRow,
   } = tableInstance;
-
-
 
   const { globalFilter, pageIndex, pageSize } = state;
   return (
