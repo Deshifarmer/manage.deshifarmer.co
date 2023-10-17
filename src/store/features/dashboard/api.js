@@ -49,6 +49,24 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         // },
       }),
     }),
+    getDailySalesChartData: builder.query({
+      query: () => ({
+        url: `/hq/dashboard/ssstat`,
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
+      }),
+    }),
+    getMonthlySalesChartData: builder.query({
+      query: () => ({
+        url: `/hq/dashboard/ssstatm`,
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
+      }),
+    }),
   }),
 });
 
@@ -58,4 +76,6 @@ export const {
   useGetLocationWiseFarmerQuery,
   useGetMaleFemaleQuery,
   useGetMapDetailsQuery,
+  useGetDailySalesChartDataQuery,
+  useGetMonthlySalesChartDataQuery,
 } = dashboardApiSlice;

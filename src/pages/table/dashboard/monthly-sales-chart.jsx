@@ -2,17 +2,21 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { colors } from "@/constant/data";
 import useDarkMode from "@/hooks/useDarkMode";
+import { useGetMonthlySalesChartDataQuery } from "../../../store/features/dashboard/api";
 
 const MonthlySalesChart = ({ height = 360 }) => {
   const [isDark] = useDarkMode();
+  const { data } = useGetMonthlySalesChartDataQuery();
+
+  console.log(data);
   const series = [
     {
-      name: "Earnings",
-      data: [31, 40, 28, 51, 42, 109, 100],
+      name: "Source Buy Price",
+      data: data?.map((item) => item.source_total_buy_price),
     },
     {
-      name: "Expenses",
-      data: [11, 32, 45, 32, 34, 52, 41],
+      name: "Source Sell Price",
+      data: data?.map((item) => item.source_total_sell_price),
     },
   ];
   const options = {
@@ -83,15 +87,7 @@ const MonthlySalesChart = ({ height = 360 }) => {
     },
     xaxis: {
       type: "datetime",
-      categories: [
-        "2018-09-19T00:00:00.000Z",
-        "2018-09-19T01:30:00.000Z",
-        "2018-09-19T02:30:00.000Z",
-        "2018-09-19T03:30:00.000Z",
-        "2018-09-19T04:30:00.000Z",
-        "2018-09-19T05:30:00.000Z",
-        "2018-09-19T06:30:00.000Z",
-      ],
+      categories: data?.map((item) => item.date),
       axisBorder: {
         show: false,
       },
