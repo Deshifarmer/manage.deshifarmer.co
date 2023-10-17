@@ -10,6 +10,7 @@ import {
 import GlobalFilter from "../react-tables/GlobalFilter";
 import { useGetAllSalesQuery } from "../../../store/features/agri-output/api";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const COLUMNS = [
   {
@@ -29,6 +30,13 @@ const COLUMNS = [
     },
   },
   {
+    Header: "sell price",
+    accessor: "sell_price",
+    Cell: (row) => {
+      return <span>{row?.cell?.value} ৳</span>;
+    },
+  },
+  {
     Header: "quantity",
     accessor: "quantity",
     Cell: (row) => {
@@ -41,19 +49,20 @@ const COLUMNS = [
     },
   },
   {
+    Header: "Date",
+    accessor: "created_at",
+    Cell: (row) => {
+      return <span>{moment(row?.cell?.value).format("LLLL")} </span>;
+    },
+  },
+  {
     Header: "sell location",
     accessor: "sell_location",
     Cell: (row) => {
       return <span>{row?.cell?.value}</span>;
     },
   },
-  {
-    Header: "sell price",
-    accessor: "sell_price",
-    Cell: (row) => {
-      return <span>{row?.cell?.value} ৳</span>;
-    },
-  },
+
   {
     Header: "action",
     accessor: "",

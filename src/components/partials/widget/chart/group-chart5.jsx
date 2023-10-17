@@ -222,8 +222,6 @@ const GroupChart5 = () => {
     }
   );
 
-  
-
   const statistics = [
     {
       name: columnCharthome3,
@@ -309,7 +307,7 @@ const GroupChart5 = () => {
     {
       name: columnCharthome2,
       title: "Sale Amount (Input)",
-      count: data?.agri_input_sell,
+      count: data?.agri_input_sell + " ৳",
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
       icon: "heroicons:cube",
@@ -317,7 +315,7 @@ const GroupChart5 = () => {
     {
       name: columnCharthome3,
       title: "Sell Amount (Output)",
-      count: data?.output_sell,
+      count: data?.output_sell + " ৳",
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
       icon: "heroicons:cube",
@@ -325,7 +323,7 @@ const GroupChart5 = () => {
     {
       name: columnCharthome4,
       title: "Sell Volume (Output)",
-      count: data?.output_sell_volume,
+      count: data?.output_sell_volume + " ৳",
       bg: "bg-[#E5F9FF] ",
       text: "text-warning-500",
       icon: "heroicons:cube",

@@ -4,6 +4,7 @@ import Icon from "@/components/ui/Icon";
 import ReactToPrint from "react-to-print";
 import "./style.css";
 import { Link, useParams } from "react-router-dom";
+import QRCode from "qrcode.react";
 
 // import images
 import { useGetSingleOrderQuery } from "../../../store/features/orders/api";
@@ -12,6 +13,7 @@ import moment from "moment";
 // import OrderTrack from "./order-track";
 
 const SalesInvoice = () => {
+  const qrCodeValue = "https://manage.deshifarmer.co";
   const params = useParams();
   const { data: details, isLoading } = useGetSalesInvoiceDetailsQuery(
     params?.id
@@ -139,6 +141,17 @@ const SalesInvoice = () => {
                         {details?.sell_location}
                       </p>{" "}
                     </div>
+                  </div>
+
+                  <div>
+                    {/* Generate the QR code */}
+                    <QRCode
+                      value={qrCodeValue}
+                      size={100}
+                      bgColor="#FFFFFF"
+                      fgColor="#000000"
+                    />
+                    <p>Scan the QR code to access the link.</p>
                   </div>
                 </div>
                 <div>
