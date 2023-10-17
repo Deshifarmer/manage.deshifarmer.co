@@ -160,7 +160,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const Sales = ({ title = "Sales" }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(150);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
@@ -174,6 +174,8 @@ const Sales = ({ title = "Sales" }) => {
   const data = useMemo(() => (sales?.data ? sales?.data : []), [sales?.data]);
 
   const total_data = sales?.meta?.total;
+
+
 
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
@@ -233,7 +235,7 @@ const Sales = ({ title = "Sales" }) => {
     pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
   }
 
-  const defaultPageSize = 200;
+  const defaultPageSize = 10;
 
   const tableInstance = useTable(
     {
@@ -265,7 +267,7 @@ const Sales = ({ title = "Sales" }) => {
     prepareRow,
   } = tableInstance;
 
-  console.log(page);
+
 
   const { globalFilter, pageIndex, pageSize } = state;
   return (

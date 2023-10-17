@@ -59,10 +59,7 @@ const InputGroup = ({
         
     ${append ? "has-append" : ""}
     ${prepend ? "has-prepend" : ""}
-
     ${error ? "is-invalid" : ""}  ${validate ? "is-valid" : ""}
-    
-   
     ${horizontal ? "flex-1" : ""}
       `}
       >

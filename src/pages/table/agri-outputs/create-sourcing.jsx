@@ -97,19 +97,20 @@ const CreateSourcing = () => {
     }
   };
 
-  console.log(all_crops);
-
   useEffect(() => {
     fetch_locations();
     // fetchFarmers();
     getCrops();
     getUnit();
 
-    fetch(`${import.meta.env.VITE_BASE}/division/${divisionId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `${import.meta.env.VITE_BASE}/division/${divisionId ? divisionId : 1}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setDistricts(data.districts);
@@ -125,11 +126,6 @@ const CreateSourcing = () => {
       fontSize: "14px",
     }),
   };
-
-  const units = [
-    { value: "KG", label: "KG" },
-    { value: "TON", label: "MON" },
-  ];
 
   const {
     register,
@@ -159,36 +155,36 @@ const CreateSourcing = () => {
     if (!data.note) {
       delete postData.description;
     }
-    // try {
-    //   const response = await axios.post(
-    //     `${import.meta.env.VITE_BASE}/hq/sourcing`,
-    //     {
-    //       which_farmer: farmerId?.farmer_id,
-    //       product_name: productName,
-    //       variety: data.variety, // if variety is not then dont send
-    //       quantity: parseInt(data.quantity),
-    //       unit: unit,
-    //       buy_price: parseFloat(data?.price),
-    //       source_location: upazilaId,
-    //       description: data.note,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE}/hq/sourcing`,
+        {
+          which_farmer: farmerId?.farmer_id,
+          product_name: productName,
+          variety: data.variety, // if variety is not then dont send
+          quantity: parseInt(data.quantity),
+          unit: unit,
+          buy_price: parseFloat(data?.price),
+          source_location: upazilaId,
+          description: data.note,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    //   if (response) {
-    //     Swal.fire("Success!", "Source Added", "success");
-    //     reset();
-    //     // closeModal();
-    //   } else {
-    //     Swal.fire("Ops!", "Something went wrong", "error");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      if (response) {
+        Swal.fire("Success!", "Source Added", "success");
+        reset();
+        // closeModal();
+      } else {
+        Swal.fire("Ops!", "Something went wrong", "error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
     console.log(postData);
   };
@@ -209,14 +205,12 @@ const CreateSourcing = () => {
     }
   };
 
-  console.log(all_farmers);
-
   return (
     <div>
       <Card title="Create Source">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-6 space-y-4">
-            <p>{farmerId?.full_name}</p>
+            <p>Selected Farmer : {farmerId?.full_name}</p>
             <div>
               <Textinput
                 name="farmer_id"
@@ -232,7 +226,7 @@ const CreateSourcing = () => {
                 msgTooltip
               />
               {openSearch && (
-                <div>
+                <div style={{ maxHeight: "200px", overflowY: "auto" }}>
                   {all_farmers?.map((farmer) => (
                     <div
                       key={farmer.farmer_id}
@@ -242,8 +236,10 @@ const CreateSourcing = () => {
                       }}
                       className="cursor-pointer"
                     >
-                      {farmer.full_name} - {farmer.phone}{" "}
-                      {farmer.usaid_id && `-${farmer.usaid_id}`}
+                      <p className="border text-sm p-2">
+                        {farmer.full_name} - {farmer.phone}{" "}
+                        {farmer.usaid_id && `-${farmer.usaid_id}`}
+                      </p>
                     </div>
                   ))}
                 </div>

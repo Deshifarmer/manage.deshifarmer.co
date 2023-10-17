@@ -154,7 +154,7 @@ const Attendance = ({ title = "Attendance" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (attendances ? attendances : []), [attendances]);
 
-  console.log(attendances);
+
 
   const tableInstance = useTable(
     {

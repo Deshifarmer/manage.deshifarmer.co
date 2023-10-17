@@ -19,8 +19,8 @@ const FormValadtionSchema = yup
     sale_location: yup.string().required("Sold Location is required"),
     sale_amount: yup.string().required("Sale amount is required"),
     quantity: yup.string().required("Quantity is required"),
-    phone_number: yup.string().required("Phone number is required"),
-    name: yup.string().required("Customer name is required"),
+    // phone_number: yup.string().required("Phone number is required"),
+    // name: yup.string().required("Customer name is required"),
   })
   .required();
 
@@ -30,6 +30,8 @@ const ViewSource = ({ row }) => {
   const [showModal, setShowModal] = useState(false);
   const [marketType, setMarketType] = useState("");
   const [customerId, setCustomerId] = useState(null);
+  const [newCustomer, setNewCustomer] = useState({ name: "", phoneNumber: "" });
+  const [showNewCustomerFields, setShowNewCustomerFields] = useState(false);
 
   const {
     data: sales_customers,
@@ -71,6 +73,25 @@ const ViewSource = ({ row }) => {
   } = useForm({
     resolver: yupResolver(FormValadtionSchema),
   });
+
+  const handleSelectChange = (selectedOption) => {
+    setCustomerId(selectedOption.value);
+
+    // Check if "Add New Customer" option is selected
+    if (selectedOption.value === "addNewCustomer") {
+      setShowNewCustomerFields(true);
+    } else {
+      setShowNewCustomerFields(false);
+    }
+  };
+
+  const handleNewCustomerNameChange = (e) => {
+    setNewCustomer({ ...newCustomer, name: e.target.value });
+  };
+
+  const handleNewCustomerPhoneNumberChange = (e) => {
+    setNewCustomer({ ...newCustomer, phoneNumber: e.target.value });
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -114,12 +135,14 @@ const ViewSource = ({ row }) => {
       }
     } catch (error) {
       if (error.response.data.error) {
-        toast.error(error.response.data.error);
+        // toast.error(error.response.data.error);
+        Swal.fire("Ops!", `${error.response.data.error}`, "error");
+        closeModal();
       }
     }
   };
 
-  console.log(sales_customers);
+
 
   return (
     <div>
@@ -143,18 +166,29 @@ const ViewSource = ({ row }) => {
                 <label htmlFor=" hh" className="form-label ">
                   Select Customer
                 </label>
-                <Select
-                  className="react-select"
-                  classNamePrefix="select"
-                  options={type_of_market?.map((market) => ({
-                    value: market.value,
-                    label: market.label,
-                  }))}
-                  onChange={(e) => setMarketType(e.value)}
-                  styles={styles}
-                  required
-                  id="hh"
-                />
+                {isLoading ? (
+                  "Loading"
+                ) : (
+                  <Select
+                    className="react-select capitalize"
+                    classNamePrefix="select"
+                    options={[
+                      {
+                        value: "addNewCustomer",
+                        label: "Add New Customer",
+                      },
+                      ...sales_customers?.map((customer) => ({
+                        value: customer?.customer_id,
+                        label: `${customer?.name} - ${customer?.phone_number}`,
+                      })),
+                    ]}
+                    onChange={handleSelectChange}
+                    // isSearchable
+                    styles={styles}
+                    required
+                    id="hh"
+                  />
+                )}
               </div>
             </div>
             <div>
@@ -196,32 +230,34 @@ const ViewSource = ({ row }) => {
               name="quantity"
               label="Quantity"
               placeholder="Quantity"
-              type="text"
+              type="number"
               register={register}
               error={errors.quantity}
               msgTooltip
             />
 
-            <div className="space-y-4">
-              <Textinput
-                name="name"
-                label="Customer Name"
-                placeholder="Customer Name"
-                type="text"
-                register={register}
-                error={errors.name}
-                msgTooltip
-              />
-              <Textinput
-                name="phone_number"
-                label="Phone Number"
-                placeholder="Phone Number"
-                type="text"
-                register={register}
-                error={errors.phone_number}
-                msgTooltip
-              />
-            </div>
+            {showNewCustomerFields && (
+              <div className="space-y-4">
+                <Textinput
+                  name="name"
+                  label="Customer Name"
+                  placeholder="Customer Name"
+                  type="text"
+                  register={register}
+                  // error={errors.name}
+                  msgTooltip
+                />
+                <Textinput
+                  name="phone_number"
+                  label="Phone Number"
+                  placeholder="Phone Number"
+                  type="text"
+                  register={register}
+                  // error={errors.phone_number}
+                  msgTooltip
+                />
+              </div>
+            )}
           </div>
           <button
             // disabled={loading}

@@ -8,7 +8,7 @@ const DistributorDetails = () => {
   const params = useParams();
   const { data } = useGetSingleDistributorDetailsQuery(params?.id);
 
-  console.log(data);
+ 
 
   return (
     <div className="space-y-10 ">

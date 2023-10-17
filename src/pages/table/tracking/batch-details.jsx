@@ -7,7 +7,7 @@ import moment from "moment";
 const BatchDetails = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetSignleBatchQuery(id);
-  console.log(data);
+
 
   // const json = [
   //   {

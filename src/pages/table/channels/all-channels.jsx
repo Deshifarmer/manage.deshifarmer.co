@@ -326,7 +326,7 @@ const ChannelLists = () => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  console.log("channels", channels);
+ 
   return (
     <div>
       {isLoading ? (

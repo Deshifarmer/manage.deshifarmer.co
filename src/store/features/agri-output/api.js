@@ -3,8 +3,8 @@ import { apiSlice } from "../../api/api-slice";
 export const agriOutputsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllSources: builder.query({
-      query: () => ({
-        url: `/hq/sourcing`,
+      query: (params) => ({
+        url: `/hq/sourcing?per_page=${params?.itemsPerPage}&page=${params?.currentPage}`,
         method: "GET",
       }),
     }),

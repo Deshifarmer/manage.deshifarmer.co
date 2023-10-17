@@ -5,7 +5,7 @@ import ViewBatches from "./view-batches";
 
 const FarmerFarms = ({ params }) => {
   const { data, isLoading } = useGetFarmerWiseFarmQuery(params?.id);
-  console.log(isLoading ? "Loading..." : data);
+
   return (
     <div>
       {isLoading ? (

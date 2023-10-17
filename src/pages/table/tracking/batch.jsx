@@ -159,7 +159,7 @@ const Batch = ({ title = "Batch" }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (batch ? batch : []), [batch]);
 
-  console.log(batch);
+ 
 
   const tableInstance = useTable(
     {

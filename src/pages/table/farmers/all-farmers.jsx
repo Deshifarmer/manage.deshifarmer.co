@@ -361,7 +361,7 @@ const AllFarmers = ({ title = "All Farmers" }) => {
 
   const { globalFilter, pageIndex, pageSize } = state;
 
-  console.log(farmers);
+
 
   return (
     <>

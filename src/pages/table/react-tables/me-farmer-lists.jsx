@@ -226,7 +226,6 @@ const MeFarmerLists = ({
     [farmer_lists]
   );
 
-  console.log(data);
   const defaultPageSize = 200;
 
   const excel_data = data.map((farmer) => {

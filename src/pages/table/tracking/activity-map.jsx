@@ -8,7 +8,6 @@ import {
 } from "react-leaflet";
 
 const ActivityMap = ({ lat, long }) => {
-  console.log(lat, long);
   const position = [23.9316, 88.9954];
   const circleRadius = 4500;
   const polygonCoords = [
