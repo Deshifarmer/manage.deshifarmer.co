@@ -62,7 +62,6 @@ const COLUMNS = [
       return <span>{row?.cell?.value}</span>;
     },
   },
-
   {
     Header: "action",
     accessor: "",

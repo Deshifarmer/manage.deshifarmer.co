@@ -27,6 +27,8 @@ const SalesInvoice = () => {
 
   const componentRef = useRef();
 
+  console.log(details);
+
   return (
     <div>
       <div>
@@ -122,19 +124,17 @@ const SalesInvoice = () => {
                       <div className="mt-1 ">
                         <div className="flex gap-2">
                           <span className="font-semibold">Customer Name -</span>{" "}
+                          <p>{details?.customer_details?.name}</p>
                           <p>
-                            {details?.customer_name
-                              ? details?.customer_name
+                            {details?.customer_id
+                              ? `(${details?.customer_id})`
                               : ""}
-                          </p>
-                          <p>
-                            {details?.customer_id ? details?.customer_id : ""}
                           </p>
                         </div>
                       </div>{" "}
                       <p className="mt-1">
                         <span className="font-semibold">Phone No -</span>{" "}
-                        {details?.customer_phone}
+                        {details?.customer_details?.phone_number}
                       </p>{" "}
                       <p className="mt-1">
                         <span className="font-semibold">Address -</span>{" "}
