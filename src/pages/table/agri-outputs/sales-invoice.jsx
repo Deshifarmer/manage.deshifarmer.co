@@ -19,7 +19,7 @@ const SalesInvoice = () => {
     params?.id
   );
 
-  console.log("details", details);
+ 
   const { order_details, status } = details || {};
   const printPage = () => {
     window.print();
@@ -27,7 +27,7 @@ const SalesInvoice = () => {
 
   const componentRef = useRef();
 
-  console.log(details);
+ 
 
   return (
     <div>

@@ -186,7 +186,7 @@ const CreateSourcing = () => {
       console.log(error);
     }
 
-    console.log(postData);
+   
   };
 
   const handleSearchFarmer = async (e) => {

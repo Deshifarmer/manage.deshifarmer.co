@@ -51,7 +51,7 @@ const BatchDetails = () => {
   //   return parseActivity(item.activity);
   // });
 
-  // console.log(mappedData);
+
 
   const {
     buy_price,

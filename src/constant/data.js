@@ -444,7 +444,7 @@ export const menuItems = [
       },
       {
         childtitle: "Sales",
-        childlink: "sales",
+        childlink: "day-wise-sales",
       },
     ],
   },

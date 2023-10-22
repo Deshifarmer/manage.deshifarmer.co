@@ -227,7 +227,7 @@ const ProductDetailsPage = () => {
       } catch (error) {
         setShow(false);
         Swal.fire("Ops!", "Error Updating Product", "error");
-        console.log(error);
+     
       }
     } else if (value === "edit") {
       setShow(true);

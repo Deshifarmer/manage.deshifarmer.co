@@ -10,7 +10,6 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
         // },
       }),
-      providesTags: ["radialChart"],
     }),
     getLocationWiseFarmer: builder.query({
       query: () => ({
@@ -20,7 +19,6 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
         // },
       }),
-      providesTags: ["radialChart"],
     }),
     getCompanies: builder.query({
       query: () => ({
@@ -67,6 +65,15 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
         // },
       }),
     }),
+    getSourcingUnitWiseQuantity: builder.query({
+      query: () => ({
+        url: `/hq/dashboard/sourcingUnitWiseQuantity`,
+        method: "GET",
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("hq-token")}`,
+        // },
+      }),
+    }),
   }),
 });
 
@@ -78,4 +85,5 @@ export const {
   useGetMapDetailsQuery,
   useGetDailySalesChartDataQuery,
   useGetMonthlySalesChartDataQuery,
+  useGetSourcingUnitWiseQuantityQuery,
 } = dashboardApiSlice;

@@ -30,7 +30,7 @@ const SalesChart = ({ height = 360 }) => {
       },
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     stroke: {
       curve: "smooth",
@@ -85,13 +85,13 @@ const SalesChart = ({ height = 360 }) => {
       },
     },
     xaxis: {
-      type: "datetime",
+      type: "",
       categories: data?.map((item) => item.date),
       axisBorder: {
         show: false,
       },
       axisTicks: {
-        show: false,
+        show: true,
       },
       labels: {
         style: {

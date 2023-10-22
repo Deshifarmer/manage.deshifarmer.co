@@ -113,7 +113,6 @@ const COLUMNS = [
     Header: "Phone No",
     accessor: "phone",
     Cell: (row) => {
-      console.log(row.cell.row.original.phone.length != 11);
       return (
         <span
           className={`${
@@ -360,8 +359,6 @@ const AllFarmers = ({ title = "All Farmers" }) => {
   } = tableInstance;
 
   const { globalFilter, pageIndex, pageSize } = state;
-
-
 
   return (
     <>

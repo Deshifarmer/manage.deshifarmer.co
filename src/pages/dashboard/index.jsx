@@ -10,6 +10,7 @@ import GroupChart5 from "../../components/partials/widget/chart/group-chart5";
 import Calculation from "../components/dashboard/calculation";
 import SalesChart from "../table/dashboard/sales-chart";
 import MonthlySalesChart from "../table/dashboard/monthly-sales-chart";
+import SourceUnitWiseQuantity from "../components/dashboard/source-unit-wise-quantity";
 
 const Dashboard = () => {
   const [filterMap, setFilterMap] = useState("usa");
@@ -31,19 +32,24 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-12 gap-5">
-        <div className="lg:col-span-8 col-span-12">
+        <div className="lg:col-span-12 col-span-12">
           <Card>
             <div className="legend-ring">
               <RevenueBarChart />
             </div>
           </Card>
         </div>
-        <div className="lg:col-span-4 col-span-12">
+        <div className="lg:col-span-6 col-span-12">
           <Card
             title="Gender Analytics District Wise"
             headerslot={<SelectMonth />}
           >
             <Calculation />
+          </Card>
+        </div>
+        <div className="lg:col-span-6 col-span-12">
+          <Card title="Source Unit Wise Quantity" headerslot={<SelectMonth />}>
+            <SourceUnitWiseQuantity />
           </Card>
         </div>
         <div className="col-span-6">

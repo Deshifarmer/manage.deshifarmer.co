@@ -26,6 +26,18 @@ export const agriOutputsApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getDayWhiseSourceSelling: builder.query({
+      query: (id) => ({
+        url: `/hq/day_wise_source_selling`,
+        method: "GET",
+      }),
+    }),
+    getSingleDayWhiseSourceSelling: builder.query({
+      query: (params) => ({
+        url: `/hq/source_selling?date=${params?.id}&per_page=${params?.itemsPerPage}&page=${params?.currentPage}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -34,4 +46,6 @@ export const {
   useGetAllSalesQuery,
   useGetSalesInvoiceDetailsQuery,
   useGetSalesCustomerQuery,
+  useGetDayWhiseSourceSellingQuery,
+  useGetSingleDayWhiseSourceSellingQuery,
 } = agriOutputsApiSlice;
