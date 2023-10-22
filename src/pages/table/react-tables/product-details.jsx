@@ -143,7 +143,7 @@ const ProductDetailsPage = () => {
 
     if (value === "active") {
       try {
-        const response = await axios.put(
+        const response = await axios.post(
           `${import.meta.env.VITE_BASE}/hq/product/${id}`,
           {
             status: "active",
@@ -227,7 +227,6 @@ const ProductDetailsPage = () => {
       } catch (error) {
         setShow(false);
         Swal.fire("Ops!", "Error Updating Product", "error");
-     
       }
     } else if (value === "edit") {
       setShow(true);
