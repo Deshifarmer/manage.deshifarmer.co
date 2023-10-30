@@ -37,6 +37,7 @@ const CreateSourcing = () => {
   const [all_crops, set_all_crops] = useState([]);
   const [all_unit, set_all_uint] = useState([]);
   const [openSearch, setOpenSearch] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const fetch_locations = async () => {
     try {
@@ -156,6 +157,7 @@ const CreateSourcing = () => {
       delete postData.description;
     }
     try {
+      setSubmitting(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE}/hq/sourcing`,
         {
@@ -179,14 +181,15 @@ const CreateSourcing = () => {
         Swal.fire("Success!", "Source Added", "success");
         reset();
         // closeModal();
+        setSubmitting(false);
       } else {
         Swal.fire("Ops!", "Something went wrong", "error");
+        setSubmitting(false);
       }
     } catch (error) {
       console.log(error);
+      setSubmitting(false);
     }
-
-   
   };
 
   const handleSearchFarmer = async (e) => {
@@ -376,7 +379,7 @@ const CreateSourcing = () => {
             className="btn btn-dark  text-center mt-4"
           >
             {/* {loading ? "Loading..." : "Submit"} */}
-            Submit
+            {submitting ? "Loading..." : "Submit"}
           </button>
         </form>
       </Card>
