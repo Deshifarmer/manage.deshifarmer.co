@@ -98,6 +98,18 @@ const COLUMNS = [
             <Link to={`/farmer-details/${row.cell.row.original.which_farmer}`}>
               {row?.cell?.value}
             </Link>
+            <p
+              className={`${
+                row.cell.row.original.usaid_id
+                  ? "text-green-400 no-underlin font-bold"
+                  : "text-red-400 no-underline"
+              }`}
+            >
+              Usaid :{" "}
+              {row.cell.row.original.usaid_id
+                ? row.cell.row.original.usaid_id
+                : "NaN"}
+            </p>
           </span>
         </div>
       );
@@ -165,8 +177,6 @@ const TrackSources = ({ title = "Sourcing" }) => {
   );
 
   const total_data = sourcing?.meta?.total;
-
- 
 
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
@@ -260,6 +270,7 @@ const TrackSources = ({ title = "Sourcing" }) => {
   } = tableInstance;
 
   const { globalFilter, pageIndex, pageSize } = state;
+
   return (
     <>
       {isLoading ? (
