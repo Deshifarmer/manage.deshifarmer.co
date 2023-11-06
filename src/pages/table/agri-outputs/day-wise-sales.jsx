@@ -3,6 +3,7 @@ import { advancedTable } from "../../../constant/table-data";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
+import { saveAs } from "file-saver";
 import {
   useTable,
   useRowSelect,
@@ -137,16 +138,43 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const DayWiseSales = ({ title = "Day Wise Sell" }) => {
+const DayWiseSales = ({ title = "Day Wise Sell", date }) => {
   const { data: dayWiseSell } = useGetDayWhiseSourceSellingQuery();
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (dayWiseSell ? dayWiseSell : []), [dayWiseSell]);
 
+  const defaultPageSize = 200;
+
+  const excel_data = data.map((datewise) => {
+    return {
+      Date: datewise?.date,
+
+      "Total Selling": datewise?.total_selling,
+    };
+  });
+
+  const handleExport = async () => {
+    const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+    const worksheet = XLSX.utils.json_to_sheet(excel_data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(fileData, `Datewisesale.xlsx`);
+  };
+
   const tableInstance = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0, pageSize: defaultPageSize },
     },
 
     useGlobalFilter,
@@ -198,8 +226,14 @@ const DayWiseSales = ({ title = "Day Wise Sell" }) => {
       <Card>
         <div className="md:flex justify-between items-center mb-6">
           <h4 className="card-title">{title}</h4>
-          <div>
+          <div className=" flex justify-between gap-2">
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+            <button
+              className="text-xs border text-white px-4  py-2 border-slate-600 rounded bg-green-800"
+              onClick={handleExport}
+            >
+              Export to Excel
+            </button>
           </div>
         </div>
         <div className="overflow-x-auto -mx-6">

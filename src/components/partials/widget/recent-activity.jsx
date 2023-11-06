@@ -10,6 +10,7 @@ import {
 } from "react-table";
 import { useGetAllOrdersQuery } from "../../../store/features/orders/api";
 
+
 const COLUMNS = [
   {
     Header: "Placement Time",
@@ -17,16 +18,17 @@ const COLUMNS = [
     Cell: (row) => {
       return (
         <span className="text-xs">
-          {moment(row?.cell?.value).startOf("day").fromNow()}
+          {moment(row?.cell?.value).fromNow()}
         </span>
       );
     },
   },
+  
 
   {
     Header: "Total Amount",
     accessor: "total_price",
-    Cell: (row) => {
+  Cell: (row) => {
       return <span className="text-xs">{row?.cell?.value} TK</span>;
     },
   },
@@ -99,7 +101,7 @@ const RecentActivity = () => {
                   className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700"
                   {...getTableProps}
                 >
-                  <thead className=" bg-slate-200 dark:bg-slate-700">
+                  <thead className=" bg-slate-200   dark:bg-slate-700">
                     {headerGroups.map((headerGroup) => (
                       <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((column) => (

@@ -320,14 +320,14 @@ const GroupChart5 = () => {
       text: "text-warning-500",
       icon: "heroicons:cube",
     },
-    {
-      name: columnCharthome4,
-      title: "Sell Volume (Output)",
-      count: data?.output_sell_volume + " kg",
-      bg: "bg-[#E5F9FF] ",
-      text: "text-warning-500",
-      icon: "heroicons:cube",
-    },
+    // {
+    //   name: columnCharthome4,
+    //   title: "Sell Volume (Output)",
+    //   count: data?.output_sell_volume + " kg",
+    //   bg: "bg-[#E5F9FF] ",
+    //   text: "text-warning-500",
+    //   icon: "heroicons:cube",
+    // },
     {
       name: columnCharthome2,
       title: "Agri Advisory",
