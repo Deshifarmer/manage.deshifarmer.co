@@ -42,7 +42,7 @@ const profile = () => {
             </div>
           </div>
 
-          <div className="profile-info-500 md:flex md:text-start text-center flex-1 max-w-[516px] md:space-y-0 space-y-4">
+          {/* <div className="profile-info-500 md:flex md:text-start text-center flex-1 max-w-[516px] md:space-y-0 space-y-4">
             <div className="flex-1">
               <div className="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
                 $32,400
@@ -69,7 +69,7 @@ const profile = () => {
                 Calender Events
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-4 col-span-12">
