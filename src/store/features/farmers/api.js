@@ -16,6 +16,13 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getSingleFarmersource: builder.query({
+      query: (id) => ({
+        
+        url: `/hq/farmer_source_selling/${id}`,
+        method: "GET",
+      }),
+    }),
     getAllFarms: builder.query({
       query: (id) => ({
         url: `/hq/all_farm`,
@@ -57,6 +64,7 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetAllFarmersQuery,
+  useGetSingleFarmersourceQuery,
   useGetSingleFarmerQuery,
   useGetAllFarmsQuery,
   useGetAllGroupsQuery,

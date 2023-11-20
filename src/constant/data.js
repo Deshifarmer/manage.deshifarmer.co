@@ -446,6 +446,10 @@ export const menuItems = [
         childtitle: "Sales",
         childlink: "day-wise-sales",
       },
+      {
+        childtitle: "Sales Export",
+        childlink: "salesexport",
+      },
     ],
   },
   {

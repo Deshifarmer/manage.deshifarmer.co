@@ -3,6 +3,11 @@ import { advancedTable } from "../../../constant/table-data";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Tooltip from "@/components/ui/Tooltip";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
+import { subDays } from "date-fns";
+
 import { saveAs } from "file-saver";
 import {
   useTable,
@@ -30,7 +35,7 @@ const COLUMNS = [
     },
   },
   {
-    Header: "Usit Wise Selling",
+    Header: "Unit Wise Selling",
     accessor: "",
     Cell: (row) => {
       return (
@@ -138,8 +143,22 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const DayWiseSales = ({ title = "Day Wise Sell", date }) => {
-  const { data: dayWiseSell } = useGetDayWhiseSourceSellingQuery();
+const DayWiseSales = ({ title = "Day Wise Sell" }) => {
+  const [startDate, setStartDate] = useState(subDays(new Date(), 10));
+  const [endDate, setEndDate] = useState(new Date());
+
+  let dayWiseSell;
+  try {
+    const { data } = useGetDayWhiseSourceSellingQuery({
+      startDate: format(startDate, "yyyy-MM-dd"),
+      endDate: format(endDate, "yyyy-MM-dd"),
+    });
+    dayWiseSell = data;
+  } catch (error) {
+    console.error(error);
+    window.location.reload();
+  }
+
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (dayWiseSell ? dayWiseSell : []), [dayWiseSell]);
@@ -149,7 +168,6 @@ const DayWiseSales = ({ title = "Day Wise Sell", date }) => {
   const excel_data = data.map((datewise) => {
     return {
       Date: datewise?.date,
-
       "Total Selling": datewise?.total_selling,
     };
   });
@@ -227,13 +245,23 @@ const DayWiseSales = ({ title = "Day Wise Sell", date }) => {
         <div className="md:flex justify-between items-center mb-6">
           <h4 className="card-title">{title}</h4>
           <div className=" flex justify-between gap-2">
-            <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-            {/* <button
+            <DatePicker
+              className="border border-slate-600 rounded px-2 py-1 dark:bg-slate-700 dark:text-slate-300"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
+            <DatePicker
+              className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-2 py-1"
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+            />
+
+            <button
               className="text-xs border text-white px-4  py-2 border-slate-600 rounded bg-green-800"
               onClick={handleExport}
             >
               Export to Excel
-            </button> */}
+            </button>
           </div>
         </div>
         <div className="overflow-x-auto -mx-6">

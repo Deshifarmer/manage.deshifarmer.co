@@ -27,8 +27,8 @@ export const agriOutputsApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getDayWhiseSourceSelling: builder.query({
-      query: (id) => ({
-        url: `/hq/day_wise_source_selling`,
+      query: (params) => ({
+        url: `/hq/day_wise_source_selling?start_date=${params?.startDate}&end_date=${params?.endDate}`,
         method: "GET",
       }),
     }),

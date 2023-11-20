@@ -22,6 +22,8 @@ const FarmerProfile = ({
   const cpc = current_producing_crop && JSON.parse(current_producing_crop);
   const fc = focused_crop && JSON.parse(focused_crop);
 
+  console.log(farmer_details);
+
   return (
     <div>
       <div className="space-y-5 profile-page">
@@ -281,7 +283,9 @@ const FarmerProfile = ({
                       {farmer_details?.cropping_intensity}
                     </div>
                   </div>
+                  
                 </li>
+                
                 <li className="flex space-x-3 rtl:space-x-reverse">
                   <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
                     <Icon icon="heroicons:shopping-bag" />
@@ -318,6 +322,32 @@ const FarmerProfile = ({
                     </div>
                     <div className="text-base text-slate-600 capitalize dark:text-slate-50">
                       {farmer_details?.farm_area}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:currency-dollar" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Farmer Input Buy
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.input_buy}
+                    </div>
+                  </div>
+                </li>
+                <li className="flex space-x-3 rtl:space-x-reverse">
+                  <div className="flex-none text-2xl text-slate-600 dark:text-slate-300">
+                    <Icon icon="heroicons:credit-card" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="uppercase text-xs text-slate-500 dark:text-slate-300 mb-1 leading-[12px]">
+                      Farmer Output Sold
+                    </div>
+                    <div className="text-base text-slate-600 capitalize dark:text-slate-50">
+                      {farmer_details?.output_sold}
                     </div>
                   </div>
                 </li>

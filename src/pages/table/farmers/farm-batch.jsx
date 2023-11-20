@@ -162,6 +162,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const FarmBatch = ({ title = "Farm Batches" }) => {
   const params = useParams();
   const { data: batch, isLoading } = useGetFarmDetailsQuery(params?.id);
+  
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(

@@ -181,6 +181,32 @@ const SalesDetails = ({ title = "Sales" }) => {
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => (sales?.data ? sales?.data : []), [sales?.data]);
+  console.log(data);
+
+  const excel_data = data.map((datewise) => {
+    return {
+      Date: datewise?.date,
+
+      "Total Selling": datewise?.sell_price,
+    };
+  });
+
+  const handleExport = async () => {
+    const XLSX = await import("xlsx"); // Use dynamic import for XLSX
+    const worksheet = XLSX.utils.json_to_sheet(excel_data); // ensure excel_data contains all data
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const fileData = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+  
+    saveAs(fileData, `Datewisesale.xlsx`);
+  };
+
 
   const total_data = sales?.meta?.total;
 
@@ -242,7 +268,7 @@ const SalesDetails = ({ title = "Sales" }) => {
     pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
   }
 
-  const defaultPageSize = 10;
+ const defaultPageSize = 10;
 
   const tableInstance = useTable(
     {
@@ -280,8 +306,14 @@ const SalesDetails = ({ title = "Sales" }) => {
       <Card>
         <div className="md:flex justify-between items-center mb-6">
           <h4 className="card-title">{title}</h4>
-          <div>
+          <div className=" flex gap-4">
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+            <button
+              className="text-xs border text-white px-4  py-2 border-slate-600 rounded bg-green-800"
+              onClick={handleExport}
+            >
+              Export to Excel
+            </button>
           </div>
         </div>
         <div className="overflow-x-auto -mx-6">

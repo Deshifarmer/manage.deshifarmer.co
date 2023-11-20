@@ -176,6 +176,7 @@ import SalesDetails from "./pages/table/agri-outputs/sales";
 import SalesInvoice from "./pages/table/agri-outputs/sales-invoice";
 import CreateSourcing from "./pages/table/agri-outputs/create-sourcing";
 import DayWiseSales from "./pages/table/agri-outputs/day-wise-sales";
+import SalesExport from "./pages/table/agri-outputs/SalesExport";
 
 function App() {
   return (
@@ -418,6 +419,7 @@ function App() {
           <Route path="day-wise-sales" element={<DayWiseSales />} />
           <Route path="sales-details/:id" element={<SalesDetails />} />
           <Route path="create-sourcing" element={<CreateSourcing />} />
+          <Route path="salesexport" element={<SalesExport/>} />
           <Route
             path="farmer-details/:id"
             element={

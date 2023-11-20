@@ -3,13 +3,18 @@ import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import { Tab, Disclosure, Transition } from "@headlessui/react";
 import Accordion from "@/components/ui/Accordion";
-import { useGetSingleFarmerQuery } from "../../../store/features/farmers/api";
+import { useGetSingleFarmerQuery, useGetSingleFarmersourceQuery } from "../../../store/features/farmers/api";
 import FarmerOrders from "./farmer-orders";
+import Farmersource from "./Farmer-Source"
 import FarmerFarms from "./farmer-farms";
 
 const FarmerTabs = ({ params }) => {
   const { data, isLoading, isError } = useGetSingleFarmerQuery(params?.id);
   isError && console.log("Error in fetching farmer details");
+  console.log(data);
+ 
+ 
+  
   const current_producing_crop =
     data?.current_producing_crop && data?.current_producing_crop;
   const focused_crop = data?.focused_crop && data?.focused_crop;
@@ -28,6 +33,10 @@ const FarmerTabs = ({ params }) => {
     },
     {
       title: "Map",
+      icon: "heroicons-outline:cog",
+    },
+    {
+      title: "Source Sell",
       icon: "heroicons-outline:cog",
     },
   ];
@@ -84,7 +93,7 @@ const FarmerTabs = ({ params }) => {
             <FarmerFarms params={params} />
           </Tab.Panel>
           <Tab.Panel>
-            <div className="text-slate-600 dark:text-slate-400 text-sm font-normal">
+          <div className="text-slate-600 dark:text-slate-400 text-sm font-normal">
               Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
               qui
             </div>
@@ -92,10 +101,11 @@ const FarmerTabs = ({ params }) => {
           <Tab.Panel>
             <div className="text-slate-600 dark:text-slate-400 text-sm font-normal">
               Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt
-              qui esse pariatur duis deserunt mollit dolore cillum minim tempor
-              enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
-              voluptate aute id deserunt nisi.
+              qui
             </div>
+          </Tab.Panel>
+          <Tab.Panel>
+         <Farmersource params={ params}/>
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
