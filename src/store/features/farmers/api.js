@@ -10,12 +10,35 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
+
+getFinanceRequest: builder.query({
+  query: (params) => ({
+    url: `/hq/finance_request?per_page=${params?.itemsPerPage}&page=${
+      !params?.searchValue ? params?.currentPage : ""
+    }&search=${params?.searchValue}`,
+    method: "GET",
+  }),
+}),
+
+
+
+
+
+
+
+
+
+
+
+
     getSingleFarmer: builder.query({
       query: (id) => ({
         url: `/hq/farmer/profile/${id}`,
         method: "GET",
       }),
     }),
+
     getSingleFarmersource: builder.query({
       query: (id) => ({
         
@@ -23,18 +46,21 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
     getAllFarms: builder.query({
       query: (id) => ({
         url: `/hq/all_farm`,
         method: "GET",
       }),
     }),
+
     getAllGroups: builder.query({
       query: (id) => ({
         url: `/hq/farmer_group`,
         method: "GET",
       }),
     }),
+
     getSingleGroup: builder.query({
       query: (id) => ({
         url: `/hq/farmer_group/${id}`,
@@ -64,6 +90,7 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetAllFarmersQuery,
+  useGetFinanceRequestQuery,
   useGetSingleFarmersourceQuery,
   useGetSingleFarmerQuery,
   useGetAllFarmsQuery,

@@ -24,8 +24,11 @@ const COLUMNS = [
         <div>
           <span>{row?.cell?.value}</span>
           <p>
-            <span className="text-sm text-slate-600 dark:text-slate-300 text-xs">
+            <span className="  dark:text-slate-300 text-xs underline text-sky-500">
+
+              <Link to={`/sales-invoice/${row?.cell?.row?.original?.id}`}>
               {row?.cell?.row?.original?.source_id}
+              </Link>
             </span>
           </p>
         </div>

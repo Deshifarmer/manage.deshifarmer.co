@@ -168,7 +168,7 @@ import FarmBatch from "./pages/table/farmers/farm-batch";
 import InsuranceRequest from "./pages/table/other-activities/insurance-request";
 import CropAdvisory from "./pages/table/other-activities/crop-advisory";
 import LogisticsRequest from "./pages/table/other-activities/logistics-request";
-import AgriFinanceRequest from "./pages/table/other-activities/agri-finance-request";
+import AgriFinanceRequest from "./pages/table/finance/agri-finance-request";
 import TrackSources from "./pages/table/agri-outputs/track-source";
 import DistributorDetails from "./pages/table/distributors/distributor-details";
 import FarmBatchList from "./pages/table/tracking/farm-batch-list";

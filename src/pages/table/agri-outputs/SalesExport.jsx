@@ -109,6 +109,7 @@ export default function Farmer() {
         Quantity: datewise?.qty_sold,
         Price: datewise?.price,
         Village: datewise?.village,
+        MicroEnterproner_Name : datewise?.me_name,
         
 
     };
@@ -147,7 +148,7 @@ export default function Farmer() {
             <div className=" font-bold text-sm font-Dosis ">
               <p className=" font-Dosis mb-1"> Start Date </p>
               <DatePicker
-               className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-2 py-1"
+               className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-4 py-2"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
@@ -189,9 +190,9 @@ export default function Farmer() {
         <th scope="col" className="px-6 py-2">
           Commodity
         </th>
-        <th scope="col" className="px-6 py-2">
+        {/* <th scope="col" className="px-6 py-2">
           Unit
-        </th>
+        </th> */}
         <th scope="col" className="px-6 py-2">
           Quantity
         </th>
@@ -201,6 +202,9 @@ export default function Farmer() {
         <th scope="col" className="px-6 py-2">
           Village
         </th>
+        <th scope="col" className="px-6 py-2">
+          ME Name     
+        </th>
       </tr>
     </thead>
 
@@ -208,7 +212,7 @@ export default function Farmer() {
       {me.map((me, index) => (
         <tr
           key={index}
-          className={`border border-slate-400 hover:bg-gray-700 ${
+          className={`border border-slate-400 hover:bg-gray-700 text-xs ${
             index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
           }`}
         >
@@ -218,10 +222,12 @@ export default function Farmer() {
           <td className="px-6 py-2">{me.participant_id}</td>
           <td className="px-6 py-2">{me.participant_name}</td>
           <td className="px-6 py-2">{me.commodity}</td>
-          <td className="px-6 py-2">{me.unit}</td>
-          <td className="px-6 py-2">{me.qty_sold}</td>
+          {/* <td className="px-6 py-2">{me.unit}</td> */}
+          <td className="px-6 py-2">{me.qty_sold} {me.unit}</td>
           <td className="px-6 py-2">{me.price}</td>
           <td className="px-6 py-2">{me.village}</td>
+          <td className="px-6 py-2">{me.me_name
+}</td>
         </tr>
       ))}
     </tbody>

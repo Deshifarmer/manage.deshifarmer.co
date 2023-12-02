@@ -325,6 +325,49 @@ export const menuItems = [
       },
     ],
   },
+//finances
+{
+  isHeadr: true,
+  title: "Finances",
+},
+{
+  title: "Agri Finance",
+  icon: "heroicons-outline:adjustments-vertical",
+  link: "#",
+  child: [
+    {
+      childtitle: "Finance Request",
+      childlink: "agri-finance-request",
+    },
+    {
+      childtitle: "Defaulted",
+      childlink: "#",
+    },
+    {
+      childtitle: "Upcoming payments",
+      childlink: "#",
+    },
+    {
+      childtitle: "Completed payments",
+      childlink: "#",
+    },
+    {
+      childtitle: "Reports",
+      childlink: "#",
+    },
+    {
+      childtitle: "Partners",
+      childlink: "#",
+    },
+   
+  ],
+},
+
+
+
+
+
+
 
   // note => KPI's start
   {
@@ -430,7 +473,7 @@ export const menuItems = [
     title: "Agri Output",
   },
   {
-    title: "Channels",
+    title: " Market linkages",
     icon: "heroicons-outline:clipboard",
     link: "#",
     child: [
@@ -493,10 +536,7 @@ export const menuItems = [
         childtitle: "Logistics Request",
         childlink: "logsitics-request",
       },
-      {
-        childtitle: "Agri Finance Request",
-        childlink: "agri-finance-request",
-      },
+    
     ],
   },
   // {

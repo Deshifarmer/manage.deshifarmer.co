@@ -32,7 +32,7 @@ const FarmerTabs = ({ params }) => {
       icon: "heroicons-outline:chat-alt-2",
     },
     {
-      title: "Map",
+      title: "Agri Finance Request",
       icon: "heroicons-outline:cog",
     },
     {

@@ -43,7 +43,7 @@ const COLUMNS = [
     Header: " Price",
     accessor: "price",
     Cell: (row) => {
-      return <span>{row?.cell?.value}</span>;
+      return <span>{row?.cell?.value}TK</span>;
     },
   },
 

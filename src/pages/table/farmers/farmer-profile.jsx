@@ -10,6 +10,7 @@ import Tooltip from "@/components/ui/Tooltip";
 import ProfileImage from "@/assets/images/users/user-1.jpg";
 import MarkerMap from "../../map/marker-map";
 import moment from "moment";
+import FarmerChart from "./FarmerChart";
 
 const FarmerProfile = ({
   farmer_details,
@@ -356,7 +357,7 @@ const FarmerProfile = ({
           </div>
           <div className="lg:col-span-6 col-span-12">
             <Card title="User Overview">
-              <BasicArea height={170} />
+              <FarmerChart height={170} />
             </Card>
           </div>
           <div className="lg:col-span-6 col-span-12">
