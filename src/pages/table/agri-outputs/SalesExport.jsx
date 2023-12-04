@@ -133,110 +133,99 @@ export default function Farmer() {
 
   return (
     <>
-      <div className=" flex bg-slate-900 md:hidden   lg:hidden xl:hidden 2xl:hidden  block sm:block  p-4 ">
-        {" "}
-       
-      </div>
-      <div className=" p-5">
-        <div className=" flex justify-between">
-          <h1 className=" mt-5 font-bold  text-2xl font-Dosis">
-            {" "}
-             Sales onboard
-          </h1>
+  <div className="flex bg-slate-900 md:hidden lg:hidden xl:hidden 2xl:hidden block sm:block p-4"></div>
+  <div className="dark:bg-slate-800 rounded-md dark:text-slate-300 text-slate-500 bg-slate-300 font-poppins">
+    <div className="flex justify-between">
+      <h1 className="mt-5 font-bold p-5 text-2xl font-Dosis">Sales onboard</h1>
 
-          <div className="flex mb-3 gap-5 font-Dosis">
-            <div className=" font-bold text-sm font-Dosis ">
-              <p className=" font-Dosis mb-1"> Start Date </p>
-              <DatePicker
-               className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-4 py-2"
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
-            </div>
-            
-          
-            <button
-              className=" font-Dosis  w-28 mt-6 border-slate-400  hover:bg-slate-400 bg-green-900 text-white text-xs font-bold py-2 px-4 rounded border "
-              onClick={handleExport}
-            >
-           Excel
-            </button>
-            <button
-              onClick={handleFresh}
-              className=" font-Dosis h-10 w-28 mt-6 border-slate-400  hover:bg-slate-400 bg-slate-300 text-slate-700 font-bold py-2 px-4 rounded border "
-            >
-              Clear
-            </button>
-          </div>
+      <div className="flex flex-col sm:flex-row  gap-3 font-Dosis p-5">
+        <div className=" text-sm mb-2">
+          <p className=" mb-2">Start Date</p>
+          <DatePicker
+            className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-4 py-2"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
         </div>
 
-        <div>
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <div className="relative shadow-md rounded-lg">
-  <table className="w-full text-xm rounded-xl text-left  bg-gray-800  text-slate-400">
-    <thead className="text-slate-400 text-xs   border border-gray-400  dark:text-black-50">
-      <tr>
-        <th scope="col" className="px-6 py-2">
-          Farmer ID
-        </th>
-        <th scope="col" className="px-6 py-2">
-          Participate Id
-        </th>
-        <th scope="col" className="px-6 py-2">
-          Participate name
-        </th>
-        <th scope="col" className="px-6 py-2">
-          Commodity
-        </th>
-        {/* <th scope="col" className="px-6 py-2">
-          Unit
-        </th> */}
-        <th scope="col" className="px-6 py-2">
-          Quantity
-        </th>
-        <th scope="col" className="px-6 py-2">
-          Price
-        </th>
-        <th scope="col" className="px-6 py-2">
-          Village
-        </th>
-        <th scope="col" className="px-6 py-2">
-          ME Name     
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {me.map((me, index) => (
-        <tr
-          key={index}
-          className={`border border-slate-400 hover:bg-gray-700 text-xs ${
-            index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
-          }`}
+        <button
+          className="w-full sm:w-28 mt-3 sm:mt-7 border-slate-400 hover:bg-slate-400 bg-green-900 text-white text-xs font-bold h-10  px-4 rounded border"
+          onClick={handleExport}
         >
-          <td className="px-6 py-2 font-medium">
-            {me.farmer_df_id}
-          </td>
-          <td className="px-6 py-2">{me.participant_id}</td>
-          <td className="px-6 py-2">{me.participant_name}</td>
-          <td className="px-6 py-2">{me.commodity}</td>
-          {/* <td className="px-6 py-2">{me.unit}</td> */}
-          <td className="px-6 py-2">{me.qty_sold} {me.unit}</td>
-          <td className="px-6 py-2">{me.price}</td>
-          <td className="px-6 py-2">{me.village}</td>
-          <td className="px-6 py-2">{me.me_name
-}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+          Excel
+        </button>
 
-          )}
-        </div>
+        <button
+          onClick={handleFresh}
+          className="w-full sm:w-28 mt-3 sm:mt-7 border-slate-400 hover:bg-slate-400 bg-slate-300 text-slate-700 font-bold h-10 px-4 rounded border"
+        >
+          Clear
+        </button>
       </div>
-    </>
+    </div>
+
+    <div>
+      {loading ? (
+        <p className=" p-5">Loading...</p>
+      ) : (
+        <div className=" overflow-x-auto">
+          <table className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700">
+            <thead className="bg-slate-200 dark:bg-slate-700">
+              <tr className="text-sm">
+                <th scope="col" className="px-6 py-4">
+                  Farmer ID
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  Participate Id
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  Participate name
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  Commodity
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  Quantity
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  Price
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  Village
+                </th>
+                <th scope="col" className="px-6 py-4">
+                  ME Name
+                </th>
+              </tr>
+            </thead>
+
+            <tbody className=" divide-y divide-slate-100 dark:divide-slate-700">
+              {me.map((me, index) => (
+                <tr
+                  key={index}
+                  className="bg-white text-center   text-sm divide-slate-100 dark:bg-slate-800 dark:divide-slate-700"
+                >
+                  <td className="px-6 py-4  ">{me.farmer_df_id}</td>
+                  <td className="px-6 py-4">{me.participant_id}</td>
+                  <td className="px-6 py-4">{me.participant_name}</td>
+                  <td className="px-6 py-4">{me.commodity}</td>
+                  <td className="px-6 py-4">
+
+                    {me.qty_sold} {me.unit}
+                  </td>
+                  
+                  <td className="px-6 py-4">{me.price}</td>
+                  <td className="px-6 py-4">{me.village}</td>
+                  <td className="px-6 py-4">{me.me_name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  </div>
+</>
+
   );
 }
