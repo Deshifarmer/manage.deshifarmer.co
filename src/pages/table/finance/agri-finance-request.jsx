@@ -14,26 +14,13 @@ import { saveAs } from "file-saver";
 import { calculateAge } from "../../../hooks/useFarmerAge";
 
 const COLUMNS = [
-  // {
-  //   Header: "ID",
-  //   accessor: "id",
-  //   Cell: (row) => {
-  //     return (
-  //       <div className="flex items-center gap-1 text-blue-500 underline">
-  //         <p className="  ">{row?.cell?.value}</p>
-  //       </div>
-  //     );
-  //   },
-  // },
   {
     Header: "Farmer ID",
     accessor: "which_farmer",
     Cell: (row) => {
       return (
         <div className="flex items-center gap-1 text-blue-500 underline">
-          
-            <p className="  ">{row?.cell?.value}</p>
-         
+          <p className="  ">{row?.cell?.value}</p>
         </div>
       );
     },
@@ -82,34 +69,6 @@ const COLUMNS = [
       return <span className="  ">{row?.cell?.value}View</span>;
     },
   },
-
-  // {
-  //   Header: "action",
-  //   accessor: "action",
-  //   Cell: (row) => {
-  //     return (
-  //       <div className="flex space-x-3 rtl:space-x-reverse">
-  //         {/* <Tooltip content="View" placement="top" arrow animation="shift-away">
-  //           <Link to={`/farmer-details/${row.cell.row.original.farmer_id}`}>
-  //             <button className="action-btn" type="button">
-  //               <Icon icon="heroicons:eye" />
-  //             </button>
-  //           </Link>
-  //         </Tooltip> */}
-  //         <Tooltip content="View" placement="top" arrow animation="shift-away">
-  //           <Link
-  //             target="_black"
-  //             to={`/farmer-details/${row.cell.row.original.farmer_id}`}
-  //           >
-  //             <button className="action-btn" type="button">
-  //               <Icon icon="heroicons:eye" />
-  //             </button>
-  //           </Link>
-  //         </Tooltip>
-  //       </div>
-  //     );
-  //   },
-  // },
 ];
 
 const IndeterminateCheckbox = React.forwardRef(
@@ -137,7 +96,7 @@ const IndeterminateCheckbox = React.forwardRef(
 const AllFarmers = ({ title = "All Finance Request" }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(150);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
@@ -164,6 +123,9 @@ const AllFarmers = ({ title = "All Finance Request" }) => {
   } = useGetFinanceRequestQuery({ itemsPerPage, currentPage, searchValue });
   isError && console.log("Error in fetching all farmers");
   const total_data = farmers?.meta?.total;
+
+
+
 
   const handleClick = (event) => {
     setcurrentPage(Number(event.target.id));
@@ -231,14 +193,13 @@ const AllFarmers = ({ title = "All Finance Request" }) => {
     setitemsPerPage(itemsPerPage + 5);
   };
 
-  const defaultPageSize = 10;
+  const defaultPageSize = 200;
   const columns = useMemo(() => COLUMNS, []);
 
   const data = useMemo(
     () => (farmers?.data ? farmers?.data : []),
     [farmers?.data]
   );
-
   console.log(data);
 
   const tableInstance = useTable(
@@ -298,7 +259,7 @@ const AllFarmers = ({ title = "All Finance Request" }) => {
   return (
     <>
       {isLoading ? (
-        <div>"Loading Finance Data, Please wait..."</div>
+        <div>"Loading Farmers Data, Please wait..."</div>
       ) : (
         <Card>
           <div className="md:flex justify-between items-center mb-6">

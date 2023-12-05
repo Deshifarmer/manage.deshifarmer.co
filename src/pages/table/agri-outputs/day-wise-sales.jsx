@@ -242,22 +242,22 @@ const DayWiseSales = ({ title = "Day Wise Sell" }) => {
   return (
     <>
       <Card>
-        <div className="md:flex justify-between items-center mb-6">
-          <h4 className="card-title">{title}</h4>
-          <div className=" flex justify-between gap-2">
+        <div className="md:flex  justify-between items-center mb-6">
+          <h4 className="card-title md:mb-0 mb-2">{title}</h4>
+          <div className=" md:flex flex-none  justify-between gap-2">
             <DatePicker
-              className="border border-slate-600 rounded px-2 py-1 dark:bg-slate-700 dark:text-slate-300"
+              className="border md:mb-0 mb-2 border-slate-600 rounded px-2 py-1 dark:bg-slate-700 dark:text-slate-300"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
             />
             <DatePicker
-              className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-2 py-1"
+              className="border md:mb-0 mb-2 border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-2 py-1"
               selected={endDate}
               onChange={(date) => setEndDate(date)}
             />
 
             <button
-              className="text-xs border text-white px-4  py-2 border-slate-600 rounded bg-green-800"
+              className=" md:mb-0 mb-2 text-xs border text-white px-4  py-2 border-slate-600 rounded bg-green-800"
               onClick={handleExport}
             >
               Export to Excel

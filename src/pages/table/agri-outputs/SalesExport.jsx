@@ -101,17 +101,15 @@ export default function Farmer() {
   }
   const excel_data = me.map((datewise) => {
     return {
-     " Farmer ID": datewise?.farmer_df_id,
-        "Participant ID": datewise?.participant_id,
-        "Participant Name": datewise?.participant_name,
-        Commodity: datewise?.commodity,
-        Unit: datewise?.unit,
-        Quantity: datewise?.qty_sold,
-        Price: datewise?.price,
-        Village: datewise?.village,
-        MicroEnterproner_Name : datewise?.me_name,
-        
-
+      " Farmer ID": datewise?.farmer_df_id,
+      "Participant ID": datewise?.participant_id,
+      "Participant Name": datewise?.participant_name,
+      Commodity: datewise?.commodity,
+      Unit: datewise?.unit,
+      Quantity: datewise?.qty_sold,
+      Price: datewise?.price,
+      Village: datewise?.village,
+      MicroEnterproner_Name: datewise?.me_name,
     };
   });
 
@@ -133,99 +131,99 @@ export default function Farmer() {
 
   return (
     <>
-  <div className="flex bg-slate-900 md:hidden lg:hidden xl:hidden 2xl:hidden block sm:block p-4"></div>
-  <div className="dark:bg-slate-800 rounded-md dark:text-slate-300 text-slate-500 bg-slate-300 font-poppins">
-    <div className="flex justify-between">
-      <h1 className="mt-5 font-bold p-5 text-2xl font-Dosis">Sales onboard</h1>
+      <div className="flex bg-slate-900 md:hidden lg:hidden xl:hidden 2xl:hidden block sm:block p-4"></div>
+      <div className="dark:bg-slate-800 rounded-md dark:text-slate-300 text-slate-500 bg-slate-300 font-poppins">
+        <div className="md:flex justify-between">
+          <h1 className="mt-5 font-bold p-5 text-2xl font-Dosis">
+            Sales onboard
+          </h1>
 
-      <div className="flex flex-col sm:flex-row  gap-3 font-Dosis p-5">
-        <div className=" text-sm mb-2">
-          <p className=" mb-2">Start Date</p>
-          <DatePicker
-            className="border border-slate-600 dark:bg-slate-700 dark:text-slate-300 rounded px-4 py-2"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          />
+          <div className="flex flex-col sm:flex-row  gap-3 font-Dosis p-5">
+            <div className=" text-sm   ">
+              <p className=" mb-2">Start Date</p>
+              <DatePicker
+                className=" dark:bg-slate-700 h-8  dark:text-slate-300 rounded px-4 py-2"
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+              />
+            </div>
+
+            <button
+              className="w-full sm:w-28   sm:mt-7  hover:bg-slate-400 bg-green-900 text-white text-xs font-bold h-8  px-4 rounded "
+              onClick={handleExport}
+            >
+              Excel
+            </button>
+
+            <button
+              onClick={handleFresh}
+              className="w-full sm:w-28 mt-3 sm:mt-7 border-slate-400 hover:bg-slate-400 bg-slate-300 text-slate-700 font-bold h-8 px-4 rounded border"
+            >
+              Clear
+            </button>
+          </div>
         </div>
 
-        <button
-          className="w-full sm:w-28 mt-3 sm:mt-7 border-slate-400 hover:bg-slate-400 bg-green-900 text-white text-xs font-bold h-10  px-4 rounded border"
-          onClick={handleExport}
-        >
-          Excel
-        </button>
+        <div>
+          {loading ? (
+            <p className=" p-5">Loading...</p>
+          ) : (
+            <div className=" overflow-x-auto">
+              <table className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700">
+                <thead className="bg-slate-200 dark:bg-slate-700">
+                  <tr className="text-sm">
+                    <th scope="col" className="px-6 py-4">
+                      Farmer ID
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Participate Id
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Participate name
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Commodity
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Quantity
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Price
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Village
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      ME Name
+                    </th>
+                  </tr>
+                </thead>
 
-        <button
-          onClick={handleFresh}
-          className="w-full sm:w-28 mt-3 sm:mt-7 border-slate-400 hover:bg-slate-400 bg-slate-300 text-slate-700 font-bold h-10 px-4 rounded border"
-        >
-          Clear
-        </button>
+                <tbody className=" divide-y divide-slate-100 dark:divide-slate-700">
+                  {me.map((me, index) => (
+                    <tr
+                      key={index}
+                      className="bg-white text-center   text-sm divide-slate-100 dark:bg-slate-800 dark:divide-slate-700"
+                    >
+                      <td className="px-6 py-4  ">{me.farmer_df_id}</td>
+                      <td className="px-6 py-4">{me.participant_id}</td>
+                      <td className="px-6 py-4">{me.participant_name}</td>
+                      <td className="px-6 py-4">{me.commodity}</td>
+                      <td className="px-6 py-4">
+                        {me.qty_sold} {me.unit}
+                      </td>
+
+                      <td className="px-6 py-4">{me.price}</td>
+                      <td className="px-6 py-4">{me.village}</td>
+                      <td className="px-6 py-4">{me.me_name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-
-    <div>
-      {loading ? (
-        <p className=" p-5">Loading...</p>
-      ) : (
-        <div className=" overflow-x-auto">
-          <table className="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700">
-            <thead className="bg-slate-200 dark:bg-slate-700">
-              <tr className="text-sm">
-                <th scope="col" className="px-6 py-4">
-                  Farmer ID
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Participate Id
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Participate name
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Commodity
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Quantity
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Price
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Village
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  ME Name
-                </th>
-              </tr>
-            </thead>
-
-            <tbody className=" divide-y divide-slate-100 dark:divide-slate-700">
-              {me.map((me, index) => (
-                <tr
-                  key={index}
-                  className="bg-white text-center   text-sm divide-slate-100 dark:bg-slate-800 dark:divide-slate-700"
-                >
-                  <td className="px-6 py-4  ">{me.farmer_df_id}</td>
-                  <td className="px-6 py-4">{me.participant_id}</td>
-                  <td className="px-6 py-4">{me.participant_name}</td>
-                  <td className="px-6 py-4">{me.commodity}</td>
-                  <td className="px-6 py-4">
-
-                    {me.qty_sold} {me.unit}
-                  </td>
-                  
-                  <td className="px-6 py-4">{me.price}</td>
-                  <td className="px-6 py-4">{me.village}</td>
-                  <td className="px-6 py-4">{me.me_name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  </div>
-</>
-
+    </>
   );
 }

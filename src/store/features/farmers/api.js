@@ -12,14 +12,12 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
     }),
 
 
-getFinanceRequest: builder.query({
-  query: (params) => ({
-    url: `/hq/finance_request?per_page=${params?.itemsPerPage}&page=${
-      !params?.searchValue ? params?.currentPage : ""
-    }&search=${params?.searchValue}`,
-    method: "GET",
-  }),
-}),
+    getFinanceRequest: builder.query({
+      query: (params) => ({
+        url: `/hq/finance_request?per_page=${params?.itemsPerPage}&page=${params?.currentPage}`,
+        method: "GET",
+      }),
+    }),
 
 
 
