@@ -137,6 +137,8 @@ import ChannelDetails from "./pages/table/react-tables/channel-details";
 import CompanyDetails from "./pages/table/react-tables/company-details";
 import ProductDetailsPage from "./pages/table/react-tables/product-details";
 import AddProduct from "./pages/forms/add-product";
+import AddFinancePartner from "./pages/forms/add-finance-partner";
+import AllFinancePartner from "./pages/table/finance-partner/all-finance-partner";
 import SingleOrder from "./components/order/order-details";
 import Demo from "./pages/table/react-tables/_demo_";
 import CashOutRequests from "./pages/table/react-tables/cash-out-requests";
@@ -169,11 +171,15 @@ import InsuranceRequest from "./pages/table/other-activities/insurance-request";
 import CropAdvisory from "./pages/table/other-activities/crop-advisory";
 import LogisticsRequest from "./pages/table/other-activities/logistics-request";
 import AgriFinanceRequest from "./pages/table/finance/agri-finance-request";
+import AgriFinanceRequestDetails from "./pages/table/finance/agri-finance-request-details";
+
+
 import TrackSources from "./pages/table/agri-outputs/track-source";
 import DistributorDetails from "./pages/table/distributors/distributor-details";
 import FarmBatchList from "./pages/table/tracking/farm-batch-list";
 import SalesDetails from "./pages/table/agri-outputs/sales";
 import SalesInvoice from "./pages/table/agri-outputs/sales-invoice";
+
 import CreateSourcing from "./pages/table/agri-outputs/create-sourcing";
 import DayWiseSales from "./pages/table/agri-outputs/day-wise-sales";
 import SalesExport from "./pages/table/agri-outputs/SalesExport";
@@ -299,6 +305,16 @@ function App() {
           <Route path="crop-advisory" element={<CropAdvisory />} />
           <Route path="logsitics-request" element={<LogisticsRequest />} />
           <Route path="agri-finance-request" element={<AgriFinanceRequest />} />
+          <Route
+            path="agri-finance-details/:id"
+            element={
+              <Suspense fallback={<Loading />}>
+               <AgriFinanceRequestDetails />
+              </Suspense>
+            }
+          />
+
+
           {/* Components pages */}
           <Route path="button" element={<Button />} />
           <Route path="dropdown" element={<Dropdown />} />
@@ -339,6 +355,13 @@ function App() {
           <Route path="add-category" element={<AddCategory />} />
           <Route path="add-companies" element={<AddCompany />} />
           <Route path="add-manager" element={<AddManager />} />
+//finance partner
+          <Route path="add-finance-partner" element={<AddFinancePartner />} />
+          <Route path="all-finance-partner" element={<AllFinancePartner />} />
+
+
+
+
           <Route path="set-kpi" element={<SetKpi />} />
           <Route path="input-order" element={<InputOrder />} />
           {/* Agri Outputs */}
@@ -436,6 +459,13 @@ function App() {
               </Suspense>
             }
           />
+
+     
+
+
+
+
+
           <Route
             path="order_details/:id"
             element={

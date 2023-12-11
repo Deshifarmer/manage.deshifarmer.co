@@ -225,6 +225,44 @@ export const menuItems = [
       },
     ],
   },
+//finance partner
+{
+  title: "Finance Partner",
+  icon: "heroicons-outline:rss",
+  link: "#",
+  child: [
+    {
+      childtitle: "Add Finance Partner",
+      childlink: "add-finance-partner",
+    },
+    {
+      childtitle: "All Finance Partner",
+      childlink: "all-finance-partner",
+    },
+    // {
+    //   childtitle: "Update Micro-Entrepreneur Info",
+    //   childlink: "update-micro-entrepreneur-info",
+    // },
+  ],
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // note => manager ends
   // {
   //   isHeadr: true,

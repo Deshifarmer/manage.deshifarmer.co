@@ -63,10 +63,16 @@ const COLUMNS = [
     },
   },
   {
-    Header: "Status",
-    accessor: "status",
+    Header: "action",
+    accessor: "",
     Cell: (row) => {
-      return <span className="  ">{row?.cell?.value}View</span>;
+      return (
+        <div>
+          <Link to={`/agri-finance-details/${row?.cell?.row?.original?.id}`}>
+            <div className="">View Details</div>
+          </Link>
+        </div>
+      );
     },
   },
 ];

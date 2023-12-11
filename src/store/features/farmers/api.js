@@ -20,6 +20,16 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
     }),
 
 
+  getSingleAgriFinanceRequest: builder.query({
+      query: (id) => ({
+        url: `/hq/finance_request/${id}`,
+        method: "GET",
+      }),
+    }), 
+
+
+ 
+
 
 
 
@@ -89,6 +99,8 @@ export const farmersApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetAllFarmersQuery,
   useGetFinanceRequestQuery,
+  useGetSingleAgriFinanceRequestQuery,
+
   useGetSingleFarmersourceQuery,
   useGetSingleFarmerQuery,
   useGetAllFarmsQuery,

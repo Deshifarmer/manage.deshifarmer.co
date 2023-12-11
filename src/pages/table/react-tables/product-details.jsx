@@ -154,7 +154,7 @@ const ProductDetailsPage = () => {
             },
           }
         );
-        if (response.status === 200) {
+         if (response.status === 200) {
           Swal.fire("Success", "Product Active Successful", "success");
         }
       } catch (error) {
@@ -162,7 +162,7 @@ const ProductDetailsPage = () => {
       }
     } else if (value === "inactive") {
       try {
-        const response = await axios.put(
+        const response = await axios.post(
           `${import.meta.env.VITE_BASE}/hq/product/${id}`,
           {
             status: "inactive",
@@ -238,7 +238,7 @@ const ProductDetailsPage = () => {
   return (
     <div className=" space-y-5">
       <div className="grid grid-cols-12 gap-5">
-        <Card className="xl:col-span-3 col-span-12 lg:col-span-5 h-full">
+        <Card className="xl:col-span-4 col-span-12 lg:col-span-5 md:col-span-12 h-full">
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
             {/* <GroupChart4  /> */}
             <>
@@ -248,7 +248,7 @@ const ProductDetailsPage = () => {
                   className={`${item.bg} rounded-md p-4 bg-opacity-[0.15] dark:bg-opacity-50 text-center`}
                 >
                   <div
-                    className={`${item.text} mx-auto h-10 w-10 flex flex-col items-center justify-center rounded-full bg-white text-2xl mb-4 `}
+                    className={`${item.text} mx-auto h-10 w-10 flex flex-col items-center justify-center rounded-full bg-white text-sm mb-4 `}
                   >
                     <Icon icon={item.icon} />
                   </div>
@@ -277,7 +277,7 @@ const ProductDetailsPage = () => {
                       }}
                     />
                   ) : (
-                    <span className="block mb- text-2xl text-slate-900 dark:text-white font-medium">
+                    <span className="block mb- text-xl text-slate-900 dark:text-white font-medium">
                       {item.count}
                       {"%"}
                     </span>
@@ -430,7 +430,7 @@ const ProductDetailsPage = () => {
         {/* end single column*/}
         <Card
           title={`About ${product_details.name}`}
-          className="xl:col-span-5 col-span-12 lg:col-span-7 h-full"
+          className="xl:col-span-4 col-span-12 lg:col-span-4 md:col-span-12 h-full"
         >
           <div>
             {/* <div>
@@ -479,13 +479,14 @@ const ProductDetailsPage = () => {
                 </div>
               )}
             </div>
-            <div className="text-base font-medium text-slate-800 dark:text-slate-900 mb-3">
+            <div className="text-base font-medium text-slate-800 dark:text-slate-300 mb-3">
               {show ? (
                 <div className="">
                   <div className="pb-2">Description</div>
                   <div>
-                    <div>
+                    <div className="  text-slate-800 dark:text-slate-300">
                       <ReactQuill
+                      className="  text-slate-800 dark:text-slate-900 "
                         defaultValue={edited_product_details?.description}
                         onChange={(e) => {
                           set_edited_product_details({
@@ -498,13 +499,13 @@ const ProductDetailsPage = () => {
                   </div>
                 </div>
               ) : (
-                <div className="text-base font-medium text-slate-800 dark:text-slate-900 ">
+                <div className="text-base font-medium text-slate-800 dark:text-slate-300 ">
                   <div>Description</div>
                   <p
                     dangerouslySetInnerHTML={{
                       __html: product_details?.description,
                     }}
-                    className="text-sm text-slate-600 dark:text-slate-900 my-3"
+                    className="text-sm text-slate-600 dark:text-slate-300 my-3"
                   >
                     {/* {product_details?.description} */}
                   </p>
@@ -554,7 +555,7 @@ const ProductDetailsPage = () => {
         </Card>
         <Card
           title={`${product_details.name}`}
-          className="xl:col-span-4 col-span-12"
+          className="xl:col-span-4 col-span-12 md:col-span-12 lg:col-span-3"
         >
           {/* <div className="-mx-6 custom-calender mb-6">
             <CalendarView />
