@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import ReactToPrint from "react-to-print";
+import Select from "react-select";
 import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
 import { useGetSingleAgriFinanceRequestQuery } from "/src/store/features/farmers/api.js";
@@ -14,7 +15,7 @@ const AgriFinanceDetails = () => {
   const token = localStorage.getItem("hq-token");
   const [show, setShow] = useState(false);
   const { id } = useParams();
-
+  
   const qrCodeValue = "https://manage.deshifarmer.co";
   const { data: details, isLoading } = useGetSingleAgriFinanceRequestQuery(id);
   console.log(details);
@@ -53,6 +54,33 @@ const AgriFinanceDetails = () => {
     },
   ];
   const which_farmer = details?.which_farmer;
+
+  //fetch partner
+  const [partner, setPartner] = useState([]);
+  const [selectedPartnerId, setSelectedPartnerId] = useState(null);
+  console.log(selectedPartnerId);
+
+  const fetchPartners = async () => {
+    const res = await axios.get(
+      `${import.meta.env.VITE_BASE}/hq/all_fp`,
+
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await res.data;
+    console.log(data);
+    setPartner(data);
+  };
+
+  useEffect(() => {
+    fetchPartners();
+  }, []);
+
+  // note => edit status
   const [status, setStatus] = useState(null);
   const handleEdit = async (value) => {
     try {
@@ -93,11 +121,12 @@ const AgriFinanceDetails = () => {
     }
   };
 
+  //update
+  const which_fp = details?.which_fp;
   const Amount = details?.df_approved_loan;
   const [editedAmount, setEditedAmount] = useState(Amount);
   console.log(Amount);
   const [isUpdated, setIsUpdated] = useState(false);
-
   const handle_update = async (value) => {
     if (value === "edit") {
       setShow(true);
@@ -106,8 +135,9 @@ const AgriFinanceDetails = () => {
       } else {
         setEditedAmount(editedAmount);
       }
-      // setIsUpdated(false);
+  
     }
+ 
 
     if (value === "update") {
       if (editedAmount === Amount) {
@@ -119,6 +149,7 @@ const AgriFinanceDetails = () => {
         `${import.meta.env.VITE_BASE}/hq/finance_request/${id}`,
         {
           df_approved_loan: editedAmount,
+          which_fp: selectedPartnerId,
         },
         {
           headers: {
@@ -129,7 +160,7 @@ const AgriFinanceDetails = () => {
 
       if (res.status === 200) {
         setShow(false);
-        toast.success("Amount Updated Successfully");
+        toast.success(" Updated Successfully");
         setIsUpdated(true);
       } else if (message) {
         toast.error("Failed to update amount. Please try again.");
@@ -147,7 +178,7 @@ const AgriFinanceDetails = () => {
             <div className="grid grid-cols-12 gap-5">
               <Card className="xl:col-span-4 col-span-12 lg:col-span-5 md:col-span-12 h-full">
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                  {/* <GroupChart4  /> */}
+             
                   <>
                     {statistics.map((item, i) => (
                       <div
@@ -173,8 +204,36 @@ const AgriFinanceDetails = () => {
                 <div className="bg-slate-50 dark:bg-slate-900 rounded-md p-4 mt-4">
                   <div className="bg-slate-100 dark:bg-slate-700 rounded px-4 pt-4 pb-1  mt-6">
                     <div className="mr-3 mb-3 space-y-2">
-                      {/* // note  */}
+                      {/* // Assign Partner */}
                       <div className="mr-3 mb-3 space-y-2">
+                        <div>
+                          <label className="form-label" htmlFor="mul_1">
+                            Assign Finance Partner
+                          </label>
+                          <Select
+                          
+                            name="colors"
+                            isDisabled={!!which_fp}
+                            options={
+                              partner &&
+                              partner?.map((item) => ({
+                                value: item.df_id,
+                                label: item.full_name,
+                              }))
+                            }
+                            defaultValue={
+                              which_fp
+                                ? { label: which_fp, value: which_fp }
+                                : null
+                            }
+                            onChange={(selectedOption) => {
+                              setSelectedPartnerId(selectedOption.value);
+                            }}
+                            className="react-select"
+                            classNamePrefix="select"
+                            id="mul_1"
+                          />
+                        </div>
                         <div className="font-medium text-slate-700 dark:text-slate-200">
                           Amount Of Loan
                         </div>
@@ -386,64 +445,6 @@ const AgriFinanceDetails = () => {
                 </div>
               </Card>
             </div>
-
-            {/* <div className="grid xl:grid-cols-3 grid-cols-1 gap-5">
-            <Card title="Task list" headerslot={<SelectMonth />}>
-              <TaskLists />
-            </Card>
-            <Card title="Messages" headerslot={<SelectMonth />}>
-              <MessageList />
-            </Card>
-            <Card title="Activity" headerslot={<SelectMonth />}>
-              <TrackingParcel />
-            </Card>
-          </div>
-          <div className="grid grid-cols-12 gap-5">
-            <div className="xl:col-span-8 lg:col-span-7 col-span-12">
-              <Card title="Team members" noborder>
-                <TeamTable />
-              </Card>
-            </div>
-            <div className="xl:col-span-4 lg:col-span-5 col-span-12">
-              <Card title="Files" headerslot={<SelectMonth />}>
-                <ul className="divide-y divide-slate-100 dark:divide-slate-700">
-                  {files.map((item, i) => (
-                    <li key={i} className="block py-[8px]">
-                      <div className="flex space-x-2 rtl:space-x-reverse">
-                        <div className="flex-1 flex space-x-2 rtl:space-x-reverse">
-                          <div className="flex-none">
-                            <div className="h-8 w-8">
-                              <img
-                                src={item.img}
-                                alt=""
-                                className="block w-full h-full object-cover rounded-full border hover:border-white border-transparent"
-                              />
-                            </div>
-                          </div>
-                          <div className="flex-1">
-                            <span className="block text-slate-600 text-sm dark:text-slate-300">
-                              {item.title}
-                            </span>
-                            <span className="block font-normal text-xs text-slate-500 mt-1">
-                              {item.date}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex-none">
-                          <button
-                            type="button"
-                            className="text-xs text-slate-900 dark:text-white"
-                          >
-                            Download
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </div>
-          </div> */}
           </div>
         )}
       </div>
