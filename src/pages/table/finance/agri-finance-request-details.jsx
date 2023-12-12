@@ -44,15 +44,15 @@ const AgriFinanceDetails = () => {
       icon: "heroicons-outline:clock",
     },
     {
-      title: "Payment Schedule",
-      id: "payment_schedule",
-      count: details?.payment_schedule,
+      title: "Farming Land Area",
+      id: "land_size",
+      count: details?.land_size,
       bg: "bg-lime-500",
       text: "text-success-500",
       icon: "heroicons-outline:calculator",
     },
   ];
-const which_farmer = details?.which_farmer
+  const which_farmer = details?.which_farmer;
   const [status, setStatus] = useState(null);
   const handleEdit = async (value) => {
     try {
@@ -155,15 +155,15 @@ const which_farmer = details?.which_farmer
                         className={`${item.bg} rounded-md  border-white border-2 p-4 bg-opacity-[0.15] dark:bg-opacity-50 text-center`}
                       >
                         <div
-                          className={`${item.text} mx-auto h-10 w-10 flex flex-col items-center justify-center rounded-full bg-white text-sm mb-4 `}
+                          className={`${item.text} mx-auto h-10 w-10 flex flex-col items-center justify-center rounded-full bg-white mb-4 `}
                         >
                           <Icon icon={item.icon} />
                         </div>
-                        <span className="block text-sm text-slate-600 font-medium dark:text-white mb-1">
+                        <span className="block text-slate-600 font-medium dark:text-white mb-1">
                           {item.title}
                         </span>
 
-                        <span className="block mb-  text-slate-900 dark:text-white  text-sm ">
+                        <span className="block mb-  text-slate-900 dark:text-white ">
                           {item.count}
                         </span>
                       </div>
@@ -175,107 +175,49 @@ const which_farmer = details?.which_farmer
                     <div className="mr-3 mb-3 space-y-2">
                       {/* // note  */}
                       <div className="mr-3 mb-3 space-y-2">
-                      <div className="text-xs font-medium text-slate-600 dark:text-slate-300">
-                        Amount Of Loan
+                        <div className="font-medium text-slate-700 dark:text-slate-200">
+                          Amount Of Loan
+                        </div>
+                        <div className="text-warning-700 dark:text-warning-500">
+                          {" "}
+                          {details?.amount_of_loan} ৳
+                        </div>
                       </div>
-                      <div className="text-xs text-warning-500">
-                        {" "}
-                     {details?.amount_of_loan} ৳
-                      </div>
-                    </div>
 
-                      <div className="text-xs font-medium text-slate-600 dark:text-slate-300">
-                      DF Approved Loan
-
+                      <div className="text-slate-700 dark:text-slate-200">
+                        DF Approved Loan
                       </div>
                       {show ? (
                         <input
                           type="number"
                           value={editedAmount}
                           onChange={(e) => setEditedAmount(e.target.value)}
-                          className="w-full border border-slate-300  dark:bg-slate-500 bg-black-50 rounded-md p-2 text-black-900 dark:text-slate-300"
+                          className="w-full border border-slate-300  dark:bg-slate-500 bg-black-50 rounded-md p-2 text-black-900 dark:text-slate-200"
                         />
                       ) : (
-                        <span className=" text-warning-500 text-sm  font-normal   py-4">
-                          {isUpdated ? editedAmount : details.df_approved_loan} ৳
+                        <span className="text-warning-700 dark:text-warning-500 font-normal py-4">
+                          {isUpdated ? editedAmount : details.df_approved_loan}{" "}
+                          ৳
                         </span>
                       )}
                     </div>
                     {/* end single */}
-                    {/* <div className="mr-3 mb-3 space-y-2">
-                    <div className="text-xs font-medium text-slate-600 dark:text-slate-300">
-                      Sell Price from Company
-                    </div>
-                    {show ? (
-                      <div>
-                        <Textinput
-                          label=""
-                          id="pn"
-                          type="text"
-                          defaultValue={
-                            edited_details?.sell_price_from_company
-                          }
-                          onChange={(e) =>
-                            set_edited_details({
-                              ...edited_details,
-                              sell_price_from_company: e.target.value,
-                            })
-                          }
-                          placeholder={
-                            edited_details?.sell_price_from_company
-                          }
-                        />
-                      </div>
-                    ) : (
-                      <div className="text-xs text-slate-600 dark:text-slate-300">
-                        {edited_details?.sell_price_from_company} tk
-                      </div>
-                    )}
-                  </div> */}
-                    {/* end single */}
-                    {/* <div className="mr-3 mb-3 space-y-2">
-                    <div className="text-xs font-medium text-slate-600 dark:text-slate-300">
-                      Deshifarmer Sell Price
-                    </div>
-    
-                    {show ? (
-                      <div>
-                        <Textinput
-                          label=""
-                          id="pn"
-                          type="text"
-                          defaultValue={edited_details?.sell_price}
-                          onChange={(e) => {
-                            set_edited_details({
-                              ...edited_details,
-                              sell_price: e.target.value,
-                            });
-                          }}
-                          placeholder={edited_details?.sell_price}
-                        />
-                      </div>
-                    ) : (
-                      <div className="text-xs text-slate-600 dark:text-slate-300">
-                        {edited_details?.sell_price} tk
-                      </div>
-                    )}
-                  </div> */}
-                    {/* end single */}
+
                     <div className="mr-3 mb-3 space-y-2">
-                      <div className="text-xs font-medium text-slate-600 dark:text-slate-300">
-                        Created At
+                      <div className="text-slate-700 dark:text-slate-200">
+                        Requested At
                       </div>
-                      <div className="text-xs text-warning-500">
+                      <div className="text-warning-700 dark:text-warning-500">
                         {" "}
-                        {moment(details?.updated_at).format("LLLL")}
+                        {moment(details?.updated_at).format("LL")}
                       </div>
                     </div>
 
                     <div className="mr-3 mb-3 space-y-2">
-                      <div className="text-xs font-medium text-slate-600 dark:text-slate-300">
+                      <div className="text-slate-700 dark:text-slate-200">
                         Status
                       </div>
-                      <div className="text-xs font-bold text-warning-500 ">
+                      <div className="text-warning-700 dark:text-warning-500">
                         {status || details?.status}
                       </div>
                     </div>
@@ -311,153 +253,136 @@ const which_farmer = details?.which_farmer
                     Active
                   </button> */}
                   </div>
-                  {/* <DonutChart
-                  discount={discount}
-                  totalCommossion={totalCommossion}
-                  total_discount_with_commission={total_discount_with_commission}
-                /> */}
                 </div>
               </Card>
               {/* end single column*/}
               <Card
-                title={`About Farmer`}
+                title={`Farmer details`}
                 className="xl:col-span-4 col-span-12 lg:col-span-4 md:col-span-12 h-full"
               >
                 <div className="  dark:bg-slate-700  p-3 rounded-md">
-                  <div className="text-sm font-medium text-slate-800 dark:text-slate-100 mb-3 ">
-                    <div className="text-sm font-medium text-slate-800 dark:text-slate-100 ">
-                      <div>Farmer ID</div>
-                      <p className="text-sm text-slate-600 dark:text-orange-300 my-3">
-                        <Link to={`/farmer-details/${which_farmer}`}>
+                  <div className=" dark:text-slate-100 mb-3 space-y-3">
+                    <div className="flex justify-between dark:text-slate-100 ">
+                      <div>DF Farmer ID</div>
+                      <Link to={`/farmer-details/${which_farmer}`}>
+                        <p className=" text-slate-600 dark:text-orange-300">
                           {details?.which_farmer}
-                        </Link>
-                      </p>
+                        </p>
+                      </Link>
                     </div>
-                    <div className="text-sm font-medium text-slate-800 dark:text-slate-100 ">
-                      <div>Farmer Name</div>
-                      <p className="text-sm text-slate-600 dark:text-orange-300 my-3">
-                        Nadiea
-                      </p>
+                    <div className="flex justify-between">
+                      <p>Name</p>
+                      <div>Ramjan ali</div>
                     </div>
-                  </div>
-                  <div className="text-sm font-medium text-slate-800 dark:text-slate-300 mb-3">
-                    <div className="text-sm font-medium text-slate-800 dark:text-slate-300 ">
-                      <div>Location</div>
-                      <p className="text-sm text-slate-600 dark:text-orange-300 my-3">
-                        Dhamrai
-                      </p>
+                    <div className="flex justify-between">
+                      <p>Mobile number</p>
+                      <div>
+                        <span className="text-xs">show </span>+88 xxxxxx5662
+                      </div>
                     </div>
-                  </div>
-                  {/* <div className="text-sm font-medium text-slate-800 dark:text-slate-100 mb-3">
-                  Description
-                </div>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: details?.description,
-                  }}
-                  className="text-sm text-slate-600 dark:text-slate-300"
-                >
-                  {details?.description}
-                </p> */}
-                  <br />
-                  {/* <div className="text-sm font-medium text-slate-800 dark:text-slate-100 mb-3">
-                  Preferred
-                </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
-                  {details?.preferred}
-                </p> */}
-                  {/* <div className="flex flex-wrap mt-8">
-                  <div className="xl:mr-8 mr-4 mb-3 space-y-1">
-                    <div className="font-semibold text-slate-500 dark:text-slate-400">
-                      Existing website
+                    <div className="flex justify-between">
+                      <p>Address</p>
+                      <div>Jessore sadar upazila, jessore</div>
                     </div>
-                    <div className="flex items-center space-x-2 text-xs font-normal text-primary-600 dark:text-slate-300 rtl:space-x-reverse">
-                      <Icon icon="heroicons:link" />
-                      <a href="#">www.example.com</a>
+                    <div className="flex justify-between">
+                      <p>Yearly Income</p>
+                      <div>~ 55,000 Tk</div>
                     </div>
-                  </div>
-                  <div className="xl:mr-8 mr-4 mb-3 space-y-1">
-                    <div className="font-semibold text-slate-500 dark:text-slate-400">
-                      Project brief
+                    <div className="flex justify-between">
+                      <p>Family member</p>
+                      <div>4 person</div>
                     </div>
-                    <div className="flex items-center space-x-2 text-xs font-normal text-primary-600 dark:text-slate-300 rtl:space-x-reverse">
-                      <Icon icon="heroicons:link" />
-                      <a href="#">www.example.com</a>
+                    <div className="flex justify-between">
+                      <p>Land Size</p>
+                      <div>1.2 acre (rent)</div>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between">
+                      <p>Farmers Group</p>
+                      <div>Chashi 3a</div>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>Group Avg. Score</p>
+                      <div className="text-green-700">88</div>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between">
+                      <p>Sales Volume (last yr)</p>
+                      <div className="text-green-700"> - </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>Input purchase</p>
+                      <div className="text-green-700"> - </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <p>Recorded harvest</p>
+                      <div className="text-green-700"> - </div>
                     </div>
                   </div>
-                </div> */}
-                  {/* end flex */}
                 </div>
               </Card>
-              <Card className="xl:col-span-4 col-span-12 md:col-span-12 lg:col-span-3">
-                {/* <div className="-mx-6 custom-calender mb-6">
-                <CalendarView />
-              </div>
-              <ul className="divide-y divide-slate-100 dark:divide-slate-700">
-                {meets.slice(0, 3).map((item, i) => (
-                  <li key={i} className="block py-[10px]">
-                    <div className="flex space-x-2 rtl:space-x-reverse">
-                      <div className="flex-1 flex space-x-2 rtl:space-x-reverse">
-                        <div className="flex-none">
-                          <div className="h-8 w-8">
-                            <img
-                              src={item.img}
-                              alt=""
-                              className="block w-full h-full object-cover rounded-full border hover:border-white border-transparent"
-                            />
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <span className="block text-slate-600 text-sm dark:text-slate-300 mb-1 font-medium">
-                            {item.title}
-                          </span>
-                          <span className="flex font-normal text-xs dark:text-slate-400 text-slate-500">
-                            <span className="text-sm inline-block mr-1">
-                              <Icon icon="heroicons-outline:video-camera" />
-                            </span>
-                            {item.meet}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex-none">
-                        <span className="block text-xs text-slate-600 dark:text-slate-400">
-                          {item.date}
-                        </span>
-                      </div>
+              <Card
+                title="Loan details"
+                className="xl:col-span-4 col-span-12 md:col-span-12 lg:col-span-3"
+              >
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <p>Type</p>
+                    <div className="text-green-700 dark:text-green-200">
+                      {" "}
+                      Instant Capital{" "}
                     </div>
-                  </li>
-                ))}
-              </ul> */}
-                {/* <div className="text-sm text-slate-600 dark:text-slate-300">
-                {details?.image && (
-                  <img
-                    src={`${import.meta.env.VITE_IMG_URL}/${
-                      details?.image
-                    }`}
-                    alt="thumb-1"
-                    className="rounded-md border-4 border-slate-300 w-full h-full"
-                  />
-                )}
-              </div> */}
-
-                <Card title="Payment Dates">
-                  {details?.payment_dates?.map((date, index) => (
-                    <tr className=" mt-2" key={index}>
-                      <td className="text-slate-900 dark:text-slate-300 text-sm  border font-normal ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left px-6 py-2">
-                        {date}
-                      </td>
-                    </tr>
-                  ))}
-                </Card>
-
-                <div className="text-sm text-slate-600 dark:text-slate-300">
-                  {details?.image && (
-                    <img
-                      src={`${import.meta.env.VITE_IMG_URL}/${details?.image}`}
-                      alt="thumb-1"
-                      className="rounded-md border-4 border-slate-300 w-full h-full"
-                    />
-                  )}
+                  </div>
+                  <div className="flex justify-between">
+                    <p>Loan for</p>
+                    <div className="text-green-700  dark:text-green-200">
+                      Input purchase{" "}
+                    </div>
+                  </div>
+                  <div className="flex justify-between">
+                    <p>Reference Invoice</p>
+                    <div className="text-green-700  dark:text-green-200">
+                      Order_id#458445645
+                    </div>
+                  </div>
+                  <div className="pt-6">
+                    <ol class="relative pl-8 border-l border-gray-200 dark:border-gray-700">
+                      {details?.payment_dates?.map((date, index) => (
+                        <li class="mb-10 ms-6" key={index}>
+                          <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
+                              />
+                            </svg>
+                          </span>
+                          <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                            BDT 5,000
+                            <span class=" ml-3 bg-blue-100 text-blue-800 text-sm font-sm me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">
+                              not paid
+                            </span>
+                          </h3>
+                          <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                            {moment(date).format("LL")}
+                          </time>
+                          {/* <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                          Get access to over 20+ pages including a dashboard
+                          layout, charts, kanban board, calendar, and pre-order
+                          E-commerce & Marketing pages.
+                        </p> */}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
               </Card>
             </div>
