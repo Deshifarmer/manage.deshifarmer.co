@@ -15,19 +15,23 @@ import { calculateAge } from "../../../hooks/useFarmerAge";
 
 const COLUMNS = [
   {
-    Header: "Farmer ID",
+    Header: "Farmer ",
     accessor: "which_farmer",
     Cell: (row) => {
+      const farmerName = row.row.original.farmer_name;
       return (
-        <div className="flex items-center gap-1 text-blue-500 underline">
-          <p className="  ">{row?.cell?.value}</p>
+        <div className=" items-center  text-blue-500 ">
+          <Link to={`/farmer-details/${row?.cell?.value}`} className="">
+            <p className=" underline">{row?.cell?.value}</p>
+          </Link>
+          <p className=" mt-1">{farmerName}</p>
         </div>
       );
     },
   },
   {
-    Header: "farmer Name",
-    accessor: "farmer_name",
+    Header: "Location",
+    accessor: "test",
     Cell: (row) => {
       return <span className="  ">{row?.cell?.value} </span>;
     },
@@ -69,7 +73,7 @@ const COLUMNS = [
       return (
         <div>
           <Link to={`/agri-finance-details/${row?.cell?.row?.original?.id}`}>
-            <div className="">View Details</div>
+            <div className=" text-blue-500">View Details</div>
           </Link>
         </div>
       );

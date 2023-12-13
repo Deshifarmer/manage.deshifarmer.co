@@ -168,6 +168,19 @@ const AgriFinanceDetails = () => {
     }
   };
 
+
+//date
+// Assuming this is inside your component
+const [displayValue, setDisplayValue] = useState(0);
+
+useEffect(() => {
+  const value = details?.df_approved_loan 
+    ? details?.df_approved_loan / details?.payment_dates.length 
+    : details?.amount_of_loan / details?.payment_dates.length;
+  
+  setDisplayValue(value);
+}, [details]);
+
   return (
     <div>
       <div>
@@ -213,7 +226,7 @@ const AgriFinanceDetails = () => {
                           <Select
                           
                             name="colors"
-                            isDisabled={!!which_fp}
+                            isDisabled={!!which_fp || !show}
                             options={
                               partner &&
                               partner?.map((item) => ({
@@ -288,8 +301,9 @@ const AgriFinanceDetails = () => {
                       className="bg-slate-500 text-white mt-2 rounded-md px-4 py-2 items-center"
                       value={show ? "update" : "edit"}
                     >
-                      {show ? "update" : "Edit"}
+                      {show ?  "update" : "Edit"}
                     </button>
+                  
                     <select
                       value={status || "pending"}
                       onChange={(e) => handleEdit(e.target.value)}
@@ -425,7 +439,13 @@ const AgriFinanceDetails = () => {
                             </svg>
                           </span>
                           <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-                            BDT 5,000
+                          {/* split amount_of_loan  */}
+
+      {details?.df_approved_loan ? details?.df_approved_loan / details?.payment_dates.length : details?.amount_of_loan / details?.payment_dates.length}
+                    
+
+                            {} ৳
+
                             <span class=" ml-3 bg-blue-100 text-blue-800 text-sm font-sm me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">
                               not paid
                             </span>

@@ -228,7 +228,7 @@ export const menuItems = [
 //finance partner
 {
   title: "Finance Partner",
-  icon: "heroicons-outline:rss",
+  icon: "heroicons-outline:currency-yen",
   link: "#",
   child: [
     {
@@ -370,7 +370,7 @@ export const menuItems = [
 },
 {
   title: "Agri Finance",
-  icon: "heroicons-outline:adjustments-vertical",
+  icon: "heroicons-outline:banknotes",
   link: "#",
   child: [
     {
